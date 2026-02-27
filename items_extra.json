@@ -1,0 +1,98 @@
+{
+  "items": [
+    {
+      "id": "frost_sword",
+      "name": "Frost Sword",
+      "description": "A sword imbued with icy magic, dealing cold damage.",
+      "icon": "icons/sword_frost.png",
+      "stackable": false,
+      "weight": 2.5,
+      "value": 400,
+      "type": "weapon",
+      "stats": {
+        "damage_min": 2,
+        "damage_max": 8,
+        "damage_type": "slash",
+        "magic": true,
+        "aoe": "single",
+        "range": 1
+      },
+      "extra_effect": {
+        "trigger": "onHit",
+        "damage_min": 1,
+        "damage_max": 4,
+        "damage_type": "cold",
+        "armor_negating": false
+      },
+      "special_powers": [
+        { "name": "cold_resistance", "value": 50 }
+      ],
+      "onUse": "onUse_frost_sword"
+    },
+    {
+      "id": "fire_bow",
+      "name": "Fire Bow",
+      "description": "A bow that shoots flaming arrows, igniting targets.",
+      "icon": "icons/bow_fire.png",
+      "stackable": false,
+      "weight": 1.5,
+      "value": 350,
+      "type": "ranged",
+      "stats": {
+        "damage_min": 1,
+        "damage_max": 6,
+        "damage_type": "pierce",
+        "magic": true,
+        "aoe": "single",
+        "range": 6
+      },
+      "extra_effect": {
+        "trigger": "onHit",
+        "damage_min": 1,
+        "damage_max": 3,
+        "damage_type": "fire",
+        "armor_negating": false
+      },
+      "special_powers": [
+        { "name": "fire_resistance", "value": 50 }
+      ],
+      "onUse": "onUse_fire_bow"
+    },
+    {
+      "id": "steel_dagger",
+      "name": "Steel Dagger",
+      "description": "A sharp steel dagger for close combat.",
+      "icon": "icons/dagger_steel.png",
+      "stackable": false,
+      "weight": 1.0,
+      "value": 120,
+      "type": "weapon",
+      "stats": {
+        "damage_min": 1,
+        "damage_max": 6,
+        "damage_type": "pierce",
+        "magic": false,
+        "aoe": "single",
+        "range": 1
+      }
+    },
+    {
+      "id": "recurve_bow",
+      "name": "Recurve Bow",
+      "description": "A curved bow with increased range.",
+      "icon": "icons/bow_recurve.png",
+      "stackable": false,
+      "weight": 2.0,
+      "value": 150,
+      "type": "ranged",
+      "stats": {
+        "damage_min": 1,
+        "damage_max": 6,
+        "damage_type": "pierce",
+        "magic": false,
+        "aoe": "single",
+        "range": 6
+      }
+    }
+  ]
+}
