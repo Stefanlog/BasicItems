@@ -1,98 +1,147 @@
 {
   "items": [
     {
-      "id": "frost_sword",
-      "name": "Frost Sword",
-      "description": "A sword imbued with icy magic, dealing cold damage.",
+      "id": "frost_brand",
+      "name": "Frost Brand",
+      "description": "This sword is wreathed in frost, dealing additional cold damage to enemies and providing immunity to cold.",
       "icon": "icons/sword_frost.png",
       "stackable": false,
       "weight": 2.5,
       "value": 400,
       "type": "weapon",
+      "game_type": 1,
+      "itemwep": "Frost Brand",
       "stats": {
-        "damage_min": 2,
-        "damage_max": 8,
+        "damage_min": 7,
+        "damage_max": 7,
         "damage_type": "slash",
         "magic": true,
         "aoe": "single",
-        "range": 1
+        "range": 1,
+        "init": 4
       },
       "extra_effect": {
         "trigger": "onHit",
-        "damage_min": 1,
-        "damage_max": 4,
+        "weapon": "Cold",
+        "damage_min": 7,
+        "damage_max": 7,
         "damage_type": "cold",
-        "armor_negating": false
+        "armor_negating": false,
+        "nextwep": 175,
+        "nextdmg": 7
       },
       "special_powers": [
-        { "name": "cold_resistance", "value": 50 }
-      ],
-      "onUse": "onUse_frost_sword"
+        { "name": "coldres", "value": 100 }
+      ]
     },
     {
-      "id": "fire_bow",
-      "name": "Fire Bow",
-      "description": "A bow that shoots flaming arrows, igniting targets.",
-      "icon": "icons/bow_fire.png",
+      "id": "fire_brand",
+      "name": "Fire Brand",
+      "description": "A blade engulfed in flames that deals fire damage to enemies and grants fire resistance.",
+      "icon": "icons/sword_fire.png",
       "stackable": false,
-      "weight": 1.5,
-      "value": 350,
-      "type": "ranged",
+      "weight": 2.5,
+      "value": 400,
+      "type": "weapon",
+      "game_type": 1,
+      "itemwep": "Fire Brand",
       "stats": {
-        "damage_min": 1,
-        "damage_max": 6,
-        "damage_type": "pierce",
+        "damage_min": 7,
+        "damage_max": 7,
+        "damage_type": "slash",
         "magic": true,
         "aoe": "single",
-        "range": 6
+        "range": 1,
+        "init": 4
       },
       "extra_effect": {
         "trigger": "onHit",
-        "damage_min": 1,
-        "damage_max": 3,
+        "weapon": "Fire",
+        "damage_min": 6,
+        "damage_max": 6,
         "damage_type": "fire",
-        "armor_negating": false
+        "armor_negating": false,
+        "nextwep": 480,
+        "nextdmg": 6
       },
       "special_powers": [
-        { "name": "fire_resistance", "value": 50 }
-      ],
-      "onUse": "onUse_fire_bow"
+        { "name": "fireres", "value": 100 }
+      ]
     },
     {
       "id": "steel_dagger",
       "name": "Steel Dagger",
-      "description": "A sharp steel dagger for close combat.",
+      "description": "A sharp steel dagger for close combat. Fast but deals less damage.",
       "icon": "icons/dagger_steel.png",
       "stackable": false,
       "weight": 1.0,
       "value": 120,
       "type": "weapon",
+      "game_type": 1,
+      "itemwep": "Dagger",
       "stats": {
-        "damage_min": 1,
-        "damage_max": 6,
+        "damage_min": 3,
+        "damage_max": 3,
         "damage_type": "pierce",
         "magic": false,
         "aoe": "single",
-        "range": 1
+        "range": 1,
+        "init": 2
       }
     },
     {
       "id": "recurve_bow",
       "name": "Recurve Bow",
-      "description": "A curved bow with increased range.",
+      "description": "A curved bow with increased range, fires arrows in an arcing trajectory.",
       "icon": "icons/bow_recurve.png",
       "stackable": false,
       "weight": 2.0,
       "value": 150,
       "type": "ranged",
+      "game_type": 1,
+      "itemwep": "Longbow",
       "stats": {
-        "damage_min": 1,
-        "damage_max": 6,
+        "damage_min": 4,
+        "damage_max": 4,
         "damage_type": "pierce",
         "magic": false,
         "aoe": "single",
-        "range": 6
+        "range": 6,
+        "init": 2,
+        "lob": true,
+        "rangepen": true
       }
-    }
+    },
+    { "id": "ring_infernal_magic", "name": "Ring of Infernal Magic", "description": "Grants +1 Path Boost in Infernal Magic.", "icon": "icons/ring_fire.png", "stackable": false, "weight": 0.1, "value": 100, "type": "misc", "game_type": 1, "rarity": "rare", "pathboost": 1 },
+    { "id": "ring_pyromancy", "name": "Ring of Pyromancy", "description": "Grants +1 Path Boost in Pyromancy.", "icon": "icons/ring_pyromancy.png", "stackable": false, "weight": 0.1, "value": 100, "type": "misc", "game_type": 1, "rarity": "rare", "pathboost": 3 },
+    { "id": "ring_hydromancy", "name": "Ring of Hydromancy", "description": "Grants +1 Path Boost in Hydromancy.", "icon": "icons/ring_water.png", "stackable": false, "weight": 0.1, "value": 110, "type": "misc", "game_type": 1, "rarity": "rare", "pathboost": 4 },
+    { "id": "ring_storm_magic", "name": "Ring of Storm Magic", "description": "Grants +1 Path Boost in Storm Magic.", "icon": "icons/ring_air.png", "stackable": false, "weight": 0.1, "value": 110, "type": "misc", "game_type": 1, "rarity": "rare", "pathboost": 5 },
+    { "id": "ring_geomancy", "name": "Ring of Geomancy", "description": "Grants +1 Path Boost in Geomancy.", "icon": "icons/ring_earth.png", "stackable": false, "weight": 0.1, "value": 110, "type": "misc", "game_type": 1, "rarity": "rare", "pathboost": 6 },
+    { "id": "ring_unlife", "name": "Ring of Unlife", "description": "Grants +1 Path Boost in Unlife.", "icon": "icons/ring_undead.png", "stackable": false, "weight": 0.1, "value": 120, "type": "misc", "game_type": 1, "rarity": "rare", "pathboost": 8 },
+    { "id": "ring_dark_magic", "name": "Ring of Dark Magic", "description": "Grants +1 Path Boost in Dark Magic.", "icon": "icons/ring_dark.png", "stackable": false, "weight": 0.1, "value": 120, "type": "misc", "game_type": 1, "rarity": "rare", "pathboost": 9 },
+    { "id": "ring_blood_magic", "name": "Ring of Blood Magic", "description": "Grants +1 Path Boost in Blood Magic.", "icon": "icons/ring_blood.png", "stackable": false, "weight": 0.1, "value": 120, "type": "misc", "game_type": 1, "rarity": "rare", "pathboost": 11 },
+    { "id": "ring_white_magic", "name": "Ring of White Magic", "description": "Grants +1 Path Boost in White Magic.", "icon": "icons/ring_white.png", "stackable": false, "weight": 0.1, "value": 130, "type": "misc", "game_type": 1, "rarity": "rare", "pathboost": 16 },
+    { "id": "ring_spiritism", "name": "Ring of Spiritism", "description": "Grants +1 Path Boost in Spiritism.", "icon": "icons/ring_spirit.png", "stackable": false, "weight": 0.1, "value": 130, "type": "misc", "game_type": 1, "rarity": "rare", "pathboost": 17 },
+    { "id": "ring_solar_magic", "name": "Ring of Solar Magic", "description": "Grants +1 Path Boost in Solar Magic.", "icon": "icons/ring_sun.png", "stackable": false, "weight": 0.1, "value": 130, "type": "misc", "game_type": 1, "rarity": "rare", "pathboost": 19 },
+    { "id": "ring_serpent_magic", "name": "Ring of Serpent Magic", "description": "Grants +1 Path Boost in Serpent Magic.", "icon": "icons/ring_nature.png", "stackable": false, "weight": 0.1, "value": 120, "type": "misc", "game_type": 1, "rarity": "rare", "pathboost": 21 },
+    { "id": "ring_dawn_magic", "name": "Ring of Dawn Magic", "description": "Grants +1 Path Boost in Dawn Magic.", "icon": "icons/ring_dawn.png", "stackable": false, "weight": 0.1, "value": 130, "type": "misc", "game_type": 1, "rarity": "rare", "pathboost": 22 },
+    { "id": "ring_iron_arcana", "name": "Ring of Iron Arcana", "description": "Grants +1 Path Boost in Iron Arcana.", "icon": "icons/ring_metal.png", "stackable": false, "weight": 0.1, "value": 140, "type": "misc", "game_type": 1, "rarity": "rare", "pathboost": 23 },
+    { "id": "ring_kuro_do", "name": "Ring of Kuro Do", "description": "Grants +1 Path Boost in Kuro Do.", "icon": "icons/ring_kuro.png", "stackable": false, "weight": 0.1, "value": 140, "type": "misc", "game_type": 1, "rarity": "rare", "pathboost": 24 },
+    { "id": "ring_prayers", "name": "Ring of Prayers", "description": "Grants +1 Path Boost in Prayers.", "icon": "icons/ring_holy.png", "stackable": false, "weight": 0.1, "value": 130, "type": "misc", "game_type": 1, "rarity": "rare", "pathboost": 25 },
+    { "id": "ring_frost_magic", "name": "Ring of Frost Magic", "description": "Grants +1 Path Boost in Frost Magic.", "icon": "icons/ring_ice.png", "stackable": false, "weight": 0.1, "value": 110, "type": "misc", "game_type": 1, "rarity": "rare", "pathboost": 27 },
+    { "id": "ring_dark_prayers", "name": "Ring of Dark Prayers", "description": "Grants +1 Path Boost in Dark Prayers.", "icon": "icons/ring_dark_prayers.png", "stackable": false, "weight": 0.1, "value": 130, "type": "misc", "game_type": 1, "rarity": "rare", "pathboost": 28 },
+    { "id": "ring_wizardry", "name": "Ring of Wizardry", "description": "Grants +1 Path Boost in Wizardry.", "icon": "icons/ring_magic.png", "stackable": false, "weight": 0.1, "value": 140, "type": "misc", "game_type": 1, "rarity": "rare", "pathboost": 29 },
+    { "id": "ring_night", "name": "Ring of Night", "description": "Grants +1 Path Boost in Night.", "icon": "icons/ring_shadow.png", "stackable": false, "weight": 0.1, "value": 120, "type": "misc", "game_type": 1, "rarity": "rare", "pathboost": 32 },
+    { "id": "ring_necromancy", "name": "Ring of Necromancy", "description": "Grants +1 Path Boost in Necromancy.", "icon": "icons/ring_necromancy.png", "stackable": false, "weight": 0.1, "value": 120, "type": "misc", "game_type": 1, "rarity": "rare", "pathboost": 38 },
+    { "id": "ring_witchery", "name": "Ring of Witchery", "description": "Grants +1 Path Boost in Witchery.", "icon": "icons/ring_witchery.png", "stackable": false, "weight": 0.1, "value": 140, "type": "misc", "game_type": 1, "rarity": "rare", "pathboost": 40 },
+    { "id": "ring_troll_magic", "name": "Ring of Troll Magic", "description": "Grants +1 Path Boost in Troll Magic.", "icon": "icons/ring_troll.png", "stackable": false, "weight": 0.1, "value": 140, "type": "misc", "game_type": 1, "rarity": "rare", "pathboost": 41 },
+    { "id": "ring_void_magic", "name": "Ring of Void Magic", "description": "Grants +1 Path Boost in Void Magic.", "icon": "icons/ring_void.png", "stackable": false, "weight": 0.1, "value": 150, "type": "misc", "game_type": 1, "rarity": "rare", "pathboost": 42 },
+    { "id": "ring_illusionism", "name": "Ring of Illusionism", "description": "Grants +1 Path Boost in Illusionism.", "icon": "icons/ring_illusionism.png", "stackable": false, "weight": 0.1, "value": 140, "type": "misc", "game_type": 1, "rarity": "rare", "pathboost": 43 },
+    { "id": "ring_high_arcana", "name": "Ring of High Arcana", "description": "Grants +1 Path Boost in High Arcana.", "icon": "icons/ring_arcana.png", "stackable": false, "weight": 0.1, "value": 150, "type": "misc", "game_type": 1, "rarity": "rare", "pathboost": 51 },
+    { "id": "ring_moon_magic", "name": "Ring of Moon Magic", "description": "Grants +1 Path Boost in Moon Magic.", "icon": "icons/ring_moon.png", "stackable": false, "weight": 0.1, "value": 130, "type": "misc", "game_type": 1, "rarity": "rare", "pathboost": 52 },
+    { "id": "ring_silver_arcana", "name": "Ring of Silver Arcana", "description": "Grants +1 Path Boost in Silver Arcana.", "icon": "icons/ring_silver.png", "stackable": false, "weight": 0.1, "value": 140, "type": "misc", "game_type": 1, "rarity": "rare", "pathboost": 53 },
+    { "id": "ring_alchemy", "name": "Ring of Alchemy", "description": "Grants +1 Path Boost in Alchemy.", "icon": "icons/ring_alchemy.png", "stackable": false, "weight": 0.1, "value": 130, "type": "misc", "game_type": 1, "rarity": "rare", "pathboost": 55 },
+    { "id": "ring_gold_arcana", "name": "Ring of Gold Arcana", "description": "Grants +1 Path Boost in Gold Arcana.", "icon": "icons/ring_gold.png", "stackable": false, "weight": 0.1, "value": 150, "type": "misc", "game_type": 1, "rarity": "rare", "pathboost": 56 },
+    { "id": "ring_astrology", "name": "Ring of Astrology", "description": "Grants +1 Path Boost in Astrology.", "icon": "icons/ring_stars.png", "stackable": false, "weight": 0.1, "value": 150, "type": "misc", "game_type": 1, "rarity": "rare", "pathboost": 61 }
   ]
 }
