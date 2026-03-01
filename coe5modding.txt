@@ -1,0 +1,10875 @@
+Modding Manual CoE 5
+Illwinter Game Design (ver 5.36)
+Introduction
+
+2
+
+General Information
+
+2
+
+Mod Mechanics
+
+2
+
+Mod Syntax
+
+2
+
+Minimal Mod for Steam Workshop
+
+3
+
+Files
+
+3
+
+orcking.c5m
+
+3
+
+orcbanner.tga
+
+3
+
+banner.png
+
+3
+
+coe5ws.txt
+
+3
+
+Mod Info
+
+3
+
+Required Commands
+
+3
+
+Optional Commands
+
+3
+
+Maps
+
+3
+
+Fonts & Translation
+
+3
+
+Weapon Modding
+
+4
+
+Start Commands
+
+4
+
+Basic Commands
+
+4
+
+Sound & Visuals
+
+4
+
+Chained Weapons
+
+5
+
+Special Attributes
+
+5
+
+Weapon Modding Numbers
+
+6
+
+Magic Item Modding
+
+10
+
+Start Commands
+
+10
+
+Basic Commands
+
+10
+
+Special Commands
+
+10
+
+Copy & Clear commands
+
+11
+
+Monster Commands for Magic Items
+
+11
+
+Magic Item Modding Numbers
+
+13
+
+Monster Modding
+
+13
+
+Start Commands
+
+13
+
+Basic Commands
+
+14
+
+Copy & Clear Commands
+
+14
+
+Attacks
+
+14
+
+Combat Spells
+
+15
+
+Movement
+
+15
+
+Behavior
+
+16
+
+Ritual Power
+
+17
+
+Monster Spawning
+
+18
+
+Terrain Altering
+
+18
+
+Shapechanging
+
+18
+
+Immortality and Other Planes
+
+19
+
+Healing and Sanity
+
+19
+
+Stealth and Scouting
+
+19
+
+Monster Types
+
+19
+
+Mirror Commands
+
+20
+
+Income Commands
+
+20
+
+Resistances and other Damage Mitigations
+
+20
+
+Special Attributes
+
+21
+
+Monster Modding Numbers
+
+24
+
+Class Modding
+
+27
+
+1
+
+Start Commands
+
+27
+
+Basic Commands
+
+27
+
+Special Start Location
+
+27
+
+Starting Units
+
+27
+
+Recruitment List
+
+27
+
+Income Modifiers
+
+28
+
+Special Attributes
+
+28
+
+Class Modding Numbers
+
+28
+
+Terrain Modding
+
+29
+
+Start Commands
+
+29
+
+Basic Commands
+
+29
+
+Clear Commands
+
+29
+
+Special Attributes
+
+30
+
+Terrain Modding Numbers
+
+31
+
+Terrain Group Modding
+
+32
+
+Start Commands
+
+32
+
+Basic Commands
+
+32
+
+Ritual Modding
+
+32
+
+Start Commands
+
+32
+
+Basic Commands
+
+32
+
+Clear & Copy Commands
+
+32
+
+Summoning Commands
+
+33
+
+Transformation Commands
+
+33
+
+Mastery Commands
+
+33
+
+Casting Restrictions
+
+34
+
+Ritual Learning Difficulty
+
+35
+
+Cost Modifications and Effect Boosts
+
+35
+
+Targeting Commands
+
+35
+
+Affect Target Location
+
+36
+
+Affect Target Unit
+
+36
+
+Special Commands
+
+37
+
+Event interaction
+
+37
+
+AI hints
+
+37
+
+Sound Sample Modding
+
+38
+
+Misc Modding
+
+38
+
+Events
+
+38
+
+Event Start & End
+
+38
+
+Event Triggers
+
+38
+
+Event Actions
+
+39
+
+Basic actions
+
+39
+
+Affect target location
+
+39
+
+Change where the target location is
+
+39
+
+Affect target unit
+
+40
+
+Set variables
+
+40
+
+Special Values
+
+40
+
+Updating a Mod
+
+40
+
+Introduction
+
+PNG file can be used instead.
+
+This guide contains information on how to create mods for
+Conquest of Elysium 5, to change aspects of the game or to
+add new content.
+
+The mods directory can be opened easily by clicking "Mods" /
+"Open Mods Directory" from the Main Menu.
+
+Mod Mechanics
+
+General Information
+With the help of a simple text editor it is possible to create
+new weapons, units and entire classes. It is also possible to
+modify existing weapons, units, classes, spells and magic
+items.
+
+Regardless of content, all CoE5 mods have a similar structure.
+All modding commands must be saved in a text file with the
+.c5m (Conquest of Elysium 5 mod) extension. The c5m file
+must be located within a subdirectory of the CoE5 mod
+directory.
+
+Conquest of Elysium 5 mods are text files with a series of
+commands that the game interprets and uses to alter the
+desired objects. The file extension for CoE5 mods is .c5m. The
+mod files must be located within a subdirectory of the mods
+directory of CoE5. Everything in a mod (including the .c5m
+file) must be placed in a subdirectory with the same name as
+your mod. The .c5m file must also have the name of your mod
+plus '.c5m' at the end. The mod name must not include any
+
+It is possible to have many mods enabled at once. For
+instance you can enable a mod that turns Dwarves into giants
+at the same time as a mod that adds a new Elf nation. A game
+created when a mod is active will automatically activate this
+mod for all players participating in that game. There will be an
+error message for any player who hasn’t downloaded the
+mod. Two mods should never try to modify the same thing.
+This can result in different behavior on different computers.
+
+spaces or special characters (underscore and dot is allowed).
+With the help of a paint program you will also be able to add
+new graphics to units or terrain. All images must be saved as
+Targa (.tga) or PNG (.png) images. TGA image files must have
+24- or 32-bit color and be uncompressed or RLE. If the image
+is saved as a TGA file that doesn't have any transparent pixels,
+black (0,0,0) will be replaced with a fully transparent color and
+magenta (255,0,255) will be replaced by a shadow color. In
+this manual image files are often written as "image.tga", but a
+
+Mod commands are executed from the beginning of the file to
+the end of the file. Make sure that commands that are
+prerequisites for others appear before the commands that
+require them. For example, modding a new weapon must be
+done before assigning it to a new monster (or an existing
+monster) or the mod will crash.
+
+Mod Syntax
+Mods commands are mainly a text command followed by
+numbers and perhaps some text (e.g.
+naming something).
+A hash-sign (#) indicates a comment and
+anything after it will be ignored.
+The mod commands sometimes have a
+vertical line (|) among their arguments.
+This line means OR. So use either the
+argument on the left side of the line or
+the one on the other side, not both.
+When a mod command has an argument
+inside brackets like [<value>], it means
+that it is an optional argument that can
+be omitted (also, never write the
+brackets [] when using the command).
+
+From the Mod Menu you
+can enable mods as well
+as open the Mods
+Directory where you put
+any mods you create
+yourself.
+
+2
+
+An argument of <0-1> means 0=disabled,
+1=enabled. Usually you always want to
+use a 1 here, unless you want to disable
+an already existing ability.
+Make sure to have correct UPPER/lowercase letters for filenames. The Linux
+filesystem is case sensitive and mods
+
+won't work if they are mixed up.
+
+coe5ws.txt
+
+Many commands take a monster name as an argument. This
+name can also have an offset before the monster name if you
+don't want to select the first or sometimes a random one. This
+offset is written like <offset>:"monster name". Offset starts at
+0 for the first monster. To summon the second monster
+named spearman you would write like this:
+
+This file determines who can see the mod on steam. The value
+of Visibility can be one of these three: private/friends/public.
+Visibility="public"
+
+Mod Info
+This gives some basic information about the mod that can be
+shown to the user when choosing what mods to enable. The
+first two Mod Info commands are required for all mods.
+
+addstring "1:spearman"
+
+Minimal Mod for Steam Workshop
+
+Required Commands
+
+Mods can be uploaded to the Steam Workshop which will
+allow other users to download and enjoy them. This example
+creates a minimal mod called "orcking" that is ready to be
+published on the Steam Workshop. Once the mod is ready it
+can be uploaded by selecting mods from the main menu and
+right clicking on the mod, there will be an "Upload mod to
+Steam Workshop" button there.
+
+icon "image.tga"
+Icon shown when selecting the mod in CoE5. It should be a
+256*64 large TGA or PNG image.
+description "text"
+A text description of the mod.
+
+Optional Commands
+
+Files
+mods/orcking
+
+Just a directory
+
+mods/orcking/
+
+The actual mod file with the commands
+
+modprio <prio 1-9>
+Sets when this mod should be loaded in relation to other mods.
+Default is 5 and lower numbers are loaded first. Usually you
+
+orcking.c5m
+mods/orcking/
+
+mod banner for CoE, 256*64 sized TGA or
+
+orcbanner.tga
+
+PNG file
+
+mods/orcking/
+
+256*256 pixels large png file with banner
+
+banner.png
+
+for steam
+
+mods/orcking/
+
+Visibility information for steam
+
+don’t need to use this command.
+
+Maps
+Mods can also include premade maps, enabling modders to
+create map packs that can be uploaded to the workshop. The
+map file must be placed in the same folder as everything else
+in the mod.
+
+coe5ws.txt
+
+orcking.c5m
+
+mapfile "mapfile.coem"
+
+This is a simple ASCII text file with the following contents.
+icon
+
+"orcbanner.tga"
+
+description
+
+"This is a very simple mod that
+
+The filename of the map. A single mod can contain many maps.
+
+Fonts & Translation
+
+creates a new Orc King class."
+
+Mods can also include ttf fonts, enabling modders to use
+special fonts for translation mods. The font file must be placed
+in the same folder as everything else in the mod. To get hold of
+all translatable strings you should play the game with the
+"--dumpstrings" start option. That will create a file called
+"transtrings.txt" that contains all strings (text snippets)
+encountered while playing that hasn't been translated by any
+currently enabled mod. Sometimes the strings will contain
+something like "%s" or "%d". This will be replaced by another
+string or number later, these special characters must be
+present in the translated version as well.
+
+newclass
+setclassname
+
+"The Orc King"
+
+addstartunits
+
+"Goblin" 10
+
+addstartunits
+
+"Goblin Archer" 10
+
+setmaincom
+
+"Goblin Shaman"
+
+addstartcom
+
+"Goblin Chieftain"
+
+addstartunits
+
+"Goblin Spearman" 5
+
+orcbanner.tga
+This contains a banner image that will be shown in CoE5. It
+must be a 256*64 pixels large image.
+
+fontfile <font nbr 0-2> "fontfile.ttf"
+The filename of the font. Font nbr 0 = standard, 1 = fancy (used
+
+banner.png
+
+for headers), 2 = long texts (for descriptions).
+
+This contains a banner image that will be shown on steam. It
+must be a square shaped png image, 256*256 pixels is a
+suitable size.
+
+translation "from" "to"
+Translates all occurrences of the "from" text to the "to" text.
+
+3
+
+Example creating a new ranged weapon
+
+Weapon Modding
+These commands can be used to modify or create new
+weapons.
+
+Start Commands
+
+newweapon
+
+"Magic Javelin"
+
+range
+
+6
+
+init
+
+7
+
+dmgtype
+
+3
+
+dmg
+
+8
+
+arrow
+
+newweapon "weapon name"
+This command creates a new weapon.
+selectweapon "weapon name" | <nbr>
+Selects an existing weapon for modification. There may be
+several different weapons with the same name, in which case you
+
+flymode
+
+1
+
+flylook
+
+1
+
+flysound
+
+19
+
+should use the weapon number for selecting the desired weapon.
+
+Sound & Visuals
+
+You can see existing weapon numbers in game by pressing ctrl-i
+
+look <look>
+
+when inspecting a unit.
+
+Sets the visual effect that occurs where the weapon strikes
+down, e.g. a fiery explosion for a fireball. See the Visual Effects
+
+Basic Commands
+
+table (page 7). The default is no visual effect.
+sound <sound>
+
+trgrank <nbr>
+
+The sound effect when the weapon strikes down. See table
+
+Sets the battlefield row where the weapon hits. See the table
+
+Sound Effects (page 7).
+
+Target Ranks on page 6 for the possible values. The default
+
+flymode <flymode nbr>
+
+value is 1.
+
+Set this if a projectile should be visible for a ranged attack. See
+
+range <nbr>
+
+Fly Modes table (page 6). Those marked with an asterisk (*)
+
+The maximum range of the weapon. This should be 1 for melee
+
+behave like normal for aoe 1 effects, but with larger aoe they still
+
+weapons. A normal bow has range 5.
+
+only create one flying graphical effect. Fireball uses this effect to
+
+init <nbr>
+
+create a single flying fireball, but with a larger aoe explosion. If
+
+Initiative value for the weapon, default is 2. Some common
+
+using a sprite (flymode 1) then the look value will be used to set
+
+initiative values are these 1=spell, 2=fist/dagger/bow,
+
+the sprite used. See the table Fly Sprites (page 6) for
+
+3=club/axe, 4=sword, 6=spear.
+
+possible sprites to use.
+
+dmgtype <nbr>
+
+flylook <look>
+
+Sets the damage type for the weapon. Table Damage Types on
+
+The visual effect (see table Visual Effects, page 7) of the
+
+page 6 contains the list of possible damage types. The
+
+flying projectile, ranged weapons only. If flymode is 1 a fly sprite
+
+default value is 3 (piercing damage).
+
+(see table Fly Sprites, page 6) should be used instead of a
+
+dmg <nbr>
+
+look number.
+
+Sets the damage for the weapon. The default value is 0, which
+
+flysound <sound>
+
+makes the weapon a natural weapon whose base damage is
+
+The sound effect when the projectile starts flying, ranged
+
+determined during monster modding. Note that damage types
+
+weapons only. -1 = none.
+
+12 and 13 require a bitmask value for their special effects. The
+
+sndvol <dvol>
+
+special afflictions and benefit effects are listed in table Special
+
+dvol -50 = half volume, 100 = double volume.
+
+Afflictions (page 9) and Special Benefits (page 9).
+
+reloadsnd <sound>
+
+aoe <nbr>
+
+Sound when reloading, -1 = none.
+
+Sets the area of effect for the weapon in squares. The default
+
+yellow
+
+value is 0 (a single monster). A value of x will hit up to x monsters
+
+set color of damage numbers
+
+near the target. There are also many special values that can be
+
+blue
+
+used for other kind of areas. See Table Area of Effects (page
+
+set color of damage numbers
+
+6). Those that are written as e.g. 30xx must be written as a
+
+purple
+
+4 digit number e.g. “aoe 3005” for a cone of 5 squares.
+
+set color of damage numbers
+
+4
+
+Chained Weapons
+
+nostr
+
+next
+
+drown
+
+The weapon is unaffected by damage bonuses from any source
+
+If the target is wounded by the weapon, it will also be hit by the
+
+Water breathers are immune to this weapon.
+
+next weapon, i.e. the weapon defined next in the mod after this
+
+affectanimal
+
+weapon. This command can only be used for new weapons, so
+
+The weapon only affects animals.
+
+you must have created one with the newweapon command.
+
+reanimate
+
+nextwep "weapon name" | <nbr>
+
+A victim killed by the weapon becomes a Soulless.
+
+Like 'next' but the additional strike will come from a named
+
+undead
+
+weapon that has already been created.
+
+The weapon does not affect Undead units.
+
+nextalways
+
+morale
+
+Like next, but will take effect even if no damage was inflicted on
+
+A morale check vs 1d10 negates the effects of this weapon.
+
+the target.
+
+hardmorale
+
+nextalwayswep "weapon name" | <nbr>
+
+A morale check vs 1d20 negates the effects of this weapon.
+
+Like 'nextalways' but the additional strike will come from a
+
+mutate
+
+named weapon that has already been created.
+
+A victim killed by this weapon becomes a monster of the type
+
+nextdmg <dmg>
+
+that immediately follows the killer in the monster list. For
+
+Sets the damage of the chained weapon.
+
+example, units killed by a Doppelganger become Doppelspawn,
+which is the next unit in order from Doppelganger.
+
+Special Attributes
+
+replicate
+A victim killed by this weapon becomes the same type of monster
+
+clearwspec
+
+as the killer.
+
+Clears all special attributes of the weapon.
+
+ethereal
+
+drain
+
+The weapon does not affect Ethereal beings
+
+Draining damage that will heal the attacker
+
+mind
+
+oneshot
+
+The weapon does not affect Mindless beings.
+
+The weapon can only be used once per battle.
+
+inanimate
+
+reload1
+
+The weapon does not affect Lifeless beings.
+
+It takes 1 combat round to reload this weapon.
+
+large
+
+reload2
+
+The weapon does not affect monsters that are 2x2 tiles or larger
+
+It takes 2 combat rounds to reload this weapon.
+
+in size on the battlefield.
+
+reload3
+
+huge
+
+It takes 3 combat rounds to reload this weapon.
+
+The weapon does not affect Huge beings.
+
+easymr
+
+affecthuman
+
+Passing an easy magic resistance check negates the effects of
+
+The weapon only affects units with the res_convert attribute.
+
+this weapon.
+
+flying
+
+mr
+
+Flying and Floating units are immune.
+
+Passing a normal magic resistance check negates the effects of
+
+arrow
+
+this weapon.
+
+The effects of this weapon can be negated by the Air Shield
+
+hardmr
+
+attribute.
+
+Passing a hard magic resistance check negates the effects of this
+
+mundane
+
+weapon.
+
+Being Ethereal protects against this weapon. Ethereal units have
+
+an
+
+a 75% chance to be unaffected by the weapon. Most weapons
+
+The weapon ignores armor.
+
+such as swords and spears are mundane.
+
+shieldneg
+
+sweep
+
+The weapon ignores shields.
+
+The weapon can continue to kill multiple targets.
+
+strresist
+
+fullsweep
+
+The effects of this weapon can be resisted by a successful
+
+The attack will hit all adjacent units. The primary target takes full
+
+strength check.
+
+damage and all subsequent targets take a cumulative -1 damage
+
+holykill
+
+(so the second target takes full damage -1, the third target takes
+
+The weapon causes double damage against undead & demons
+
+full damage -2 etc).
+
+undkill
+
+lob
+
+The weapon causes double damage against undead only
+
+Use this command for arrows, sling stones and other weapons
+
+affectundead
+
+with an arcing trajectory.
+
+The weapon only affects undead.
+
+5
+
+rangepen
+
+Fly Sprites (flyspr)
+
+Damage penalty at long range. All normal range weapons like
+
+0
+
+Arrow
+
+bows and slings have this.
+
+1
+
+Javelin
+
+2
+
+Sling stone
+
+3-6
+
+Spinning blade
+
+7
+
+Ballista bolt
+
+8-11
+
+Spinning axe
+
+12
+
+Web
+
+13
+
+Vine arrow
+
+15-19
+
+Fire bola
+
+20
+
+Web
+
+onlyenemy
+This weapon will not affect friendly troops
+onlyfriend
+This weapon will only affect friendly troops
+ghoulify
+Humanoids killed by this weapon will become ghouls
+scatter
+A missile weapon with this attribute may deviate one square
+poison
+
+25-28
+
+Black Vortex
+
+Poison resistance helps against this attack even though the
+
+31
+
+Spikes
+
+weapon is not poison.
+
+32
+
+Boulder
+
+33
+
+Stone
+
+34
+
+Shard
+
+35
+
+Spike
+
+dispossess
+Victim becomes a dispossessed spirit
+affectmale
+This weapon will not affect females
+
+Area of Effects (aoe)
+
+stone
+Stone beings are immune to the weapon.
+stonekill
+x2 dmg vs stone beings and stone walls
+wallkill
+x5 dmg vs walls and boats
+flying2
+Flying units have 75% chance of evading this attack
+targterr
+Weapon can target terrain
+soft
+Armor is doubled vs this weapon
+tree
+Tree/bushes/fungus are immune to this weapon
+
+Weapon Modding Numbers
+
+0
+
+Single target
+
+xx
+
+Nbr of nearby squares
+
+-xx
+
+Nbr of random squares
+
+997
+
+Circle around unit
+
+998
+
+All friendly units
+
+999
+
+All enemy units
+
+10xx
+
+Beam, xx squares
+
+20xx
+
+Narrow cone, xx squares
+
+30xx
+
+Cone, xx squares
+
+40xx
+
+Wide cone, xx squares
+
+50xx
+
+Far beam, xx squares
+
+70xx
+
+Far crack, xx squares
+
+9rxx
+
+Chain lightning, xx targets, r = max distance
+
+9997
+
+25% of all squares
+
+9998
+
+All units
+
+9999
+
+All squares
+
+Target Ranks (trgrank)
+0
+
+self
+
+Damage Types (dmgtype)
+
+1
+
+front row enemy
+
+1
+
+slash
+
+5
+
+border square (for summoning)
+
+2
+
+blunt
+
+border square, but not behind walls (for summoning)
+
+3
+
+pierce
+
+7
+
+target a square (for summoning)
+
+4
+
+fire
+
+8
+
+a rear enemy
+
+5
+
+cold
+
+any enemy
+
+6
+
+shock
+
+-9 a friendly unit
+
+7
+
+magic
+
+8
+
+fear
+
+Fly Modes (flymode)
+
+9
+
+poison
+
+1 = use a sprite instead of particles
+
+10 acid
+
+2 = standard
+
+11 release (for magic mirrors)
+
+3 = fast
+
+12 special affliction
+
+4 = faster
+
+13 special benefit
+
+5 = line
+
+14 charm
+
+6 = standard*
+
+15 polymorph
+
+7 = line*
+
+16 sleep
+
+8 = slow line
+
+17 paralyze
+
+9 = meteor
+
+18 summon
+
+6
+
+9
+
+6
+
+19 enslave (like charm but decommanderized)
+
+16
+
+Ben
+
+20 swallow
+
+17
+
+Water
+
+21 mirror image
+
+18
+
+Iron Storm
+
+22 corrupt (charm vs morale)
+
+19
+
+Sun Flare
+
+23 banish
+
+20
+
+Bolt of Unlife
+
+24 petrify
+
+21
+
+Iron Bolt (fly)
+
+25 animate (dmg: 1=tree, 2=fungus)
+
+22
+
+Briar Cage
+
+23
+
+Dark Purplish
+
+24
+
+Huge Lightning
+
+25
+
+Small Lightning
+
+26
+
+Wind
+
+27
+
+Earth
+
+28
+
+Stellar Bolt
+
+29
+
+Words of the Void
+
+30
+
+Mind Burn
+
+31
+
+Soul Slay
+
+32
+
+Dimension Shift
+
+33
+
+Lashes of Death
+
+34
+
+Blood Burst
+
+35
+
+Pillar of Fire
+
+36
+
+Shooting Thorns
+
+37
+
+Syllable of Death
+
+38
+
+Purify
+
+39
+
+Darkness
+
+40
+
+Smite
+
+41
+
+Blood Boil
+
+42
+
+Dehydration
+
+43
+
+Sailor's Death
+
+44
+
+Stone Skin
+
+45
+
+Iron Skin
+
+46
+
+Strength
+
+47
+
+Smokeless Flame
+
+48
+
+Confusion
+
+49
+
+Acid Splash
+
+50
+
+Rain of Blood
+
+51
+
+Golden Flare
+
+52
+
+Harm
+
+54
+
+Color Spray
+
+55
+
+Divine Flames
+
+56
+
+Small Flame
+
+57
+
+Phantasmal Flame
+
+58
+
+Drag Lightning
+
+59
+
+Drag Chasm
+
+60
+
+Poison Bolts (fly)
+
+61
+
+Venom (line)
+
+62
+
+Poison Cloud (fly)
+
+63
+
+Poison Breath (fly)
+
+64
+
+Poison Breath (fly)
+
+65
+
+Fireball (fly)
+
+66
+
+Flame (line)
+
+67
+
+Blood (line)
+
+68
+
+Flame
+
+69
+
+Flame Smoke
+
+70
+
+Phantasmal Bolts (fly)
+
+Sound Effects (sound)
+1
+
+Spear
+
+8
+
+Sword
+
+9
+
+Whip
+
+11
+
+Heavy Blow
+
+13
+
+Crossbow
+
+14
+
+Bow
+
+15
+
+Sling
+
+16
+
+Fire
+
+18
+
+Life Drain
+
+19
+
+Javelin
+
+22
+
+Fear
+
+24
+
+Lightning
+
+27
+
+Thunder Strike
+
+29
+
+Blessing
+
+31
+
+Magic Enchantment
+
+32
+
+Pain
+
+39
+
+Frost
+
+40
+
+Shatter
+
+44
+
+Luck
+
+46
+
+Blowpipe
+
+57
+
+Summoning
+
+66
+
+Wind
+
+68
+
+Small Fire
+
+88
+
+Water
+
+89
+
+Water
+
+96
+
+Breath Weapon
+
+97
+
+Sleep
+
+104
+
+Spell Flysound
+
+105
+
+Tail Sweep
+
+114
+
+Horn
+
+Visual Effects (look)
+1
+
+Pain
+
+2
+
+White Dust
+
+3
+
+White Flare
+
+4
+
+Horror Mark
+
+5
+
+Fear
+
+7
+
+Poison Cloud
+
+8
+
+Poison Cloud
+
+9
+
+Charm
+
+10
+
+Charm
+
+11
+
+Sleep
+
+12
+
+Cold
+
+13
+
+Sleeping
+
+14
+
+Burning
+
+15
+
+Summoning
+
+7
+
+71
+
+Phantasmal Ray (line)
+
+125
+
+Purple Dust
+
+72
+
+Bolts of Light (fly)
+
+126
+
+Wither (fly)
+
+73
+
+Ray of Light (line)
+
+127
+
+Disease (fly)
+
+74
+
+Drain Life (line)
+
+128
+
+Decay (fly)
+
+75
+
+Soul Drain (line)
+
+129
+
+Bolt of Unlife (fly)
+
+76
+
+Bling Circle
+
+130
+
+Black Cloud (fly)
+
+77
+
+Bane Fire
+
+131
+
+Black Smoke
+
+78
+
+Bane Smoke
+
+132
+
+Strength Sap (line)
+
+79
+
+Death Gaze (line)
+
+133
+
+Dark Red Smoke
+
+80
+
+Golden Gaze (line)
+
+134
+
+Weakness (fly)
+
+81
+
+Black Gaze (line)
+
+135
+
+Dark Power (line)
+
+82
+
+Fear
+
+136
+
+White Dust
+
+83
+
+White Flare
+
+137
+
+Wild Growth
+
+84
+
+Meteor
+
+138
+
+Acid Rain (fly)
+
+85
+
+Meteor Smoke
+
+139
+
+Acid Rain (fly)
+
+86
+
+Meteor Shower
+
+140
+
+Invulnerability
+
+87
+
+Meteor Shower Smoke
+
+141
+
+Death Spell (fly)
+
+88
+
+Frost (fly)
+
+142
+
+Death Spell
+
+89
+
+Freeze (line)
+
+143
+
+Chill of the Dead (fly)
+
+90
+
+Frost
+
+144
+
+Chill of the Dead
+
+91
+
+Frost Smoke
+
+145
+
+Chill of the Dead
+
+92
+
+Blizzard
+
+146
+
+Shade of Death
+
+93
+
+Frost Smoke
+
+147
+
+Tendrils of Death (line)
+
+94
+
+Icicle (fly)
+
+148
+
+Acid Mist (fly)
+
+95
+
+Fiery Breath (fly)
+
+149
+
+Charm (line)
+
+96
+
+Smoke Breath (fly)
+
+150
+
+Storm Wind (fly)
+
+97
+
+Icy Breath (fly)
+
+151
+
+Lightning (line)
+
+98
+
+Frost Smoke Breath (fly)
+
+152
+
+Orb Lightning
+
+99
+
+Acid Breath (line)
+
+153
+
+Thunder Strike
+
+100
+
+Acid Breath (line)
+
+154
+
+White Dust
+
+101
+
+Summon Shade (line)
+
+155
+
+Thunderhead
+
+102
+
+Summon Shade (line)
+
+156
+
+White Dust
+
+103
+
+Purple Summon Circle
+
+157
+
+Curse (line)
+
+104
+
+Blood Demon (line)
+
+158
+
+Curse
+
+105
+
+Blood Summon (line)
+
+159
+
+Confusion (fly)
+
+106
+
+Blood Summon Circle
+
+160
+
+Curse of the Frog Prince
+
+107
+
+Symbol of Light (line)
+
+161
+
+Maws of the Earth
+
+108
+
+Hypno Ray (line)
+
+162
+
+Reddish Flame
+
+109
+
+Frozen Heart (line)
+
+163
+
+Acid Dart (fly)
+
+110
+
+Hail Storm
+
+164
+
+Acid Dart (fly)
+
+111
+
+Combustion (line)
+
+165
+
+Small Flame
+
+112
+
+Combustion Smoke
+
+166
+
+Flame Smoke
+
+113
+
+Poison Dart (fly)
+
+167
+
+Small Cold
+
+114
+
+Poison Mist (fx)
+
+168
+
+Poison Cloud (bg)
+
+115
+
+Paralyze (line)
+
+169
+
+Poison Cloud (bg)
+
+116
+
+Disintegrate (line)
+
+170
+
+Pain (line)
+
+117
+
+Confusion (line)
+
+171
+
+Harm
+
+118
+
+Cloud of Death (fly)
+
+172
+
+Lashes of Pain (line)
+
+119
+
+Cloud of Death
+
+173
+
+Illusory Attack (line)
+
+120
+
+Sleep (line)
+
+174
+
+Illusory Attack (fly)
+
+121
+
+Hold (line)
+
+175
+
+Sunbeam (line)
+
+122
+
+Enslave (line)
+
+176
+
+Sunlight
+
+123
+
+Web (fly)
+
+177
+
+Banishment
+
+124
+
+Finger of Death (line)
+
+178
+
+Luck
+
+8
+
+179
+
+Luck
+
+Special Afflictions
+
+180
+
+Awe
+
+2^0
+
+1
+
+Disease
+
+181
+
+Blessing
+
+2^1
+
+2
+
+Curse
+
+182
+
+Bloodletting
+
+2^2
+
+4
+
+Decay
+
+183
+
+Lashes of Fire (line)
+
+2^3
+
+8
+
+Sleep
+
+184
+
+Vengeance (line)
+
+2^4
+
+16
+
+Paralyzation
+
+185
+
+Lashes of Death (line)
+
+2^5
+
+32
+
+Burn
+
+186
+
+Shock (fly)
+
+2^6
+
+64
+
+Stun
+
+187
+
+Shock
+
+2^7
+
+128
+
+Bleeding
+
+188
+
+Sparks (fly)
+
+2^8
+
+256
+
+Earth Grip
+
+189
+
+Air Shield
+
+2^9
+
+512
+
+Entanglement
+
+190
+
+Incinerate
+
+2^10
+
+1024
+
+Imprison in Ice
+
+191
+
+Smoke
+
+2^11
+
+2048
+
+Weakness
+
+192
+
+Strange Hymn (fly)
+
+2^12
+
+4096
+
+Transform into Tree
+
+193
+
+Strange Hymn
+
+2^13
+
+8192
+
+Insanity
+
+194
+
+Words of the Void (fly)
+
+2^14
+
+16384
+
+Horrormark
+
+195
+
+Tendril of Darkness (line)
+
+2^15
+
+32768
+
+Horrormark – Great
+
+196
+
+Dehydration (line)
+
+2^16
+
+65536
+
+Summoning Sickness
+
+197
+
+Torrent of Water (fly)
+
+2^18
+
+262144
+
+Confusion
+
+198
+
+Entangle
+
+2^19
+
+524288
+
+Turn into Gold
+
+199
+
+Entangle (fly)
+
+2^20
+
+1048576
+
+Lost an Eye
+
+200
+
+Shooting Thorns (fly)
+
+2^21
+
+2097152
+
+Lost the Other Eye
+
+201
+
+Barkskin
+
+2^22
+
+4194304
+
+Chest Wound
+
+202
+
+Curse of Wood (fly)
+
+2^23
+
+8388608
+
+Never Healing Wound
+
+203
+
+Putrid Cloud (fly)
+
+2^24
+
+16777216
+
+Battle Fright
+
+204
+
+Putrid Cloud (fly)
+
+2^25
+
+33554432
+
+Feeblemind
+
+205
+
+Putrid Cloud
+
+2^26
+
+67108864
+
+Blindness
+
+206
+
+Putrid Cloud
+
+2^27
+
+134217728
+
+Temporary Insanity
+
+207
+
+Lesser Smite
+
+2^28
+
+268435456
+
+Death wish (+1 rank)
+
+208
+
+Vafur Flames (bg)
+
+2^29
+
+536870912
+
+Debilitating wound
+
+209
+
+Vafur Flames (bg)
+
+2^30
+
+1073741824
+
+Festering wound
+
+210
+
+Mind Tentacles (fly)
+
+2^31
+
+2147483648
+
+Afraid
+
+211
+
+Earth Meld
+
+2^32
+
+4294967296
+
+Stuck in net
+
+212
+
+Mass Command (line)
+
+2^34
+
+17179869184
+
+Stationary, cannot move on world map
+
+213
+
+Disease Cloud (bg)
+
+214
+
+Energy Beam (line)
+
+215
+
+Paralyzing Scream (fly)
+
+216
+
+Defile (line)
+
+2^36
+
+68719476736
+
+Petrified
+
+217
+
+Desert Wind (fly)
+
+2^38
+
+274877906944
+
+Slimed, 50% chance of not attacking,
+
+218
+
+Desert Wind
+
+219
+
+Black Cloud (fly)
+
+2^40
+
+1099511627776
+
+Ghost shackles
+
+220
+
+Black Cloud
+
+2^43
+
+8796093022208
+
+Frozen, can get this after taking cold
+
+221
+
+Animate Tree (line)
+
+222
+
+tracer (tracer)
+
+223
+
+Poison Goo (fly)
+
+224
+
+Boulder Drop
+
+225
+
+Boulder Impact
+
+226
+
+Vafur Air (bg)
+
+227
+
+Vafur Rainbow (bg)
+
+228
+
+Desolation Cloud (bg)
+
+229
+
+Vafur Death (bg)
+
+permanently
+2^35
+
+34359738368
+
+Exhausted, -1 str, 1 dmg when
+attacking, chance to not move
+
+temporary
+
+damage
+Special Benefits
+
+9
+
+2^0
+
+1
+
+Invulnerability
+
+2^1
+
+2
+
+Armor +1
+
+2^2
+
+4
+
+Fire Resistance
+
+2^3
+
+8
+
+Cold Resistance
+
+2^4
+
+16
+
+Poison Resistance
+
+2^5
+
+32
+
+Shock Resistance
+
+2^6
+
+64
+
+Magic Resistance +2
+
+2^7
+
+128
+
+Luck
+
+2^8
+
+256
+
+Etherealness
+
+2^9
+
+512
+
+Strength / Damage +2
+
+2^10
+
+1024
+
+Fire Shield (3)
+
+2^11
+
+2048
+
+Air Shield
+
+rarity <rarity>
+Sets how easy it should be to find this item. 0=common, 1=rare,
+
+2^12
+
+4096
+
+Regeneration
+
+2=rare & unique, 3=impossible to find as a random item. Default
+
+2^13
+
+8192
+
+Awe (+1)
+
+2^15
+
+32768
+
+Gone Berserk
+
+2^16
+
+65536
+
+Blessed
+
+2^17
+
+131072
+
+Armor +2
+
+2^18
+
+262144
+
+Pierce Resistance
+
+2^19
+
+524288
+
+Slash Resistance
+
+Sets the weapon stats of the magic item to those of the weapon
+
+2^20
+
+1048576
+
+Blunt Resistance
+
+with this name. Only use this together with type 1 magic items.
+
+2^21
+
+2097152
+
+Displaced
+
+2^22
+
+4194304
+
+Non-Magical Invulnerability
+
+2^23
+
+8388608
+
+Swamp Soul (Witch ritual)
+
+2^24
+
+16777216
+
+Stygian Bath, Trolls receive permanent
+
+is 0.
+type <item type>
+Sets the magic item type. Default is 7 = misc item. See table
+Magic Item Types (page 13).
+itemwep "weapon name"
+
+Special Commands
+armor <value>
+Armor value, default 0.
+
+non magical invulnerability, others lesser
+
+protection <value>
+
+effect
+2^25
+
+33554432
+
+Stygian Paths, moves fast in death realm
+
+2^26
+
+67108864
+
+Twiceborn (Necromancer ritual)
+
+2^27
+
+134217728
+
+Twiceborn (cast on a graveyard)
+
+2^28
+
+268435456
+
+The simulacrum
+
+2^29
+
+536870912
+
+The original, will revive as the
+
+2^30
+
+1073741824
+
+Quickness
+
+2^31
+
+2147483648
+
+Primal animal (increased stats)
+
+2^32
+
+4294967296
+
+Twist fate
+
+2^33
+
+8589934592
+
+Wind Guide, +1 range +1 dmg for
+
+Protection bonus, default 0.
+hp <value>
+Hit Point bonus, default 0.
+mr <value>
+Magic Resistance bonus, default 0.
+morale <value>
+
+simulacrum
+
+Morale bonus, default 0.
+str <value>
+Strength and damage bonus, default 0.
+rank <value>
+Prefered rank bonus, 1=wants to stand one rank more to the
+
+missiles
+2^34
+
+17179869184
+
+Lucky Strike, x2 dmg for next strike
+
+2^36
+
+68719476736
+
+Promise of the Ancestors (Barbarian
+
+front than usual, -1=to the back.
+combatsum <mode> "summoning string"
+Mode -1 = will summon on the first round of combat, 1 = will
+
+ritual)
+
+summon on all rounds of combat. Summoning string is very
+similar to the summoning strings used for ritual summoning. E.g.
+
+Magic Item Modding
+
+"2d4*Deer & 2*wolf" would summon 2-8 deer and 2 wolves.
+Commanders cannot be summoned in battle.
+
+These commands can be used to modify or create new magic
+items.
+
+combatspell <mode> "spell name"
+Mode -1 = spell will be auto cast on the first round, 1 = unit can
+
+Start Commands
+
+cast this spell (like a wand), 2 = spell will be auto cast each round.
+The spell name is simply the name of the combat spell to be cast,
+
+newitem "item name"
+
+e.g. "Fireball".
+
+This command creates a new magic item.
+
+falselife
+
+selectitem "item name"
+
+Can make an inanimate being living.
+
+Selects an existing magic item for modification.
+
+curseditem
+Item is cursed and cannot be removed.
+
+Basic Commands
+
+nodrop
+If a unit with this item dies, the item will not drop as loot for the
+
+name "item name"
+
+winning side to take.
+
+Set the name of the magic item. Not necessary if you created a
+
+extracost <gold>
+
+new one with newitem.
+
+Item will be this much more (or less) expensive when sold by a
+
+descr "item description"
+
+merchant.
+
+Not necessary, as most magic items don't have descriptions.
+
+magicboost <levels>
+
+spr "image.tga"
+
+Will boost all magic paths by this much.
+
+Sets the sprite for the magic item. It should be centered in a
+
+pathboost <path>
+
+32x32 or 64x64 pixel large image. The drawn item should not be
+larger than 40x40 pixels however, so if put in a 64x64 image it
+
+Will boost this magic path by 1. This command can be used
+
+should be surrounded by black.
+
+multiple times to boost multiple paths.
+
+10
+
+Copy & Clear commands
+
+treelook
+
+copyspr "item name"
+
+desertstealth
+
+female
+
+Uses the sprite from this magic item.
+
+classcost
+
+copystats "item name"
+
+leadership
+
+Copies all stats except the name from this magic item.
+
+localleadership
+burnforest
+
+Monster Commands for Magic Items
+
+awe
+
+These commands are exactly the same as the monster
+command with the same name, look at monster modding for
+information on how to use them. They can be used for magic
+items too.
+
+slavehunt
+armytrainer
+poisonexpl
+fireexpl
+shardexpl
+
+lucky
+
+motherspawn
+
+diseaseres
+
+eatvillage
+
+human
+
+gold
+
+undead
+
+iron
+
+demonic
+
+trade
+
+animal
+
+relics
+
+inanimate
+
+hands
+
+holy
+
+fungi
+
+acutesenses
+
+herbs
+
+spiritsight
+
+weed
+
+badsight
+
+lifeforce
+
+stealth
+
+fireaura
+
+foreststealth
+
+coldaura
+
+invisible
+
+shockaura
+
+sleepres
+
+poisonaura
+
+charmres
+
+poisonspikes
+
+bluntres
+
+eatdead
+
+slashres
+
+eatdeadcap
+
+pierceres
+
+scry
+
+ethereal
+
+scrycost
+
+shield
+
+digest
+
+largeshield
+
+incorporate
+
+magicshield
+
+hpoverflow
+
+noheal
+
+absorbdead
+
+berserker
+
+airshield
+
+fastheal
+
+extraeyes
+
+noleader
+
+look
+
+regeneration
+
+vengeance
+
+nonmaginvul
+
+gatherherbs
+
+invul
+
+gatherfungus
+
+swallowres
+
+gathersacr
+
+banishsurv
+
+gatherhands
+
+unaging
+
+gatherweed
+
+coldblood
+
+gathergems
+
+snowstealth
+
+gatheranygems
+
+clumsy
+
+seegems
+
+nozoc
+
+gatherrelics
+
+unimportant
+
+saner
+
+rearpos
+
+sensedead
+
+frontpos
+
+reformloc
+
+nocombat
+
+hideanimals
+
+11
+
+mirror
+
+limitiron
+
+revertmirror
+
+reformdestroy
+
+phantasm
+
+deployoutside
+
+releasephant
+
+hadesres
+
+releaserate
+
+stonebeing
+
+troll
+
+acidblood
+
+displaced
+
+noeyes
+
+riverdmg
+
+makecolony
+
+iceprot
+
+trample
+
+melt
+
+tramplexsize
+
+dmgonterr
+
+maptele
+
+dmgonterrbonus
+
+healonterr
+
+voidsanity
+
+autoastrology
+
+planeshift
+
+twistfate
+
+aipowcom1
+
+desolator
+
+aipowcom2
+
+desolcloud
+
+aipowcom3
+
+colonyterr
+
+releasespell
+
+colonymsg
+
+fear
+
+satyrspawn
+
+goldcarrier
+
+harpyspawn
+
+ironcarrier
+
+centspawn
+
+rebate
+
+minospawn
+
+makeruin
+
+diseaseshield
+
+meleeambush
+
+darkbless
+
+poisoncloud
+
+defiler
+
+mirrorammo
+
+scourgedefiler
+
+affres
+
+petriaura
+
+forestheart
+
+combustionaura
+
+spread
+
+varregen
+
+seduceaura
+
+mirrorimages
+
+fireres
+
+confusionaura
+
+coldres
+
+tunnelmove
+
+shockres
+
+wanderrest
+
+poisonres
+
+wandermaxdist
+
+acidres
+
+kobold
+
+tangleres
+
+goblin
+
+coldheal
+
+expendable
+
+localironbonus
+
+dragon
+
+localgoldbonus
+
+lairgoldpen
+
+goldbonus
+
+siegetunnel
+
+ironbonus
+
+evasion
+
+tradebonus
+
+chopforest
+
+neverturn
+
+primable
+
+thrallhunt
+
+primifier
+
+putridexpl
+
+madcultist
+
+farsight
+
+primalcult
+
+farsightsea
+
+awakentrees
+
+changetemp
+
+awakenfungus
+
+likestoburn
+
+fungus
+
+reanimate
+
+limittrade
+
+spellrange
+
+primal
+
+diseasecloud
+
+sitepopboost
+
+mindexpl
+
+pickupanimals
+
+limitgold
+
+slimeshield
+
+12
+
+airbreather
+
+citadel2
+
+terraformfrom
+
+semistupid
+
+terraformto
+
+desert3
+
+terraformch
+
+mines1
+
+sleeper
+
+stray
+
+snowsleeper
+
+ancforest1
+
+deepsleeper
+
+battleslow
+battleslow2
+
+flying
+
+followstupid
+
+huge
+immobile
+
+Magic Item Modding Numbers
+
+slow
+fast
+
+Magic Item Types
+
+swamp
+
+1 weapon
+
+desert
+
+3 helm
+
+water
+
+4 armor
+
+float
+
+5 glove
+
+mountain
+
+6 boots
+
+noland
+
+7 misc
+
+wateronly
+
+Monster Modding
+
+swamp1
+swamp2
+
+These commands allow the modifying of existing monsters
+and creating new monsters. At most about 3000 new
+monsters can be created by mods.
+
+desert1
+desert2
+deadforest1
+deadforest2
+
+Start Commands
+
+mountain1
+
+selectmonster "monster name" [<offset>]
+
+mountain2
+jungle1
+
+Selects the monster that will be affected by the following
+
+jungle2
+
+modding commands. The selected monster is referred to as the
+
+money1
+
+active monster. The selectmonster command always selects the
+
+money2
+
+first monster of that name in the monster list. If there is more
+
+horror
+
+than one monster with the same name (e.g. longdead) the offset
+
+forest1
+
+value can be used to select them. Leave the offset out if you only
+
+forest2
+
+want to select the first monster. The default value of the offset is
+
+stupid
+
+0. The offset used by this command cannot be set to a negative
+
+temple1
+
+value, unlike the offset for the lookslike command. Offset value 1
+
+temple2
+
+means the command selects the (first + 1) monster of that name,
+
+coastal
+
+i.e. the second monster. Offset 2 selects the third monster of the
+
+loner
+
+same name etc. Note that this command cannot use the
+"1:spearman" syntax.
+
+south1
+
+newmonster "monster name"
+
+south2
+passwall
+
+Creates a new monster. This new monster will be affected by the
+
+battlefast
+
+following modding commands until the next active monster is
+
+wall
+
+set. The monster can have the same name as another monster.
+
+stationary
+winteridle
+snow
+nonruin1
+teleport
+aggressive
+tunnel
+north1
+gates1
+void2
+
+13
+
+rank <nbr>
+
+Basic Commands
+
+Sets the default deployment rank for the monster. -1 = back, 0 =
+
+name "monster name"
+
+mid, 1 = front
+
+This command renames an existing monster. It is not needed
+
+Copy & Clear Commands
+
+when creating a new monster.
+spr1 "image.tga"
+
+copystats "monster name"
+
+The file name of the normal image for the monster. This
+
+Copies the attributes, weapons, graphics and other properties of
+
+command sets the attack sprite to this image as well.The image
+
+the specified monster. The command does not copy the name of
+
+should be 32x32 or 64x64 for normal sized monsters and
+
+the monster, however.
+
+128x128 for huge monsters. A human being should be about 34
+
+copyspr "monster name"
+
+pixels tall and there should be 2 pixels of free space between his
+
+Copy the sprite of another monster.
+
+feet and the bottom of the image.
+
+clearspec
+
+spr2 "image.tga"
+
+Removes all special abilities from the active monster. The special
+
+The file name of the attack image for the monster. If this is not
+
+abilities are things like Fire Immunity, Regeneration, etc. This
+
+set, then spr1 will be used for this image too. This command must
+
+command does not clear movement abilities. Use the clearmove
+
+come after the spr1 command.
+
+command for that.
+
+descr "text"
+Description of the monster. The ^ character will be replaced with
+a newline.
+
+clearmove
+Removes all movement attributes from the active monster.
+clearweapons
+
+hp <nbr>
+
+Removes all weapons from the active monster.
+
+The maximum number of hit points for the monster. A normal
+human soldier has 6 hit points and an elite heavily armored
+
+Attacks
+
+soldier has 10 hit points. An ogre has 25 hit points, a troll has 56
+hit points and giants, dragons and other huge monsters can have
+
+Weapon number can be used to select the weapon instead of
+name if needed. Weapons that can be replaced by items (e.g.
+Broadsword or Spear) have fixed damage values and the
+damage value set by mod command becomes a damage bonus
+for the monster.
+
+well over a 100 hit points.
+mr <nbr>
+The magic resistance of the monster. Animals have a magic
+resistance of 2, a normal human has 4 and a more susceptible
+human has 3. Apprentice mages have a magic resistance of 6, full
+
+Note that for weapons that do special effect damage (damage
+type 12) or special benefit damage (damage type 13), the
+damage value in the weapon commands is a bitmask value
+that specifies what effect or effects take place.
+
+mages have 8 and master mages have 9. Some highly magical
+beings may have even higher magic resistance and they can
+almost never be affected by magic that is resistible.
+str <nbr>
+The strength of the monster. A normal human soldier has a
+
+The asterisk damage notation of means variable damage and
+the # means the weapon uses a bitmask to create a special
+effect.
+
+strength of 4, an elite human soldier has 5, a troll has 8 or 9 and
+giants and dragons have 10 to 12.
+armor <nbr>
+This command sets the monster’s armor value, which represents
+
+Special weapon properties such as Drain, Strikes Rear, Strikes
+Anywhere, Negates Shields etc are intrinsic properties of the
+weapon and must be assigned by weapon modding before the
+weapons are given to a monster.
+
+its natural protection or the armor it is wearing. Normal human
+troops have an armor value of 0. Medium armored human troops
+have an armor value of 1. Heavily armored human troops like
+Heavy Infantry have an armor value of 2 and very heavily
+
+meleeweapon <dmg> "weapon"
+
+armored troops like Knights and High Lords have an armor value
+of 3. Extremely tough monsters like dragons may have an armor
+
+Equips the monster with a melee weapon of this name that has a
+
+value of 4 or more.
+
+base damage of <dmg>.
+meleeweaponbonus <dmg> "weapon"
+
+mor <nbr>
+The morale of the monster. A normal human soldier has a morale
+
+Equips the monster with a melee weapon of this name that has a
+
+of 4, an elite human soldier has 5 or 6 and powerful monsters can
+
+base damage of <dmg>. This weapon will be used in addition to
+any other attacks the monster has.
+
+have a morale of 8 or more. Very fearless monsters may have a
+
+meleeweaponspec <dmg> "weapon"
+
+morale of 15. Setting the morale to 99 makes the monster
+Mindless and it will be completely unaffected by fear or any
+
+Equips the monsters with a special melee weapon. Any normal
+
+other effects that influence morale.
+
+melee attacks after this one will not be used if this attack was
+used. Normally used for lances.
+meleeweaponlong <dmg> "weapon"
+This command is deprecated and should no longer be used.
+
+14
+
+meleeweapon50s <dmg> "weapon"
+
+spellweapon <path> <level>
+
+Equips the monster with a melee+skip attack that has 50%
+
+Equips the monster with a Cast Spell weapon in the magic path
+
+chance of being used. If it is used the next attack will be skipped.
+
+specified. This spell weapon only has a 25% chance of being
+
+rangedweapon <dmg> "weapon"
+
+successfully used in melee combat.
+
+Equips the monster with a ranged weapon of this name that has a
+
+spellweaponbonus <path> <level>
+
+base damage of <dmg>.
+
+Equips the monster with a bonus Cast Spellweapon in the magic
+
+rangedweaponbonus <dmg> "weapon"
+
+path specified. This spell weapon can be used in melee without
+
+Equips the monster with a ranged weapon of this name that has a
+
+penalty.
+
+base damage of <dmg>. This weapon will be used in addition to
+
+spellweapon50 <path> <level>
+
+any other attacks the monster has.
+
+Equips the monster with a limited Cast Spell Weapon in the
+
+rangedweapon25 <dmg> "weapon"
+
+magic path specified. This spell weapon has only a 50% chance of
+
+Equips the monster with a ranged weapon of this name that has a
+
+being used on any given combat round.
+
+base damage of <dmg>. This weapon has a 25% chance of being
+
+spellweapon50s <path> <level>
+
+used in melee combat.
+
+Equips the monster with a limited Cast Spell+skip weapon in the
+
+rangedweapon50 <dmg> "weapon"
+
+magic path specified. This spell weapon has only a 50% chance of
+
+Equips the monster with a ranged weapon of this name that has a
+
+being used on any given combat round. If it is used the next
+
+base damage of <dmg>. This weapon has a 50% chance of being
+
+weapon will be skipped.
+
+used in melee combat.
+
+spellweaponsingle <path> <level>
+
+rangedweapon50s <dmg> "weapon"
+
+Equips the monster with a limited Cast Spell Weapon in the
+
+Equips the monster with a range+skip weapon that has 50%
+
+magic path specified. Only one of the single spell weapons will be
+
+chance of being used in melee (100% at range). When used the
+
+used per combat round if the monster has several
+
+next weapon will be skipped.
+
+more1spells <nbr>
+
+rangedweapon50x <dmg> "weapon"
+
+The monster starts with more or fewer level 1 spells when it
+
+Equips the monster with a range+skip weapon that has 50%
+
+spawns.
+
+chance of being used in melee or range. When used the next
+
+more2spells <nbr>
+
+weapon will be skipped.
+
+The monster starts with more or fewer level 2 spells when it
+
+siegeweapon <dmg> "weapon"
+
+spawns.
+
+Equips the monster with a siege weapon of this name that has a
+
+more3spells <nbr>
+
+base damage of <dmg>. This weapon will be used in locations
+
+The monster starts with more or fewer level 3 spells when it
+
+that allow sieges, like cities and castles. Siege weapons are used
+
+spawns.
+
+in the first ten rounds of combat before any normal attacks are
+
+spellrange <value>
+
+made.
+
+Value = +range for battle spells
+
+assassinweapon <dmg> "weapon"
+Equips the monster with an assassination weapon of this name
+
+Movement
+
+that has a base damage of <dmg>. This weapon will be used to
+make an assassination attempt on an enemy before normal
+combat (including siege weapons) begins. Assassination attempts
+can only be used by the attacker and cannot be used against
+summoned creatures the summoner fails to control.
+
+These commands determines how fast the monster can move
+over different map terrains as well as how it will move in
+combat.
+flying
+
+prebatweapon <dmg> "weapon"
+
+Monster can fly.
+
+Equips the monster with a prebattle effect weapon of this name
+
+huge
+
+that has a base damage of <dmg>. This weapon will be used
+
+Monster is giant sized. This also makes it a 3x3 square monster
+
+before any normal combat (including assassination) begins.
+
+on the battlefield.
+
+Combat Spells
+
+immobile
+
+These commands set the spell casting abilities of the monster.
+Spell casting abilities work exactly like weapons, with the
+difference that the spell to be cast is selected randomly from
+the spells the monster has memorized. Each spell has the role
+of a weapon when cast.
+
+stationary
+
+Monster is immobile (cannot move in battle).
+Monster is stationary (cannot move on world map).
+slow
+Monster is slow on world map.
+fast
+Monster is fast.
+
+Magic paths are listed in the Magic Paths table on page
+26. Spell casting level is a value from 1 to 3. There are no
+higher spell casting levels.
+
+battlefast
+Monster is fast, but in battles only.
+
+15
+
+swamp
+
+deadforest2
+
+Monster has swamp move.
+
+Likes dead forests.
+
+desert
+
+mountain1
+
+Monster has desert move.
+
+Loves mountains.
+
+mountain
+
+mountain2
+
+Monster has mountain move.
+
+Likes mountains.
+
+snow
+
+jungle1
+
+Monster has snow move.
+
+Loves jungles.
+
+water
+
+jungle2
+
+Monster can enter water squares.
+
+Likes jungles.
+
+float
+
+savanna2
+
+Monster is floating.
+
+Likes savanna and farms.
+
+noland
+
+money1
+
+Monster cannot move on land.
+
+Loves gold producing squares.
+
+wateronly
+
+money2
+
+Same as water & noland. The monster will be aquatic.
+
+Likes gold producing squares.
+
+passwall
+
+horror
+
+Monster can move through walls.
+
+Likes to kill sentient people, also isn't scared of the void.
+
+wall
+
+ancforest1
+
+Monster has wall climbing.
+
+Loves ancient forests.
+
+teleport
+
+forest1
+
+Like flying, but the monster will teleport around in combat.
+
+Loves forests (including ancient forests).
+
+battleslow
+
+forest2
+
+Monster is slow in battles.
+
+Likes forests (including ancient forests).
+
+battleslow2
+
+temple1
+
+Monster is very slow battles.
+
+Loves temples.
+
+tunnel
+
+temple2
+
+Monster can tunnel on the world map.
+
+Likes temples.
+
+shipmove
+
+south1
+
+Monster is a ship. Movement will cost 1 AP for everyone in the
+
+Loves the south.
+
+same square.
+
+south2
+Likes the south.
+
+Behavior
+
+north1
+
+Most of these commands determine how a monster will try to
+act when it is independent owned. But it will also determine
+how player owned creates with the Stupid tag acts. Terrains
+ending in 1 (e.g. swamp1) means the monster loves this terrain
+type and will never leave it for a non-loved terrain. If it ends in
+2 (e.g. swamp2) the monster likes the terrain type and may
+leave it, but not go more than 1 square away from it.
+
+Loves the north.
+gates1
+Loves gateways.
+void2
+Likes the void.
+nonruin1
+Loves stuff that can be turned into ruins, but is not yet a ruin.
+mines1
+Loves mines.
+
+swamp1
+
+stray
+
+Loves swamps.
+
+Can stray away from loved and liked terrains.
+
+swamp2
+
+stupid
+
+Likes swamps.
+
+Cannot be controlled by players and will move automatically like
+
+desert1
+
+an independent unit.
+
+Loves deserts.
+
+semistupid
+
+desert2
+
+Will move automatically like an independent units unless it is
+
+Likes deserts.
+
+controlled by a player commander.
+
+desert3
+
+followstupid
+
+Hates deserts.
+
+Doesn't move independently, but follows other stupid units.
+
+deadforest1
+
+coastal
+
+Loves dead forests.
+
+Loves the coast, like a giant crab.
+
+16
+
+loner
+
+Ritual Power
+
+Moves independently of the player and not in groups.
+
+power <pow nbr>
+
+aggressive
+
+pow nbr 0 means the last created ritual school, -1 = the one
+
+Likes to attack enemies.
+
+before that, etc. Positive numbers are existing ritual powers
+
+likesterr <terrain nbr>
+
+from CoE5, see the pow nbr table.
+
+Likes this terrain. Can only be one of these commands per
+
+classcost <nbr>
+
+monster and terrain nbr cannot be zero.
+
+to alter cost of all rituals made by this unit, 50=50% more
+
+lovesterr <terrain nbr>
+
+expensive
+
+Loves this terrain. Can only be one of these commands per
+
+mastery <nbr>
+
+monster and terrain nbr cannot be zero.
+
+for monsters that can level up, nbr 1=become next monster on
+
+hatesterr <terrain nbr>
+
+leveling, -1=previous monster, etc.
+
+Hates this terrain. Can only be one of these commands per
+
+libmastery <library level>
+
+monster and terrain nbr cannot be zero.
+
+For monsters that can level up in a magic library, a value of 2 =
+
+wander <objective>
+Will try to fulfill an objective if it is a commander. See table
+
+magic library or better required, 3 = academy of high magic
+
+Objectives (page 26) for possible values.
+
+required. A mastery command is also required on the monster, to
+determine what monster it will level up to.
+
+indwander <objective>
+
+allrit <value>
+
+Only wander if owned by Independents
+
+knows all rituals of this school (see the Ritual Schools table,
+
+infwander <objective>
+
+-1=all ritual schools)
+
+Only wander if owned by Inferno
+
+rebate <value>
+
+celwander <objective>
+
+gives rebate on rituals with fx_rebatefx??
+
+Only wander if owned by Celestials
+
+gatherherbs
+
+hadeswander <objective>
+
+A commander with this ability will enable the player to gather
+
+Only wander if owned by Hades
+
+herbs.
+
+wander2 <objective>
+
+gatherfungus
+
+Try to fulfill this objective if the first one was not possible
+
+A commander with this ability will enable the player to gather
+
+infwander2 <objective>
+
+fungus.
+
+Try to fulfill this objective if the first one was not possible
+
+gathersacr
+
+celwander2 <objective>
+
+A commander with this ability will enable the player to gather
+
+Try to fulfill this objective if the first one was not possible
+
+sacrifices.
+
+hadeswander2 <objective>
+
+gatherhands
+
+Try to fulfill this objective if the first one was not possible
+
+A commander with this ability will enable the player to gather
+
+maxsinners <value>
+
+Hands of Glory.
+
+Will gather sinners when owned by Inferno (value=amount
+
+gatherweed
+
+before returning)
+
+A commander with this ability will enable the player to gather
+
+maptele
+
+weed.
+
+Can teleport on world map when it is a wandering monster.
+
+gathergems
+
+wanderrest <chance>
+A chance for wandering monsters to rest a turn instead of going
+
+A commander with this ability will enable the player to gather
+
+on a mission. Dragons have about 85 in this ability.
+
+gems of individual types.
+gatheranygems
+
+wandermaxdist <value>
+Maximum distance for raid missions for wanderers. Dragons
+
+A commander with this ability will enable the player to gather
+
+have about 6 in this ability.
+
+gems.
+seegems
+
+pickupanimals <0-1>
+
+A commander with this ability will enable the player to see what
+
+Picks up all animals in the same square and brings them along.
+
+type of gems mine produce.
+
+wanderattack <player number>
+
+gatherrelics
+
+Pause wander to attack this faction if adjacent (-1=all factions,
+
+A commander with this ability will enable the player to gather
+
+-2=player factions)
+
+relics.
+
+winteridle
+
+gatherlifeforce
+
+Monster will not move in the winter if it is in a cold part of the
+
+A commander with this ability will enable the player to gather
+
+map.
+
+lifeforce.
+ctrlchance <nbr>
+Chance of controlling this monster when it is summoned,
+
+17
+
+montag <nbr>
+
+colonymsg <value>
+
+Sets the monster tag value referenced by other modding
+
+1 = everyone will get a message when a colony is created.
+
+commands.
+
+Shapechanging
+
+Monster Spawning
+
+growhp <nbr>
+
+motherspawn <0-7>
+
+Monster will grow to the previously created monster if it reaches
+
+Spawns as one of a few special spawners in the game. 1 = mother
+
+this amount of HP or more.
+
+of monsters, 2 = teotls of war (spawns d2 jaguars or 1 ozelotls,
+
+shrinkhp <nbr>
+
+not on homeplane), 3 = teotls of rain (spawns d3 toad warriors,
+
+Monster will shrink to the next created monster if it reaches this
+
+not on homeplane), 4 = bloody mother (spawns d2 jaguars or d3
+
+amount of HP or less.
+
+serpents, not on homeplane), 5 = teotls of night (spawns d3 bats
+
+firstshape <0-1>
+
+or 1 ozelotls, not on homeplane), 6 = teotls of underworld
+
+Monster will become next monster if it is slain. Use for main
+
+(spawns 2d3 longdead, not on homeplane), 7 = teotls of sky
+
+shape of two shape monsters like Oni.
+
+(spawns d3 bats or d3 eagle warriors, not on homeplane)
+
+secondshape <0-1>
+
+spawnmon <value>
+
+Monster will revert to previous monster after combat. Use for
+
+Spawns next monster. value/100 = monsters per turn
+
+secondary shape of two shape monsters like Oni.
+
+spawnoffs <value>
+
+growtime <value>
+
+To spawn something other than the next monster
+
+Will grow into next monster after about value turns
+
+spawnmonaway <value>
+
+growoffs <value>
+
+Spawns next monster, but not on homeplane. value/100 =
+
+To become other than next monster
+
+monsters per turn
+
+growterr <terrain nbr>
+
+spawn1d6mon <value>
+
+The growth will only occur if unit is located in this terrain.
+
+Spawns 1d6 of the next monster. value = chance
+
+Negative terrain numbers can be used.
+
+spawn2d6mon <value>
+
+landshape <value>
+
+Spawns 2d6 of the next monster. value = chance
+
+Will become monster with offset value when on land
+
+split <value>
+
+watershape <value>
+
+Value = dmg required in % for splitting into next monster (like a
+
+Will become monster with offset value when in the sea
+
+slime).
+
+elysiumshape <value>
+
+reform <value>
+
+Will become monster with offset value when in Elysium
+
+Value = chance in percent of reforming to previous monster each
+
+celestialshape <value>
+
+month (like a slime).
+
+Will become monster with offset value when on the celestial
+
+satyrspawn <value>
+
+plane.
+
+Bonus for dryad queen auto spawns.
+
+skyshape <value>
+
+harpyspawn <value>
+
+Will become monster with offset value when on the sky plane.
+
+Bonus for dryad queen auto spawns.
+
+agarthashape <value>
+
+centspawn <value>
+
+Will become monster with offset value when on the agartha
+
+Bonus for dryad queen auto spawns.
+
+plane.
+
+minospawn <value>
+
+infernoshape <value>
+
+Bonus for dryad queen auto spawns.
+
+Will become monster with offset value when on the inferno
+plane.
+
+Terrain Altering
+
+hadesshape <value>
+Will become monster with offset value when on the hades plane.
+
+terraformfrom <value>
+
+aztlanshape <value>
+
+Changes this terrain into something. Use next two commands to
+
+Will become monster with offset value when on the aztlan plane.
+
+setup that and how often.
+
+primalshape <value>
+
+terraformto <value>
+
+Will become monster with offset value when on the primal plane.
+
+Terraforms to this terrain (default plain).
+
+elementalshape <value>
+
+terraformch <value>
+
+Will become monster with offset value when on the elemental
+
+Chance of terraforming square (default 100).
+
+plane.
+
+makecolony <terrain nbr>
+
+voidshape <value>
+
+Has a chance of turning a standard terrain into ‘terr’ and then
+
+Will become monster with offset value when on the void plane.
+
+die.
+colonyterr <value>
+Terrain to build colonies in (default -87).
+
+18
+
+Immortality and Other Planes
+
+saner <value>
+
+immortal
+
+voidsanity <value>
+
+regains this amount of sanity per month
+
+The monster is immortal on its home plane. This command
+
+reduces insanity gains (like armor)
+
+should not be used for beings with Other Planar Immortality.
+
+eatvillage <0-1>
+
+immortalap <nbr>
+
+1 = can eat a village to restore sanity, like a vampire.
+
+AP cost of reforming its body after dying.
+
+minorstartaff <chance>
+
+reformloc <terrain nbr>
+
+Chance of starting with a minor affliction. Chances >100 can give
+
+respawn terrain for immortals (-1 = anywhere, 1000=home)
+
+more than one affliction.
+
+reformdestroy <value>
+
+healonterr <terrain nbr>
+
+chance to destroy location on immortality respawn (default 0)
+
+Will heal faster when located on this terrain, will also heal
+
+homeplane <plane nbr>
+
+monsters with noheal.
+
+Other Planar Immortality. Will return to this plane if slain
+
+startinsanity <value>
+
+outside it and be indep controlled again.
+
+Commanders will start with about this much insanity. It has no
+
+planeshift <plane nbr>
+
+effect on non-commanders.
+
+can go to/from other plane, 1=hades, 2=inferno
+
+Stealth and Scouting
+
+noplanecamo <plane nbr>
+does not use fx_lookslike when in plane = value
+
+acutesenses
+
+banishsurv
+
+Monster has acute senses.
+
+This monster will be flung to another plane when banished,
+
+spiritsight
+
+instead of being destroyed.
+
+Monster has spirit sight.
+
+hadesres <value>
+
+badsight
+
+resistance to the effects of hades
+
+Monster has bad eye sight and will miss 20% of all attacks.
+
+revertowner <player number>
+
+stealth
+
+Monster will revert to being owned by this faction after its
+
+Monster is stealthy.
+
+player owner has been defeated. Use player number 24 to revert
+
+foreststealth
+
+to a standard independent.
+
+Monster is stealthy in forests.
+
+primal <value>
+
+invisible
+
+1 = this monster can be summoned by "Call Primal Being".
+
+Monster is invisible.
+
+primable <value>
+
+hideanimals <0-1>
+
+By default all animals can be made into primal animals. -1 =
+
+Animals following this commander gains forest stealth.
+
+monster cannot be turned into a primal variant, 1 = can be
+
+farsight <0-1>
+
+turned into a primal variant.
+
+Can see further on the world map.
+
+primifier <value>
+
+farsightsea <0-1>
+
+Will turn this number of animals into primal animals each month.
+
+Can see further over sea squares on the world map. This ability
+only works for commanders.
+
+Healing and Sanity
+
+snowstealth
+
+noheal
+
+Monster is stealthy in snowy locations.
+
+Monster never heals.
+
+desertstealth
+
+fastheal
+
+Monster is stealthy in deserts.
+
+A fast healing unit will be fully recovered from any non-fatal
+
+terrstealth <terrain nbr>
+
+damage in at most two months. Battle afflictions are also healed,
+
+Monster is stealthy in this terrain.
+
+but it can take a few more months.
+
+terrstealthinv
+
+coldheal <value>
+
+Monster gets invisible instead of just stealthy in the terrstealth
+
+heals value hp/month when it's cold
+
+terrain.
+
+regeneration
+
+Monster Types
+
+A unit with regeneration will heal 5 percent of its hit points each
+combat round until it is killed. Battle afflictions are also healed,
+
+human
+
+but they will take at least one month to heal. A regenerating
+
+is a human
+
+creature that is killed will continue to regenerate unless its
+negative hit points are more than half of its maximum hit points.",
+varregen <value>
+
+female
+is a female
+undead
+
+Like regeneration, but this many percent per round instead of 5.
+
+is an undead being. Undead beings are affected by banishment.
+
+19
+
+demonic
+
+releasespell <value>
+
+is a demon. Demons are affected by banishment.
+
+making an attack drains one mirror charge (fx_mirror)
+
+animal
+
+Income Commands
+
+is an animal
+ape <size>
+
+gold <nbr>
+
+is an ape. 1=markata sized, 2=human sized, 3=bandar sized.
+
+Gives extra income per month of this resource.
+
+inanimate
+
+iron <nbr>
+
+is an undead being
+
+Gives extra income per month of this resource.
+
+troll
+
+relics <nbr>
+
+is a troll
+
+Gives extra income per month of this resource.
+
+coldblood
+
+hands <nbr>
+
+is coldblooded
+
+Gives extra income per month of this resource.
+
+stonebeing
+
+fungi <nbr>
+
+monster is made of stone
+
+Gives extra income per month of this resource.
+
+setcreator <0-1>
+
+herbs <nbr>
+
+used by monsters that get their name from their creator
+
+Gives extra income per month of this resource.
+
+statue <0-1>
+
+weed <nbr>
+
+statues get part of their name from their creator, e.g. Statue of
+
+Gives extra income per month of this resource.
+
+Anselm
+
+lifeforce <nbr>
+
+expendable <0-1>
+
+Gives extra income per month of this resource.
+
+Is an expendable unit (can be used payment for certain
+
+trade <nbr>
+
+rituals/recruitments).
+
+Gives this number of extra trade points
+
+kobold <0-1>
+
+localironbonus <percent>
+
+Is an expendable kobold (counts as expendable unit, but comes
+
+att% bonus to iron income in this square (only works in mines)
+
+with a different ability description).
+
+localgoldbonus <percent>
+
+goblin <0-1>
+
+att% bonus to gold income in this square (only works in mines)
+
+Is an expendable goblin (can be used payment for certain
+
+limitgold <value>
+
+rituals/recruitments).
+
+value = amount of gold per month, but max the value of the
+
+dragon <0-2>
+
+square
+
+1=dragon, 2=elder dragon.
+
+limitiron <value>
+
+madcultist <0-1>
+
+value = amount of iron per month, but max the value of the
+
+Mad cultist might decide to open a gate to Inferno.
+
+square
+
+primalcult <0-1>
+
+limittrade <value>
+
+Primal cultists might decide to open the primal gate.
+
+value = amount of extra trade per month, but max the original
+
+fungus <0-2>
+
+trade value of the square.
+
+1 = is a fungus, 2 = is an animated fungus.
+
+goldbonus <percent>
+
+ship <0-1>
+
+Percentage bonus to gold income for entire nation.
+
+Is a ship.
+
+ironbonus <percent>
+Percentage bonus to iron income for entire nation.
+
+Mirror Commands
+
+tradebonus <percent>
+Percentage bonus to trade income for entire nation.
+
+mirror <value>
+
+lairgoldpen <value>
+
+1=is small mirror, 2=is large mirror, 3=silver, 4=gold
+
+Gold inc penalty in percent for this monster's lair.
+
+revertmirror <value>
+
+goldcarrier <value>
+
+revert to mirror when empty. 1=small mirror, 2=large mirror,
+
+spoils of war when defeating this monster.
+
+3=silver, 4=gold
+
+ironcarrier <value>
+
+phantasm <value>
+
+spoils of war when defeating this monster.
+
+1=phantasmal warrior, 2=phantasmal animal, etc.
+releasephant <value>
+
+Resistances and other Damage Mitigations
+
+mirror releases this type of phantasms (has phantasm = value)
+releaserate <value>
+
+fireres <value>
+
+bonus to the number of phantasms released
+
+Offers resistance to fire. Value 100 = completely resistant.
+
+mirrorammo <value>
+
+coldres <value>
+
+default number of images for this type of mirror (def 20)
+
+Offers resistance to cold. Value 100 = completely resistant.
+
+20
+
+poisonres <value>
+
+Special Attributes
+
+Offers resistance to poison. Value 100 = completely resistant.
+
+startitem "item name"
+
+shockres <value>
+
+Starts with this item.
+
+Offers resistance to shock. Value 100 = completely resistant.
+
+holy
+
+acidres <value>
+
+Sacred, takes advantage of bless effects.
+
+Offers resistance to acid. Value 100 = completely resistant.
+
+berserker
+
+diseaseres
+
+Can go berserk.
+
+Disease resistance.
+
+noleader
+
+lucky
+
+Cannot command any unit even if monster is a commander.
+
+Lucky units evade 50% of all attacks.
+
+allitemslots
+
+sleepres
+
+Has the full set of item slots.
+
+Sleep resistance.
+
+weaponslots
+
+charmres
+
+Only has weapon and misc slots.
+
+Charm resistance.
+
+noslots
+
+bluntres
+
+Has no item slots at all.
+
+Blunt resistance (half damage).
+
+nobootslots
+
+slashres
+
+Has no boot slots.
+
+Slash resistance (half damage).
+
+miscslots
+
+pierceres
+
+Has only 2 misc slots.
+
+Pierce resistance (half damage).
+
+swallowres
+
+ethereal
+
+Immune to swallow attacks (used for castle gates).
+
+Is ethereal.
+
+size1x1
+
+shield
+
+Monster only takes up a single square on the battlefield.
+
+Equips the monster with a regular shield (0-1 protection).
+
+size2x2
+
+largeshield
+
+Monster takes up 2x2 squares on the battlefield. (The huge
+
+Equips the monster with a large shield (0-2 protection).
+
+movement ability gives a 3x3 size token on the battlefield).
+
+magicshield
+
+unaging
+
+Equips the monster with a magic shield (0-3 protection).
+
+Immune to aging effects like decay.
+
+nonmaginvul
+
+clumsy
+
+Invulnerable to non-magical weapons (like Demilich).
+
+Misses more than usual (soulless have this ability).
+
+invul
+
+nozoc
+
+Invulnerable (like Creeping Doom).
+
+No Zone of Control (castle gates have this ability)
+
+awe <value>
+
+nocombat
+
+Monster has awe. Monsters usually have between 1 to 4 in this
+
+Non combatant, will not participate in combats.
+
+ability.
+
+unimportant
+
+displaced <value>
+
+Battles can be won without killing this unit.
+
+35% chance of missing per rank away from target
+
+alone <dmg>
+
+affres <value>
+
+Will take damage each month another monster of the same type
+
+value = chance of not receiving battle affliction
+
+is in the same square.
+
+twistfate
+
+frontpos
+
+Starts every battle with the Twist Fate buff.
+
+Rank+, deploys further towards the front.
+
+mirrorimages <value>
+
+rearpos
+
+Starts every battle with this amount of mirror images.
+
+Rank-, deploys further back.
+
+airshield <percent>
+
+leadership <nbr>
+
+Air Shield with this chance of negating incoming missile attacks.
+
+Gives this amount of extra morale to units under his command.
+
+tiny
+
+localleadership <nbr>
+
+Tiny units are missed 50% of the time by normal attacks.
+
+Gives this amount of extra morale to nearby friendly units.
+
+tangleres <0-1>
+
+burnforest <nbr>
+
+Immunity to tangle vines.
+
+1 = can start forest fires, 100 = auto burns forests.
+randomitem <percent>
+Percent is the chance of the monster starting with a random
+magic item.
+
+21
+
+randomweapon <percent>
+
+digest <dmg>
+
+Percent is the chance of the monster starting with a random
+
+Gives this amount of dmg per round to units in stomach.
+
+magic weapon.
+
+incorporate <dmg>
+
+randommisc <percent>
+
+Steals this amount of HP per round from units in stomach.
+
+Percent is the chance of the monster starting with a random
+
+hpoverflow <nbr>
+
+magic misc item.
+
+1 = HP overflow is allowed even after the battle.
+
+randomrare <percent>
+
+absorbdead <nbr>
+
+Monster will start with a random magic item. Percent is the
+
+Can absorb dead and get HP from it. Nbr is the maximum dead
+
+chance of a rare item being allowed.
+
+absorbed per month. Gains 3 HP/dead.
+
+indepitem <percent>
+
+extraeyes <nbr>
+
+Like randomitem, but only for indeps (all indep nations).
+
+Monster has this number of extra eyes. Use -1 to create a cyclops
+
+slavehunt <die>
+
+with one eye.
+
+Can create slave warriors. The amount of slaves is an open ended
+die.
+
+noeyes
+monster has no eyes and needs no eyes to be effective
+
+armytrainer <nbr>
+
+sensedead <0-1>
+
+Units in the same square will get this amount of XP each month.
+
+1 = can sense the number of corpses of all types in current
+
+lookslike <offset>
+
+square
+
+Offset to monster it looks like. This is used by e.g. werewolves in
+
+riverdmg <value>
+
+order to look like some other unit when they are inspected.
+
+takes an value damage when passing a river
+
+poisonexpl <dmg>
+
+iceprot <value>
+
+Poison explosion on death. A giant mushroom has this ability
+
++value armor in cold climate
+
+with dmg 10.
+
+melt <value>
+
+fireexpl <dmg>
+
+takes value dmg per month when not cold
+
+Fire explosion on death.
+
+dmgonterr <terrain nbr>
+
+shardexpl <dmg>
+
+Takes 1 point of dmg per month when in this terrain. A single unit
+
+Shard explosion on death.
+
+can only have one dmgonterr ability. If it has more than one, only
+
+nametype <nametype>
+
+the one highest terrain nbr will take effect.
+
+Sets the type of random name this monster should get. See the
+
+dmgonterrbonus <value>
+
+Nametypes table (page 24).
+
+Adds to the damage of the dmgonterr ability
+
+unique <nbr>
+
+aipowcom1 <value>
+
+This is a unique monster, there can only be one of it in the entire
+
+unit wants to be led by com with this power at level 1+
+
+world.
+
+aipowcom2 <value>
+
+fireaura <dmg>
+
+unit wants to be led by com with this power at level 2+
+
+Fire strikeback (std dmg = 3)
+
+aipowcom3 <value>
+
+coldaura <dmg>
+
+unit wants to be led by com with this power at level 3+
+
+AN cold strikeback (std dmg = 2)
+
+fear <value>
+
+shockaura <dmg>
+
+causes fear: 1=fear, 2=dread, 3=terror
+
+AN cold strikeback (std dmg = 3)
+
+makeruin <value>
+
+poisonaura <nbr>
+
+value = chance of turning current square into a ruin if possible
+
+Poison strikeback (std dmg = 4)
+
+meleeambush <value>
+
+aihold <nbr>
+
+Will start in melee combat when ambushing
+
+1 = AI will hold these units in siegable locations and only recruit
+
+poisoncloud <value>
+
+them there
+
+spreads poison cloud, value = radius + 1
+
+eatdead <chance>
+
+poisonspikes <dmg>
+
+Chance of eating a corpse and reproducing.
+
+AN poison strikeback
+
+eatdeadcap <chance>
+
+acidblood <perc>
+
+Chance of eating a corpse and reproducing, capped at one per
+
+AN acid strikeback, 50=50% of incoming damage
+
+square and month.
+
+forestheart <0-1>
+
+scry <radius>
+
+takes control of nearby forests
+
+Can scry for 3 AP, radius is in deci-squares (5=1 square, 15=9
+
+spread <value>
+
+squares).
+
+unit will position itself spread out among the other troops
+
+scrycost <nbr>
+
+seduceaura <value>
+
+Scrying cost this amount of gold.
+
+attacker within this range might get seduced instead
+
+22
+
+neverturn <value>
+
+scourgedefiler <value>
+
+never draw facing the other way
+
+Needs to drain lifeforce to cast spells of the defilement path,
+
+aigoldrally <value>
+
+range=max drain range.
+
+Hint that AI should go to recruitment loc when having lots of
+
+petriaura <range>
+
+gold
+
+Causes petrification like gorgon
+
+thrallhunt <value>
+
+combustionaura <radius>
+
+can create thralls (vampire)
+
+Puts nearby units on fire
+
+ainofollower
+
+confusionaura <radius>
+
+AI hint to always use this commander as a leader (not a
+
+Confuses nearby units (easy MR negates)
+
+subcommander)
+
+tunnelmove <dmg>
+
+putridexpl <value>
+
+Tunnel teleporting in combat like a Purple Worm.
+
+Putrid cloud upon death (value magic dmg + disease(MR))
+
+siegetunnel <chance>
+
+aimaxshop <value>
+
+Chance of emerging inside fort when storming.
+
+ai won't buy more than this amount at the same place
+
+drawsize <percent>
+
+maxsum <value>
+
+Draw the unit this amount of percent larger when shown on his
+
+the maximum amount that can be summoned in a single battle
+
+unit token. Can be negative for smaller as well. Use this
+
+changetemp <value>
+
+command to easily fine tune the units size to fit nicely in it token.
+
+makes square value degrees hotter
+
+Don't use any large values as the resizing is not done everywhere
+
+likestoburn <value>
+
+in the game.
+
+value% chance of wanting to burn a forest (wandering indep
+
+evasion <0-1>
+
+commanders only)
+
+25% chance to evade attacks.
+
+reanimate <value>
+
+chopforest <value>
+
+reanimates automatically if possible, value = max amount /
+
+1=can chop down forests.
+
+month
+
+awakentrees <radius>
+
+diseasecloud <value>
+
+Will awaken nearby trees & bushes in combat.
+
+spreads disease cloud, value = radius + 1
+
+awakenfungus <radius>
+
+mindexpl <0-1>
+
+Will awaken nearby mushrooms in combat.
+
+1 = explodes in Mental Agony on Death
+
+sitepopboost <value>
+
+deployoutside <0-1>
+
+Will boost indep generation at current site (100 = +100%).
+
+setup this unit outside fort in battles. The monster probably
+
+slimeshield <0-1>
+
+needs to be small (1x1 square) and few in numbers for the
+
+Slime strikeback
+
+deployment to work properly, there is not much space left
+
+transport <value>
+
+outside the walls before coming too close to the enemies.
+
+Is a ship and can transport value amount of size 1 units.
+
+treelook
+
+voidship <0-100>
+
+sprite will be rotated and scaled randomly, like a random tree
+
+Percent chance of protecting anyone in same square from the
+
+trample <dmg>
+
+insanity of the void.
+
+Can trample smaller unit for this amount of damage.
+
+airbreather <value>
+
+tramplexsize <value>
+
+This wateronly unit will not drown on land
+
+Extra size regarding trampling. A size one trampling unit needs
+
+vassal <0-1>
+
+tramplexsize 1 to be able to trample anyone at all.
+
+Is a vassal knight and will get part of yearly consription.
+
+autoastrology
+
+sleeper <chance>
+
+Superior Astrologist.
+
+Chance of starting a battle asleep if defending.
+
+desolator <value>
+
+snowsleeper <chance>
+
+Drain value lifeforce from current square each month (like
+
+Chance of starting a battle asleep if defending and it is snowy.
+
+scourge lord pillar).
+
+deepsleeper <value>
+
+desolcloud <radius>
+
+Must receive at least 1-value dmg in one hit to wake up.
+
+Spreads desolation cloud (exhaustion).
+diseaseshield <0-1>
+Disease strikeback (MR negates).
+darkbless <0-1>
+Has the dark blessing of a scourge lord
+defiler <range>
+Needs to drain lifeforce to cast spells, range=max drain range.
+
+23
+
+Monster Modding Numbers
+
+55 Ancient Forest
+
+Nametypes
+
+57 Kobold
+
+56 Scourge Lord
+
+0
+
+Misc male
+
+1
+
+Abysian (Dominions 3)
+
+Ritual schools (pow nbr)
+
+2
+
+Anglo-Saxon male
+
+1 = necro
+
+3
+
+Anglo-Saxon female
+
+3 = demon
+
+4
+
+Germanic male
+
+4 = witch
+
+5
+
+Undead
+
+5 = druid
+
+6
+
+Roman male
+
+6 = baron
+
+7
+
+Greek male
+
+7 = bakemono
+
+8
+
+Greek female
+
+8 = baal
+
+9
+
+Pangaea male
+
+9 = hoburg
+
+10 Pangaea female
+
+10 = clock
+
+11 Early Persian male
+
+11 = enchanter
+
+12 Early Persian female
+
+12 = mictlan
+
+13 Egyptian male
+
+13 = spirit
+
+14 French & Spanish
+
+14 = shaman
+
+15 Old Nordic male
+
+15 = agartha
+
+16 Old Nordic female
+
+16 = reveller
+
+17 Deep Ones
+
+18 = warlock fire
+
+18 Roman female
+
+19 = warlock water
+
+19 Misc female
+
+20 = warlock air
+
+20 Egyptian female
+
+21 = warlock earth
+
+21 Chinese male
+
+22 = troll
+
+22 Chinese female
+
+23 = rylle
+
+23 Mesoamerican male
+
+24 = void
+
+24 Mesoamerican female
+
+25 = priest
+
+25 African male
+
+26 = illusion
+
+26 African female
+
+27 = monk
+
+29 Indian male
+
+28 = dvala
+
+30 Indian female
+
+29 = rune smith
+
+31 Early Germanic male
+
+30 = councilor
+
+32 Early Germanic female
+
+31 = senator
+
+33 Japanese male
+
+32 = empress
+
+34 Japanese female
+
+33 = warpriest
+
+35 Amazon
+
+34 = bloodpriest
+
+36 Sauromatian
+
+35 = skypriest
+
+37 Celtic male
+
+36 = rainpriest
+
+38 Celtic female
+
+37 = nightpriest
+
+39 Angelic
+
+38 = deathpriest
+
+40 Demonic
+
+39 = nekromant
+
+41 Inuit
+
+40 = fire giant
+
+42 Gaelic (Tir na n'Og) male
+
+41 = frost giant
+
+43 Gaelic (Tir na n'Og) female
+
+42 = mountain giant
+
+44 Nature beasts
+
+43 = storm giant
+
+45 Wooden beasts
+
+44 = sea giant
+
+46 Russian male
+
+45 = dark emperor
+
+47 Russian female
+
+46 = god emperor
+
+48 Middle Eastern male
+
+47 = dryad queen
+
+49 Rephaite
+
+48 = scourge lord
+
+50 Middle Eastern female
+
+49 = cloud lord
+
+51 Pale Ones male
+
+50 = renatus
+
+52 Pale Ones female
+
+51 = kobold
+52 = kobold red
+
+24
+
+53 = kobold blue
+
+-45 = elemental plane of water
+
+54 = kobold white
+
+-46 = elemental plane of air
+
+55 = kobold green
+
+-47 = elemental plane of earth
+
+56 = alchemist
+
+-48 = fire citadels
+
+57 = governor
+
+-49 = water citadels
+
+58 = crystal amazon
+
+-50 = air citadels
+
+59 = garnet amazon
+
+-51 = earth citadels
+
+60 = jade amazon
+
+-52 = ice citadels
+
+61 = onyx amazon
+
+-53 = void gateways
+-54 = second suns
+
+Negative terrain numbers
+
+-55 = damned capitals
+
+-1 = anywhere
+
+-56 = level 2 libraries
+
+-2 = temples
+
+-57 = level 3 libraries
+
+-3 = libraries
+
+-58 = gold income locations
+
+-4 = mines
+
+-59 = non mines
+
+-5 = mountains
+
+-60 = non forest citadels
+
+-6 = forests and jungles
+
+-61 = forge location
+
+-7 = mountains, forests and jungles
+
+-62 = ancient forests and any sacred grove
+
+-8 = villages and smaller human settlements
+
+-63 = ancient forests and sacred groves
+
+-9 = fortified citadels
+
+-64 = farms and hamlets
+
+-10 = forests, jungles and swamps
+
+-65 = any sacred grove
+
+-11 = forests
+
+-66 = groves of gaia and primal forests
+
+-12 = greater mines
+
+-67 = forests and ancient forests
+
+-13 = farms
+
+-68 = capitals or fallen capitals
+
+-14 = human settlements
+
+-69 = any normal location
+
+-15 = ancient forests and old battlefields
+
+-70 = graveyards
+
+-16 = village size settlement
+
+-71 = flat terrains
+
+-17 = near water areas
+
+-72 = kokytos
+
+-18 = temples and pyramids
+
+-73 = pandemonium
+
+-19 = gold and silver mines
+
+-74 = inferno
+
+-20 = swamps and bogs
+
+-75 = abyss
+
+-21 = outdoors areas
+
+-76 = void plane
+
+-22 = capital locations
+
+-77 = celestial plane
+
+-23 = citadels
+
+-78 = hades plane
+
+-24 = villages and smaller settlements
+
+-79 = unsiegable locations
+
+-25 = the north
+
+-80 = stonehenges or ancient forests
+
+-26 = the mid
+
+-81 = ruby locations
+
+-27 = the south
+
+-82 = sapphire locations
+
+-28 = towns and cities
+
+-83 = diamond locations
+
+-29 = hamlets or larger
+
+-84 = emerald locations
+
+-30 = gem deposits and crystal forests
+
+-85 = forests, jungles, swamps and caves
+
+-31 = fortified locations
+
+-86 = not on sky plane
+
+-32 = villages or larger settlements
+
+-87 = terrains suitable for ant hills
+
+-33 = somewhat important squares
+
+-88 = ruby locations and towers
+
+-34 = blessable squares
+
+-89 = sapphire locations and towers
+
+-35 = citadels and graveyards
+
+-90 = diamond locations and towers
+
+-36 = infernal citadels
+
+-91 = emerald locations and towers
+
+-37 = hades citadels
+
+-92 = trade locations
+
+-38 = forests and jungles
+
+-93 = ports
+
+-39 = magic locations
+
+-94 = temples and fortified locations
+
+-40 = hamlets
+
+-95 = citadels and settlements
+
+-41 = hamlets, tent villages and villages
+
+-96 = lakes
+
+-42 = land locations
+
+-97 = ancient forests and similar
+
+-43 = underwater locations
+
+-98 = Elysium plane
+
+-44 = elemental plane of fire
+
+25
+
+-99 = forest like locations
+
+37 Black Magic
+
+-100 = forest or jungle like locations
+
+38 Necromancy
+
+-101 = snowy location
+
+39 Druidism
+
+-102 = near fresh water
+
+40 Witchery
+
+-103 = plain-like terrains
+
+41 Troll Magic
+
+-104 = hills and coal mines
+
+42 Void Magic
+
+-105 = non-void
+
+43 Illusionism
+
+-106 = sky plane
+
+44 Sage Magic
+
+-107 = deep earth gem deposits
+
+45 Dwarf Magic
+
+-108 = castles suitable for the Baron
+
+46 Maladies
+
+-109 = buildings of power
+
+47 Beast Wards
+
+-110 = desert-like terrains
+
+48 Warrior Wards
+
+-111 = iron producing terrains
+
+49 Paladin Magic
+
+-112 = non-iron producing terrains
+
+50 Famine Magic
+
+-113 = cities
+
+51 High Arcana
+
+-114 = elemental plane
+
+52 Moon Magic
+
+-115 = hamlet or larger, incl. dead/ruined ones
+
+53 Silver Arcana
+54 Forest Magic
+
+Magic Paths (path)
+1
+
+Infernal Magic
+
+2
+
+Elemental Magic
+
+3
+
+Pyromancy
+
+4
+
+Hydromancy
+
+5
+
+Storm Magic
+
+6
+
+Geomancy
+
+7
+
+Hedge Magic
+
+8
+
+Unlife
+
+9
+
+Dark Magic
+
+55 Alchemy
+56 Gold Arcana
+57 Metal Arcana
+58 Sky
+59 Death
+60 Tree Magic
+61 Astrology
+62 Defilement
+63 Bile Magic
+64 Divine Magic
+
+10 Foul Magic
+
+65 Sidhe Magic
+
+11 Blood Magic
+
+66 Akashic Magic
+
+12 Crystal Sorcery
+
+67 Destruction
+
+13 Garnet Sorcery
+
+68 Maya Manipulation
+
+14 Jade Sorcery
+15 Onyx Sorcery
+
+Objectives
+
+16 White Magic
+
+1
+
+walk randomly on same plane
+
+17 Spiritism
+
+2
+
+crusade
+
+18 Fortune Magic
+
+3
+
+inquisition/saint
+
+19 Solar Magic
+
+4
+
+rider
+
+20 Mysticism
+
+5
+
+angel
+
+21 Serpent Magic
+
+6
+
+devil
+
+22 Golden Magic
+
+7
+
+ghost
+
+23 Iron Arcana
+
+8
+
+visit citadels & settlements
+
+24 Kuro Do
+
+9
+
+dragon
+
+25 Prayers
+
+10 merchant
+
+26 Enchantment
+
+11 celestial angel
+
+27 Frost Magic
+
+12 primal gods
+
+28 Dark Prayers
+
+13 wild hunt
+
+29 Wizardry
+
+14 vassal
+
+30 Shamanism
+
+15 orchard of souls
+
+31 War and the Sun
+
+16 pirate captain
+
+32 Night
+
+17 teleporting horror
+
+33 Rain
+
+18 hunt enemy armies if on home plane
+
+34 Bloody Mother
+
+19 hunt player squares if on home plane
+
+35 Nahualli Magic
+
+Plane Numbers
+
+36 Command
+
+26
+
+-2 Elysium like planes (sky, agartha, elysium)
+
+likesnorth <value>
+
+-1 All planes
+
+A value from -10 to 10 indicating the willingness to have a
+
+0
+
+Elysium
+
+northern start location.
+
+1
+
+Celestial
+
+2
+
+Sky
+
+3
+
+Agartha
+
+4
+
+Inferno
+
+5
+
+Hades
+
+6
+
+Aztlan
+
+7
+
+Primal
+
+8
+
+Elemental Planes
+
+Starting citadel should be on this plane. If you use this command
+
+9
+
+The Void
+
+you should also use the "createcit" command and the terrain set
+
+likessouth <value>
+A value from -10 to 10 indicating the willingness to have a
+southern start location.
+likescoast <value>
+A value from -10 to 10 indicating the willingness to start near the
+coast.
+startplane <plane>
+
+as hometerr should be set to a gateway/pit/spire terrain. The
+
+Class Modding
+
+hometerr terrain will be created in Elysium as a portal to the
+
+These commands are used to modify and create new playable
+classes. A maximum of about 150 new classes can be added by
+mods.
+
+other plane.
+createcit <terrain nbr>
+This is the citadel terrain for classes with a different start plane.
+
+Starting Units
+
+Start Commands
+
+clearstartunits
+
+selectclass <class nbr>
+
+Clears the starting army for the active class.
+
+Selects the class to be modified. The selected class is referred to
+as the active class. Class numbers are listed in the Class Numbers
+table (page 28).
+
+setmaincom "monster name"
+Sets the main commander for the class. For example, the main
+commander for the Baron class is Baron and the main
+
+newclass
+
+commander for the Barbarian class is Barbarian Leader. If the
+
+Creates a new class. The new class is automatically assigned a
+
+main commander does not appear in the recruitment list for the
+
+class number from the range of free numbers.
+
+class, he cannot be replaced if lost.
+addstartcom "monster name"
+
+Basic Commands
+
+Adds a starting commander to the class. All starting units added
+after the commander will appear already assigned to that
+
+setclassname "class name"
+Sets name for the class (e.g. "Dwarf Queen" or "Necromancer" or
+
+commander's squad at the beginning of the game. The main
+
+“Baron”) This command must be the first command after creating
+
+commander should not be added as a startcom.
+addstartunits "monster name" <nbr>
+
+a new class.
+
+Adds <nbr> monsters to the starting army for the class. Use this
+
+classdescr "text"
+Sets the description for the class. The text must be on one line.
+
+command multiple times to assign several different types of
+
+The ^ symbol may be used for paragraph breaks.
+
+monsters (for example spearmen and archers).
+
+classabdescr "text"
+Sets the description for the ability section of the class. The text
+
+Recruitment List
+
+must be on one line. The ^ symbol may be used for paragraph
+
+These commands govern the recruitment list of a class. A
+recruitment list can have a maximum of 128 units on it.
+
+breaks.
+hometerr <terrain nbr>
+
+clearrec
+
+Sets the home terrain (home citadel) for the class. This terrain
+
+Clears the recruitment list for the active class.
+
+must be a citadel or the player will lose immediately when the
+
+addunitrec "monster name" <chance> <nbr> <gold> <gold die>
+
+game begins. This command is mandatory for a new class.
+
+<iron>
+
+Special Start Location
+
+Adds a monster to the recruitment list for the active class. The
+chance is a percentage chance that this unit can be recruited
+
+clearstartterr
+
+each month. The gold die is an open ended die that will be added
+
+Clears the starting terrain list for the class. This means any
+
+to the base gold cost of the unit.
+
+additional farms, hamlets, mines etc that the class would start
+
+addmercrec "monster name" <chance> <nbr> <gold> <gold die>
+
+the game with.
+
+<iron>
+
+addstartterr <terrain nbr>
+Adds extra terrain types that the class starts with when the game
+begins, such as extra farms, hamlets or mines.
+
+This command works like addunitrec, but the recruitment is
+mercenary and listed in green color. Mercenaries can only be
+recruited once and do not count against recruitment limits.
+
+27
+
+addcomrec "monster name" <chance> <gold> <gold die> <iron>
+
+mercboost <value>
+
+Adds a commander to recruitment list.
+
+value 100 = mercs will be twice as frequent, -50 = half as
+
+recxcost <resource type> <amount>
+
+frequent
+
+The previous entry in recruitment list will get an additional cost
+
+recterr <terrain nbr>
+
+of a special resource (not gold or iron). See the Resource Types
+
+The previous entry in the recruitment list can only be recruited
+
+table (page 29) for resource types.
+
+in this terrain.
+
+templerec
+
+Income Modifiers
+
+The previous entry in the recruitment list will have increased
+chance of occurring, depending on the number of temples
+
+goldbonus <percent>
+
+owned.
+
+Percentage bonus to gold income. For example, a bonus of 25
+
+libraryrec
+
+means that the class will have a 25% bonus on all gold income
+
+The previous entry in the recruitment list will have increased
+
+like the Baron.
+
+chance of occurring, depending on the number of libraries
+
+ironbonus <percent>
+
+owned.
+
+Percentage bonus to iron income. For example, a bonus of 25
+
+atavirec
+
+means that the class will have a 25% bonus on all iron income like
+
+The previous entry in the recruitment list will have increased
+
+the Baron.
+
+chance of occurring, depending on the number of Atavi Villages
+
+tradebonus <percent>
+
+owned.
+
+Percentage bonus to trade income. For example, a bonus of 50
+
+reclimiter "string"
+
+means that the class will have a 50% bonus on all trade income
+
+This will alter the requirements for the last added recruitment.
+
+like the Senator.
+
+string can be something like "+Baron" to require a Baron,
+"-Baron" to require the Baron to not be alive or "=Dwarf
+Worker" to require dwarf workers to be upgraded into the new
+
+Special Attributes
+
+troops.
+
+aiclass <value>
+
+stdtroops
+
+-1=AI players will never get this class by random choice,
+
+Adds standard troops to recruitment list. Standard troops are
+
+0=normal, 1=this class can only be played by AI players
+
+spearmen, swordsmen,
+
+classforestcit <0-1>
+Can use ancient forests as citadels, like the Troll King.
+
+nostdtroops
+
+classwoodencit <0-1>
+
+Standard troops are not available to the class.
+
+Can use watch towers as citadels, like the Senator.
+
+recwizchance <bonus>
+
+classminecit <0-1>
+
+This command sets an extra chance for recruitment offers from
+
+Can use mountain mines as citadels, like the Dwarf Queen.
+
+human wizards. The default value is 0.
+
+classcitterr <terrain nbr>
+
+recherochance <chance>
+
+Can also use this terrain as citadels. There can only be one
+
+This command sets an absolute value for the chance for
+
+classcitterr per class, but it can be combined with the 3 previous
+
+recruitment offers from human heroes. The default value is 1.
+
+commands.
+
+recasschance <chance>
+
+reqterr <terrain nbr>
+
+This command sets an absolute value for the chance for
+
+The class requires at least one square of this terrain to be
+
+recruitment offers from human assassins. The default value is 2.
+
+present on a map to play. This must be a terrain type that is
+
+townbonusdescr "text"
+
+normally present on maps. There can only be one reqterr per
+
+This text will be shown as a description of the bonus for owning
+
+class.
+
+towns.
+
+classtune <sound>
+
+libbonusdescr "text"
+
+Sets the class specific tune to this sound number. Tune sound
+
+This text will be shown as a description of the bonus for owning
+
+numbers are 125-150 (class specific tunes) and 155-168 (general
+
+libraries.
+
+tunes).
+
+templebonusdescr "text"
+
+otherplanar
+
+This text will be shown as a description of the bonus for owning
+
+Will enable the class to survive without owning a citadel in
+
+temples.
+
+Elysium. Note that all classes will survive when owning their
+
+humancost <value>
+
+start citadel, even if it is not in Elysium.
+
+cost multiplier (100=normal) for human recruitment at special
+locations (castles, desert palaces), 999=impossible
+
+Class Modding Numbers
+
+mercpricemult <value>
+value 2 = mercs will be twice as expensive
+
+Class Numbers
+
+28
+
+1
+
+baron
+
+2
+
+necro
+
+3
+
+demon
+
+4
+
+witch
+
+5
+
+priestess
+
+6
+
+bakemono
+
+7
+
+barbarian
+
+8
+
+senator
+
+9
+
+agartha
+
+terrain in that square.
+
+Start Commands
+selectterr <terrain nbr>
+Select the terrain to be modified. Select a low number to alter an
+existing terrain or select a number between 500 - 999 to create a
+new terrain. Press ctrl-i in game on a terrain to see what number
+
+10 druid
+
+it has.
+
+11 hoburg
+12 warlock
+13 mictlan
+
+Basic Commands
+
+14 troll
+
+spr "image.tga"
+
+15 enchanter
+
+Sets the image file for the terrain square.
+
+16 beholder (non-playable)
+
+name "name"
+
+17 archmage (non-playable)
+
+Name of the terrain type.
+
+18 goblin king (non-playable)
+
+gold <nbr>
+
+19 cultist
+
+Gold income for the terrain when owned.
+
+20 dwarf
+
+iron <nbr>
+
+21 priest
+
+Iron income for the terrain when owned.
+
+22 illusionist
+
+trade <nbr>
+
+23 markgraf
+
+Trade value of the terrain when owned.
+
+24 dryad queen
+
+herbs <nbr>
+
+25 scourge lord
+
+Herb income for the terrain when owned.
+
+26 cloud lord
+
+fungus <nbr>
+
+27 kobold
+
+Fungus income for the terrain when owned.
+
+28 maharaja
+
+weed <nbr>
+
+29 raksharaja
+
+Weed income for the terrain when owned.
+
+30 guildmaster
+
+sacr <nbr>
+Sacrifice income for the terrain when owned.
+
+Resource Types
+0
+
+gold
+
+1
+
+iron
+
+2
+
+herbs
+
+3
+
+fungus
+
+4
+
+sacr
+
+5
+
+hands
+
+6
+
+weed
+
+7
+
+fire
+
+8
+
+water
+
+9
+
+air
+
+dead <nbr>
+The location starts with <nbr> * d6 corpses in it.
+hands <nbr>
+Hands of Glory income for the terrain when owned.
+gems <nbr>
+A bitmask value that determines the gem income of the location.
+See the Gem Income Bitmask table (page 31). Note that you
+can add multiple 1 income values together to create a higher
+income value of a certain type of gem. Maximum income for a
+single gem type is 7.
+pop <nbr>
+
+10 earth
+
+A value indicating the size of humanlike population. Farm = 5,
+
+11 trade
+
+City = 50.
+
+12 relics
+
+lifeforce <nbr>
+
+13 lifeforce
+
+Sets amount of lifeforce that can be drained from the square *
+
+14 human corpses
+
+10. A plain has 10 and a forest 30. Negative values means square
+
+15 gems
+
+drain lifeforce with this radius (Pillar of Power has a value of -1).
+
+16 expendable units
+
+apcost <nbr>
+
+17 corpses
+
+Action Point cost for moving through the terrain.
+
+18 goblins
+
+Clear Commands
+
+Terrain Modding
+
+clearspec
+
+These commands allow the modding of world map terrain
+types. To find out what number a certain type of terrain has,
+
+Clears the special attributes of the selected terrain.
+clearfort
+
+press ctrl+i in the game and it will show the number of the
+
+Clears the fort attributes of the selected terrain.
+
+29
+
+invisible
+
+Special Attributes
+
+The sprite will not be drawn, instead the look of the terrain will
+
+citadel
+
+be procedurally generated. Not a useful command for modding.
+
+The terrain functions as a citadel when owned.
+
+visible
+
+batmap <batmap nbr>
+
+Makes sure that the sprite is drawn as terrain and nothing else.
+
+Associates the terrain with a certain battle map. See Battle Maps
+
+Necessary to modify the look of procedurally drawn terrains like
+
+table (page 31). This is usually used for fortified locations,
+
+forests, mountains and villages.
+
+but villages also have a battle map.
+
+forest
+
+walls
+
+The terrain counts as forest for the purposes of abilities like
+
+The location has walls in battle and is a siegable location.
+
+Forest Stealth.
+
+woodengate
+
+swamp
+
+The fort has a wooden gate
+
+The terrain counts as swamp for the purposes of abilities like
+
+irongate
+
+Swamp Move.
+
+The fort has an iron gate
+
+mountain
+
+enchantedgate
+
+The terrain counts as a mountain for the purposes of abilities like
+
+The fort has an enchanted gate
+
+Mountain Move.
+
+bramblegate
+
+desert
+
+Bramble gate
+
+The terrain counts as a desert for the purposes of abilities like
+
+barricade
+
+Desert Move.
+
+Wooden barricade gate
+
+deepspawn
+
+earthbarricade
+
+Hybrid fishermen can appear here.
+
+Earth barricade gate
+
+melts
+
+cloudgate
+
+A hint to the AI that the terrain melts after the winter. Frozen
+
+Cloud gate
+
+lakes and rivers have this attribute. Not a useful command for
+
+magicwalls
+
+modding.
+
+Ethereal units cannot pass through walls at this fort
+
+nostart
+
+burnable
+
+Players cannot start in this type of terrain. Other squares can be
+
+The terrain can be burned like forest.
+
+overwritten by a start citadel from a player.
+
+water
+
+woodencitadel
+
+The terrain is water and cannot be passed, unless it is frozen or
+
+Can be used as citadel by the Senator
+
+the monsters moving through it are amphibian or aquatic.
+
+forestcitadel
+
+cave
+
+Can be used as citadel by the Troll King.
+
+The terrain counts as a cave.
+
+useable
+
+nostdrec
+
+There is a special power inherent to the terrain that can be
+
+Standard class based recruitment lists are not available in this
+
+activated by commander actions.
+
+terrain. Instead, there are other units available for recruitment
+
+rare
+
+specific to the terrain.
+
+The terrain is a rare special terrain. It is sometimes deployed at a
+
+ownable
+
+random place in Elysium by the random map generator.
+
+The terrain can be claimed for ownership if it provides income
+
+unique
+
+the player can use.
+
+This terrain is unique and can only be placed once by the random
+
+smoke
+
+map generator.
+
+Pixels with a certain pink color (245,0,255) will produce smoke.
+
+mine
+
+Pixels with color (235,0,255) will produce flames and smoke.
+
+The terrain counts as a mine.
+
+goldboost
+
+farsight
+
+The terrain provides a global boost to gold income when owned.
+
+The terrain gives increased vision range when there are units
+
+ironboost
+
+present there. Watchtowers and some citadels have this
+
+The terrain provides a global boost to iron income when owned.
+
+attribute.
+
+tradeboost
+
+nosight
+
+The terrain provides a global boost to trade points when owned.
+
+The terrain does not provide vision into adjacent squares when
+
+harvest
+
+owned. Forests and swamps have this attribute.
+
+Structures with this command get double gold income during
+
+temple
+
+bumper harvest events. Farms have this attribute.
+
+The terrain counts as a temple.
+el
+Terrain starts as converted to the worship of El.
+
+30
+
+settlement
+
+ug
+
+Defines the terrain as a human settlement. Hamlets, villages,
+
+This is an underground terrain.
+
+towns etc have this attribute.
+
+town1
+
+void
+
+One town point.
+
+The terrain is part of the void. It is possible to both walk, swim
+
+town2
+
+and sail here.
+
+Two town points.
+
+voidret
+
+cityname
+
+The terrain is connected to the Void. Use for Pyramids and other
+
+This terrain should start with a random city name.
+
+such structures.
+
+nodrown
+
+library1
+
+No one will drown in this terrain. Fishes can be on land and vice
+
+Library level +1.
+
+versa here. Used for frozen water tiles.
+
+library2
+
+destroyto <terrain nbr>
+
+Library level +2.
+
+Turns into this terrain when destroyed or burned up. Usually this
+
+hoburg
+
+command is not needed and it the terrain will be turned into
+
+All starting corpses here will be small size.
+
+something appropriate depending on its attributes.
+
+snowok
+
+Terrain Modding Numbers
+
+Income in this terrain is not affected by snow.
+desertok
+
+Gem Income Bitmask
+
+Terrain will survive surroundings being turned into desert.
+invseason
+Seasons are reversed in this terrain.
+spreadcold
+The terrain square spreads cold around it, turning nearby
+squares snowy.
+tempimmune
+The terrain will not be transformed into a wasteland when it gets
+too hot
+
+2^0
+
+1
+
+Ruby, income 1 (fire)
+
+2^3
+
+8
+
+Sapphire, income 1 (water)
+
+2^6
+
+64
+
+Diamond, income 1 (air)
+
+2^9
+
+512
+
+Emerald, income 1 (earth)
+
+2^12
+
+4096
+
+Random gem, income 1
+
+2^15
+
+32768
+
+Random gem B, income 1
+
+2^18
+
+262144
+
+Use dice for income
+
+2^19
+
+524288
+
+Keep old gem income if another terrain is
+transformed into this one
+
+ritrebate <percent>
+All rituals cast on this location will be cheaper.
+
+Battle Maps
+
+bonusrelics <value>
+
+lowwall
+
+1
+
+Get this number of extra relics from this location. By default the
+
+lowwalln
+
+2
+
+amount of relics is one less than the amount of sacrifices earned.
+
+highwall
+
+3
+
+highwalln
+
+4
+
+greatwall
+
+5
+
+widewall
+
+6
+
+widewalln
+
+7
+
+citadel
+
+8
+
+palisade
+
+9
+
+palisaden
+
+10
+
+outpost
+
+11
+
+stonetower
+
+12
+
+woodentower
+
+13
+
+witchtower
+
+14
+
+natcavefort
+
+15
+
+natcavefortwide
+
+16
+
+Will reduce the amount of mist produced. Rare is the chance in
+
+cavefort
+
+17
+
+percent that mist will be produced.
+
+cavefortwide
+
+18
+
+dwarfcity
+
+19
+
+cloudwall
+
+20
+
+cloudcastle
+
+21
+
+earth
+
+22
+
+flamewall
+
+23
+
+bramble
+
+24
+
+bridge
+
+25
+
+nosnowpen
+No movement penalty from snow.
+farvis
+Can be seen from far away.
+seepast
+Far horizon (like sea).
+port
+Ships can enter this terrain.
+realport
+Ships can be recruited here.
+misty
+Mist emanates from here.
+mistrare <chance>
+
+anchored
+Dimensionally anchored location.
+hardfly
+Difficult to fly here, costs 2 AP.
+nevercold
+This square will never get cold.
+
+31
+
+towerbridge
+
+26
+
+corkscrewtowers
+
+27
+
+addallsettlements
+
+port
+
+28
+
+agarthafort
+
+29
+
+Inverts the contents of the group. Very useful when making a
+
+jerusalem
+
+30
+
+group that should contains all terrains but one.
+
+monasteryn
+
+31
+
+ford
+
+32
+
+kingscastle
+
+33
+
+academy
+
+34
+
+darkcitadel
+
+35
+
+ziggurat
+
+36
+
+bronzecastle
+
+37
+
+town
+
+38
+
+Start Commands
+
+city
+
+39
+
+newritpow
+
+village
+
+40
+
+Creates an entire new school of rituals called a ritpow. This
+
+lionvillage
+
+41
+
+should be the first command when creating a new batch of
+
+junglevillage
+
+42
+
+coastville
+
+43
+
+cloudtower
+
+44
+
+Create a new ritual with this name. This should be the first
+
+tentvillage
+
+45
+
+command for each new ritual.
+
+hobvillage
+
+46
+
+capital
+
+47
+
+The optional value offs can be used to select a ritual other than
+
+fairycircle
+
+48
+
+the first one with this name. 0=the first one, 1=the second ritual
+
+farm
+
+49
+
+with this name.
+
+houseruins
+
+50
+
+townruins
+
+51
+
+Adds all different human settlement terrains to the group.
+invert
+
+Ritual Modding
+These commands are used to modify existing rituals or
+construct new schools of rituals and the individual rituals
+within that school.
+
+rituals.
+newritual "name"
+
+selectritual "name" [<offs>]
+
+Basic Commands
+ritpow <pow nbr>
+
+Terrain Group Modding
+
+Sets the ritpow used. If command is not used, the latest created
+
+These commands can be used to create new terrain groups,
+i.e. negative terrain numbers that corresponds to a bunch of
+terrains. They have a negative number from -1000 to -1199, a
+name e.g. "castles and temples" and finally a number of
+terrains that fulfills the requirement for this terrain group.
+
+newritpow will be used. Existing ritpow numbers can be found in
+the Ritual Schools table (page 24).
+level <1-9>
+The level of the ritual. Usually the level is between 1 (apprentice
+level) and 3 (master level).
+cost <resource type> <amount>
+
+Start Commands
+
+Adds a resource cost to the ritual. E.g. cost 4 10 to add a cost of
+10 sacrifices. A single ritual can have at most 4 different costs.
+
+selectterrgroup <terrgroup nbr>
+
+See the Resource Types table (page 29) for resource types.
+
+Select the terrain group to be modified. The number must be
+
+terr <terrain nbr>
+
+between -1000 and -1199. The numbers between -1 and -999
+
+Restrict ritual to this terrain only. Negative numbers can be used
+
+are reserved for standard CoE5 and cannot be modified.
+
+for special terrain combinations.
+
+Basic Commands
+
+Clear & Copy Commands
+
+setname "name"
+
+copyritual "name"
+
+Sets the name for the terrain group, e.g. "forests and temples".
+
+Copies all stats and abilities (except pow nbr and name) from
+
+addterr <terrain nbr>
+
+another ritual to the current one.
+
+Adds a terrain to this group. Negative numbers cannot be used
+
+clearritspec
+
+here. By default a terrain group is empty.
+
+Removes all special attributes from a ritual. This is only useful
+
+remterr <terrain nbr>
+
+when modifying existing rituals.
+
+Removes this terrain from the group.
+addallforests
+Adds all different forest terrains to the group. Jungles are not
+included.
+addalljungles
+Adds all different jungle terrains to the group.
+
+32
+
+Example summoning ritual that summons a random group of
+
+Summoning Commands
+
+monsters
+
+addstring "string"
+Adds some text data to a ritual. Most often used to set what is
+summoned by a summoning ritual, but it depends on what effects
+are in the ritual. All addstring commands will be processed
+before any other commands for the ritual, so it does not matter
+where in the ritual you place them.
+summoning
+
+newritual
+
+"Summon Jellies"
+
+level
+
+1
+
+cost
+
+3 25
+
+addstring
+
+"1d3+1*Slime Mold"
+
+addstring
+
+"1d2*Swamp Thing"
+
+addstring
+
+"1d2*Ochre Jelly"
+
+summoning
+
+The ritual will summon the monsters specified in a random
+"string". Use addstring to add up to 15 strings with monsters. The
+string should be written like these examples:"1d6*Goblin",
+
+Transformation Commands
+promotion <nbr of units>
+
+"c*Captain & 2d6*spearman & 2d4+2*Archer", "Purple Worm".
+The c* indicates a commander and 2d6 means two 6-sided dice
+
+Promote existing units to another monster type. Use addstring
+
+will determine the number of monsters summoned. Dice cannot
+
+to add promotion pairs, the first string sets a source unit and the
+
+be combined with commanders.
+
+second one the destination units. Multiple of these pairs can be
+added to a single ritual.
+
+farsummon
+
+transformtarg <1-2>
+
+Like summoning, but it will occur at target location instead of at
+the caster's location.
+
+Will transform target into the unit type set by addstring. Value 1
+
+sum0chance <percent>
+
+= standard (use this), 2 = transform into following unit if level is
+high enough.
+
+Use with summonings. Percent = chance of first "string" to be
+
+promplayer <player number>
+
+used instead of a random string among the others.
+
+Promoted units will be owned by this player instead. Use this
+
+sum1chance <percent>
+
+command before the promotion command.
+
+Use with summonings. Percent = chance of second "string" to be
+used instead of a random string among the third and later.
+
+Mastery Commands
+
+sum2chance <percent>
+Same but one higher.
+
+These commands are usually used for different mastery
+rituals. They will grant new spells and upgrade the caster to a
+new monster type.
+
+sum3chance <percent>
+Same but one higher.
+sum4chance <percent>
+
+newrit <1-9>
+
+Same but one higher.
+
+Grants a new ritual of this level.
+
+sum0snow <percent>
+
+gainrit <offset>
+
+Works like sum0chance, but it can only succeed if there is snow
+
+Learns the ritual that is offset numbers away. E.g. offset 1 = learn
+
+at the target location.
+
+the following ritual when casting this one.
+
+defctrl <percent>
+
+rebatelvl <1-9>
+
+Default control chance for summonings. Can be overridden by
+
+This ritual will be half price if caster is this level or higher.
+
+monster's own ctrlchance.
+
+levelup <1-9>
+
+varcost <percent>
+
+Will level up if caster is below this level. Leveling up means
+
+Set variable sacrifice amount (50=50-150%, 100=0-150%)
+
+becoming a new monster determined by the mastery monster
+
+raisedead
+
+command.
+
+Raises humanoid corpses from the dead.
+
+levelupmon <1-9>
+
+raiseanimals
+
+Like levelup, but the new monster type is set by the addstring
+
+Raises animal corpses from the dead.
+
+command. Set the new monster type in the addstring command.
+
+specpow <value>
+
+newspell1 <path nbr>
+
+Makes a druid summoning, 1=minor, 2=major
+
+Learns one new level 1 combat spell from this path.
+
+setplayer <player nbr>
+
+newspell2 <path nbr>
+
+Following summons will be owned by this player. Default owner
+
+Learns one new level 2 combat spell from this path.
+
+is the current player. Player -1 resets the owner to the default.
+
+newspell3 <path nbr>
+Learns one new level 3 combat spell from this path.
+forgetrits
+Forgets all known rituals.
+
+33
+
+monplayerreq [<min>]
+
+Example mastery ritual that levels up from lvl 1 to lvl 2
+newritual
+
+"Mastery"
+
+At least min number (default 1) of the monsters in addstring
+
+level
+
+1
+
+"(&)..." must be in the world and owned by the current player. The
+
+cost
+
+3 150
+
+min attribute is optional and can be omitted.
+enchherereq <ench nbr>
+
+free
+newrit
+
+2
+
+levelup
+
+2
+
+soundfx
+
+57
+
+rebatelvl
+
+2
+
+This type of Enchantment must be active where there ritual is
+cast.
+nonearby1req <terrain nbr>
+This terrain cannot be within 1 square when casting the ritual (a
+3x3 square area).
+nonearby3req <terrain nbr>
+
+Casting Restrictions
+
+This terrain cannot be within 3 squares when casting the ritual (a
+
+levelreq <1-9>
+
+7x7 square area).
+
+Caster must be exactly this level to use this ritual and cannot
+
+nonearby5req <terrain nbr>
+
+have another power at higher level.
+
+This terrain cannot be within 5 squares when casting the ritual (a
+
+resrestrict <res nbr>
+
+11x11 square area).
+
+Caster cannot have this resistance bitmask. Useful values are
+
+nonearby7req <terrain nbr>
+
+2^4 for undead, 2^20 for immortal and 2^26 for ethereal.
+
+This terrain cannot be within 7 squares when casting the ritual (a
+
+resreq <res nbr>
+
+15x15 square area).
+
+Caster must have this resistance bitmask.
+
+nonearby99req <terrain nbr>
+
+benrestrict <ben nbr>
+
+This terrain cannot be anywhere on the same plane when casting
+
+Caster cannot have this beneficial bitmask
+
+the ritual
+
+fxreq <fx nbr>
+
+nearby1req <terrain nbr>
+
+Unit must have 1+ in this fx to learn and cast this ritual. This
+
+This terrain must be within 1 square when casting the ritual (a
+
+command is probably not useful for modding.
+
+3x3 square area).
+
+nomonworldreq [<limit>]
+
+nearby3req <terrain nbr>
+
+Monsters in addstring "(-)..." in the world must be fewer than
+
+This terrain must be within 3 squares when casting the ritual (a
+
+limit. Default limit is 1.
+
+7x7 square area).
+
+nomonplayerreq [<limit>]
+
+nearby5req <terrain nbr>
+
+Monsters in addstring "(-)..." in the world and owned by the
+
+This terrain must be within 5 squares when casting the ritual (a
+
+current player must be fewer than limit. Default limit is 1.
+
+11x11 square area).
+
+nomonmasteryreq
+
+nearby7req <terrain nbr>
+
+Monsters in addstring "(-)..." must not be in the world and owned
+
+This terrain must be within 7 squares when casting the ritual (a
+
+by the current player unless level is higher than ritual requires
+
+15x15 square area).
+
+nomonelysiumreq
+
+nearby99req <terrain nbr>
+
+Monsters in addstring "(-)..." must not be in elysium/sky/agartha.
+
+This terrain must be somewhere on the same plane when casting
+
+Monster in addstring "(+)..." will disable following minuses if
+
+the ritual
+
+monster fulfills same requirement. This applies for all nomon…
+
+noportalreq <0-1>
+
+commands.
+
+Location where ritual is cast mustn't contain a portal
+
+nomonreq
+
+maxcast <value>
+
+Monsters in addstring "(-)..." must not be at current location.
+
+Ritual cannot be cast more than this number of times per player.
+
+nomonhomereq
+
+This number can be modified by the two following commands to
+
+Monsters in addstring "(-)..." must not have their home at current
+
+create more exotic restrictions, e.g. a ritual that can only be cast
+
+location.
+
+once per 6 months.
+
+fewmonreq <max>
+
+castcount <value>
+
+The monsters in addstring "(-)..." must not be more than max at
+
+Add value to the number of times this ritual has been cast by this
+
+current location.
+
+player
+
+minmonreq <min>
+
+turncastcount <value>
+
+The monsters in addstring "(&)..." must be at least 'min' in
+
+Automatically reduce nbr of times this ritual has been cast by
+
+number at current location.
+
+this player by this amount per turn
+
+monworldreq [<min>]
+
+planereq <plane nbr>
+
+At least min number (default 1) of the monsters in addstring
+
+Can only be cast on this plane. See table Plane Numbers (page
+
+"(&)..." must be in the world. The min attribute is optional and can
+
+26).
+
+be omitted.
+
+34
+
+noplanereq <plane nbr>
+
+rebatefx50 <fx nbr>
+
+Cannot be cast on this plane. See table Plane Numbers (page
+
+Units with this fx nbr get 50% rebate
+
+26).
+
+rebateterr20 <terrain nbr>
+
+nofxherereq <fx nbr>
+
+Ritual cost is 20% cheaper in this terrain
+
+Cannot be a unit with this fx at the current location.
+
+rebateterr50 <terrain nbr>
+
+nofortreq <fort part>
+
+Ritual cost is 20% cheaper in this terrain
+
+There cannot be a fort with this fort part here.
+
+terrboost <terrain nbr>
+
+fortreq <fort part>
+
+Adds 1 to number of summoned monsters when done in this
+
+There must be a fort with this fort part here.
+
+terrain
+
+hasportalreq <portal nbr>
+
+terrscale50 <terrain nbr>
+
+Player must own a portal of this number.
+
++50% number of summoned monster when done in this terrain
+
+eventvarreq <var>
+
+sacrscale
+
+This event variable must be 1 or higher for ritual to be castable.
+
+Summoning amount scales with sacrifice production of target
+
+noeventvarreq <var>
+
+square
+
+This event variable must be 0 or lower for ritual to be castable.
+
+Targeting Commands
+
+homereq < -1 or 1>
+Caster can only cast this in his home province. -1=cannot.
+
+These commands sets the Target Location or Target Unit for
+the ritual. By default these targets are the caster and his
+square. This is fine for normal summoning and mastery rituals
+and usually only more exotic rituals that targets squares or
+
+homecitreq < -1 or 1>
+Can only cast this in the player's home citadel. -1=cannot.
+seasonreq <season>
+Can only be cast in this season. 0=summer, 1=autumn, 2=winter,
+
+units far away have any need to change this.
+
+3=spring.
+
+chooseterrloc <terrain nbr>
+
+Ritual Learning Difficulty
+
+Player will choose target location for ritual.
+randterrloc <terrain nbr>
+
+free
+
+Sets loc to a random terrain of this type on active plane.
+
+always start with this ritual in addition the others
+
+randomloc <1-5>
+
+start
+
+1=random land loc, 2=many dead (excluding present), 3=rand
+
+will start with this ritual(s), no others
+
+enemy com, 4=rand enemy citadel, 5=home citadel
+
+nostart
+
+randnewloc <terrain nbr>
+
+never start with this ritual (or learn from mastery)
+
+Like previous, but try to find an unknown location first.
+
+rarestart
+
+newlocplanes <terrain nbr>
+
+reduced chance of starting with this ritual
+
+Like randnewloc but will go to other planes if necessary (but not
+
+notforpoor
+
+hades)
+
+units with more expensive rituals can't get this one
+
+chooseloc <1-5>
+
+nexttoo
+
+Player choose target location. 2=deviate to many dead, 3=empty
+
+receives next ritual too when receiving this one
+
+mirror req, 4=empty gold mirror, 5=horror mark deviation
+
+afterprev
+
+planeloc <plane nbr>
+
+must know previous ritual before learning this one
+
+Shift target loc to same position but on another plane (neg =
+
+noundead
+
+toggle between this plane and elysium).
+
+undeads never know this ritual
+
+setplane <plane nbr>
+
+nodemon
+
+Following randomloc etc. commands will be restricted to this
+
+demons never know this ritual
+
+plane
+
+nofemale
+
+choosefxtarg <fx nbr>
+
+females never know this ritual
+
+Player will choose a target unit that has this fx nbr. By default
+
+gathergems
+
+only friendly units can be selected. Fx nbr 0 = no special fx nbr
+
+will start gathering gems when knowing this ritual
+
+required. Fx nbr -1 = can choose a unit owned by other players
+too.
+
+Cost Modifications and Effect Boosts
+
+mirrortarg <mirror size>
+Set targ to an empty mirror unit, attr = size for mirror, -1=any
+
+apcost <nbr>
+
+size
+
+Extra Action Points cost for the rituals.
+
+montarg <1>
+
+rebatefx25 <fx nbr>
+
+Sets targ unit to a random unit at target location among the type
+
+Units with this fx nbr get 25% rebate
+
+added by addstring.
+
+35
+
+ritmaxrange <range>
+
+Affect Target Unit
+
+Limits the maximum range of any following choose... rituals. The
+
+teleportloc <1-3>
+
+range is in number of squares.
+
+1 = Teleport target unit to target location. 2 = the caster's entire
+
+multiplane <0-2>
+Set wheter chooseloc can select locations on other planes or not.
+
+army is teleported to the target location. 3 = the target unit and
+
+0=same plane only, 1=similar planes (default), 2=all planes.
+
+his entire army is teleported to target location.
+selectfx <fx nbr>
+
+Affect Target Location
+
+Sets mod-fx-nbr to this value. Used by next command.
+setfx <value>
+
+scryloc <radius*10>
+
+Gives target unit a fx of type mod-fx-nbr and sets it to this value.
+
+Scry in a circle around target location.
+
+fillmirror <images>
+
+scatterscry <nbr of squares>
+
+Puts a number of images into a mirror, -1 = fill to default value
+
+Scry in a scattered way around target location.
+
+(mirrorammo)
+
+squarespec <ss bitmask>
+
+killtarg <dmg>
+
+Adds special square flags to target location. The only useful
+
+Gives between 1 and <dmg> amount of damage to target unit.
+
+values are 2^14 (16384) converted to El, 2^16 (65536) poison
+
+Use a value of 9999 for autokill.
+
+fog, 2^17 (131072) strange mist.
+
+updatehome
+
+clearsquarespec <ss bitmask>
+
+Updates home for target unit to where he stands. This is used to
+
+Clears special square flags on target location.
+
+make some immortals resurrect in the correct place.
+
+reducetown
+
+updhomeifterr <terrain nbr>
+
+Reduces settlement at target location one step in size.
+
+Like previous command, but will only update if target unit is on
+
+destroyterr
+
+this terrain.
+
+Destroys any valuable terrain at target location.
+
+bentarg <ben nbr>
+
+alterloc <terrain nbr>
+
+Gives a beneficial bitmask to the target unit. See table Special
+
+Changes target square to this terrain.
+
+Benefits (page 9). Particularly useful values for rituals are
+
+makeportal <portal nbr>
+
+2^26 to get the twiceborn effect or 2^24 to get the Stygian Bath
+
+Connect this square to other portals of the same number. Portal
+
+effect. Note that most ben effects are temporary any will
+
+nbr 1000 is special and will create a unique number.
+
+disappear after battle or during the turn and will be useless for
+
+centerloc
+
+rituals.
+
+Center map on target location.
+
+afftarg <aff nbr>
+
+trollifyloc
+
+Gives an affliction bitmask to the target unit. See table Special
+
+Transform forest at target location into a troll forest.
+
+Afflictions (page 9).
+
+squareench <ench nbr>
+
+bentargall <ben nbr>
+
+Puts an enchantment at target location.
+
+Like bentarg, but also affects all the target's followers.
+
+planeswap <plane nbr>
+
+setvar <nbr>
+
+Swaps target square with corresponding square on this plane.
+
+Set the generic modding variable to this value.
+
+portalroom <terrain nbr>
+
+bentargvar <ben nbr>
+
+Creates a portal to a location around this terrain.
+
+Like bentarg, but the unit will only be affected if he is located in
+
+movehome
+
+the terrain in the generic modding variable.
+
+Moves home citadel location to target square.
+
+cureoneaff <chance>
+
+putcorpses <nbr>
+
+Has this chance of curing one affliction on the target unit.
+
+Creates a number of human corpses in the target square (as if a
+
+insanity <value>
+
+fight involving humans had taken place there). Add 10000 to nbr
+
+Gives insanity to the target unit. Negative value can be used to
+
+in order to make the number of corpses scale with the sacrifice
+
+cure insanity. Only works if target is a commander.
+
+amount used.
+
+ritequipall
+Gives all items in "|..." strings to the target unit. E.g. use addstring
+"|Ring of Protection" if you want the target unit to receive a ring
+of protection.
+
+36
+
+Special Commands
+
+Event interaction
+
+soundfx <sound>
+
+seteventvar <var>
+
+Play this sound effect.
+
+set this event variable to 1
+
+transformtarg <mode>
+
+cleareventvar <var>
+
+Target unit will be transformed into one of the monsters added
+
+set this event variable to 0
+
+by addstring. Normally you want to use mode 1. Mode 2 will
+
+addeventvar <var>
+
+transform the units into higher monsters if they have higher skill
+
+increases the value of this event variable by 1
+
+level than necessary to cast the ritual.
+
+subeventvar <var>
+
+gainbless <percent>
+
+decreases the value of this event variable by 1
+
+Percent chance of gaining a bless effect.
+
+AI hints
+
+gaindarkbless <percent>
+Percent chance of gaining a dark bless effect.
+
+aiwhere <value>
+
+ornext <percent>
+
+restricts the AI to only cast ritual in certain places. 1=seldom in
+
+This ritual will have one of two possible effects. The first effect
+
+plains/cities (for druid animal summoning), 2=only in squares we
+
+will consist of the following command, the next effect will consist
+
+want to defend (for immobile guardian summoning)
+
+of the remaining commands. Percent is the chance of the first
+
+aialways <chance>
+
+effect happening.
+
+AI will always (if chance = 100 try to cast this ritual, but not make
+
+ornext2 <percent>
+
+any long time plans for it. chance=999 is special and means the
+
+This ritual will have one of two possible effects. The first effect
+
+AI will also make plans for the ritual.)
+
+will consist of the two following commands, the next effect will
+
+airare <chance>
+
+consist of the remaining commands. Percent is the chance of the
+
+Reduces the chance of the AI trying to use this ritual. Chance is
+
+first effect happening.
+
+the chance of casting the ritual and can be from 1-99. -1 is a
+
+ornext3 <percent>
+
+special value meaning never cast it.
+
+This ritual will have one of two possible effects. The first effect
+
+aiweakonly <troop strength>
+
+will consist of the three following commands, the next effect will
+
+AI commander will only cast this ritual if his troop strength is
+
+consist of the remaining commands. Percent is the chance of the
+
+below this value. One spearman gives 10 troop strength points.
+
+first effect happening.
+
+aionlyplane <plane nr>
+
+ornext4 <percent>
+
+AI will only cast ritual when on this plane
+
+Like the other ornext commands.
+
+aitarg <value>
+
+ornext5 <percent>
+
+For long range rituals. 1=try to target squares with enemy
+
+Like the other ornext commands.
+
+commanders, 2=try to target valuable squares with corpses in
+
+castertarg
+
+ainothere <terrain nbr>
+
+Sets target unit to caster.
+
+AI will not cast ritual in this terrain
+
+closewin
+
+ainotclose1 <terrain nbr>
+
+Closes the ritual window after the ritual has completed.
+
+AI will not cast ritual if close to this terrain, radius=1
+
+failplayer <player nbr>
+
+ainotclose2 <terrain nbr>
+
+Failed summons will be owned by this player.
+
+AI will not cast ritual if close to this terrain, radius=2
+
+centercaster
+
+ainotclose3 <terrain nbr>
+
+Center map on caster.
+
+AI will not cast ritual if close to this terrain, radius=3
+
+unfollowtarg
+
+ainotnearhome <mindist>
+
+Removes all followers from the target, should he be a
+
+AI should not cast this ritual close to home (mindist = nbr of
+
+commander that is commanding any units.
+
+squares away)
+
+simulacrum
+
+aiapprspam <chance>
+
+Creates a simulacrum.
+
+AI will dedicate apprentices to stay at home and only spam this
+
+enchreqterr <terrain nbr>
+
+ritual. Chance is 0-100
+
+Enchantment will be auto dispelled if it is outside this terrain.
+
+ainosimul
+
+forgetcurrit
+
+No more than one commander may plan to cast this ritual at once
+
+Caster will forget this ritual after casting it.
+
+airestrig <value>
+AI will always try to cast this ritual if it has at least this many of
+the primary resource for the ritual
+aimaxcast <value>
+An AI player will never cast this ritual more than this number of
+times in a game
+
+37
+
+Sound Sample Modding
+
+Event Triggers
+
+This command can be used to modify or create new sound
+samples. These can then be used as sound effects for weapons
+and rituals in the mod.
+
+Restricts when the event can occur. Note that all triggers can
+be inverted by writing - instead of +.
++squareowner <player>
+True if target square is owned or occupied by this player.
+
+sample <sound> "sample.sw"
+
++armyowner <player>
+
+Sets a sample file (sample.sw) as a certain sound effect number
+
+True if square is occupied by this player.
+
+(sound). The sound effect number can be between 0 and 249,
+
++turnnbr <turn nbr>
+
+high numbers (170+) will create new samples and low number
+will replace the old samples that already occupies those
+
+True if the current turn number is this turn nbr. Games start at
+
+numbers. The sample file should have the .sw (mono) or .sw2
+
+turn 0 and any turn 0 events are executed before each player can
+
+(stereo) extension and be saved as a signed 16-bit 22050 Hz
+
+player their first turn. But events are also run once before the
+game has started for anyone at turn -1.
+
+sample.
+
++minturnnbr <turn nbr>
+
+sampleismusic <sound>
+
+True if the current turn number is this turn nbr of greater.
+
+Turns this sample into one a class specific tunes. That means it
+
++chance <percent>
+
+will loop into a background tune when it has finished playing. If
+
+Trigger has percent chance of being true.
+
+you create a sample as a class specific tune, this must be used on
+
++player <player>
+
+that sample to keep the music playing. If used on a background
+
+True if current player has this player number.
+
+tune it will remove that tune from the loop of background music.
+
++class <player> "class name"
+
+sampleisloopmusic <sound>
+
+True if this player is this class.
+
+Turns this sample into one of the background tunes. That means
+
++humanplayer <player>
+
+it will loop into another background tune when it has finished
+
+True if this player is a human player (not an AI player).
+
+playing.
+
++aiplayer <player>
+True if this player is an AI player. Only real AI players are valid,
+
+Misc Modding
+
+not the different independent factions.
+
+For those commands that do not fit into one of the usual
+categories.
+
++hascom <player> "commander's name"
+Also sets target unit.
++hascomhere <player> "commander's name"
+
+playercolor <player> <red> <green> <blue>
+
+Also sets target unit.
+
+Sets the default color for a player. Each color value is between 0
+
++ownsloc <player> <terr nbr>
+
+and 255.
+
+True if player owns this terrain anywhere in the world.
++ownsloctarg <player> <terr nbr>
+
+Events
+
+True if player owns this terrain anywhere in the world. Also sets
+
+Events are composed of one start command, usually one or
+more triggers, one or more actions and finally the end
+command.
+
+target location to this place.
++terrain <terr nbr>
+True if target square is of this terrain.
++season <0-3>
+
+The trigger determines when the event will happen and the
+action determines what will happen as the result.
+
+0=summer, 1=autumn, 2=winter, 3=spring.
++seasondelay <1-3>
+3=early (guaranteed to only happen once per season, 2=mid,
+
+Events can be added both to mods and to custom map files.
+
+1=late).
++varequal <var> <value>
+
+Event Start & End
+
+var = 0-9999, true if variable equals value.
+
+playerevent
+
++varlesser <var> <value>
+
+Once for each player every turn, occurs in home citadel by
+
+True if the variable is less than value.
+
+default
+
++vargreater <var> <value>
+
+squareevent
+
+True if the variable is greater than value.
+
+For each player and each square in the world every turn
+
++hasunit <player> "monster name"
+
+endevent
+
+True if player has this kind of unit somewhere in the world. Also
+
+All events must end with this command
+
+sets target unit (player -1 = any player)
++hasunithere <player> "monster name"
+True if player has this kind of unit at current square. Also sets
+target unit (player -1 = any player)
+
+38
+
++hasitem <player> "item name"
+
+Affect target location
+
+True if player has this kind of magic item somewhere in the
+
+newunits <player> "monsters"
+
+world. Also sets target unit to wielder (player -1 = any player)
+
+also sets target unit
+
++hasitemhere <player> "item name"
+True if player has this kind of magic item in current square. Also
+
+promoteunits <player> <max amount> "from monster" "to
+
+sets target unit to wielder (player -1 = any player)
+
+monster"
+also sets target unit
+
++squarename “square name”
+
+alterterrain <terrain nbr>
+
+True if square has this name. e.g. “Crab Harbor” or “The Old
+
+changes the terrain of the current location
+
+Tower”
+
+killsquare
+
++plane <planenr>
+
+kills everyone in target square
+
+True if target square is on this plane. See table Plane Numbers
+
+namesquare “square name”
+
+(page 26). The special values -1 (all planes) and -2
+
+Sets name of square, e.g. “Crab Harbor” or “!2The Old Forest” or
+
+(Elysium-near planes) can also be used.
+
+“!!The Old Tower”
+
++mincorpses <nbr>
+
+removecorpses <nbr>
+
+True if at least this many corpses of any type are present in the
+
+Removes this many corpses from target location. Nbr must be a
+
+square.
+
+positive value.
+
++minhumancorpses <nbr>
+
+removehumanoidcorpses <nbr>
+
+True if at least this many human corpses are present in the
+
+Removes this many humanoid corpses from target location. Nbr
+
+square.
+
+must be a positive value.
+
++minhumanoidcorpses <nbr>
+
+removeanimalcorpses <nbr>
+
+True if at least this many humanoid corpses (humans,
+
+Removes this many animal corpses from target location. Nbr
+
+hoburghers, giants) are present in the square.
+
+must be a positive value.
+
++minanimalcorpses <nbr>
+
+holdit <0-1>
+
+True if at least this many animal corpses (of any type) are present
+
+1=Any independent units on this square will hold and not move
+
+in the square.
+
+away. This holdit flag is cleared if the square is conquered or if
+
++hasaffunithere <player> <aff>
+True if player has a unit in the current square that has all the
+
+any unit is spawned on it.
+
+afflictions in the aff mask. See table Special Affliction (page
+
+reveal <player> <radius> <level>
+Reveals target square to a player or all players (player -1). Radius
+
+9). Also sets target unit (player -1 = any player)-
+
+is in deci-squares, use 5 to only reveal the current target square.
+
++squareactivated
+True if active square is in its activated state. Terrains like Stone
+
+Level 1=darkened square, 2=normal seen square, 3=scryed
+
+Henges can be (de)activated and their status can be checked
+
+square. This square will fade to dark before the player is playing,
+
+with this trigger.
+
+so level 1 is probably the only one that makes sense.
+
++varvarequal <var1> <var2>
+
+Change where the target location is
+
+var = 0-9999, true if variable 1 equals variable 2.
++varvarlesser <var1> <var2>
+
+setloc <x> <y>
+
+var = 0-9999, true if variable 1 is lesser than variable 2.
+
+Move target location to a fixed location. Cannot be used on
+
++varvargreater <var1> <var2>
+
+squareevents.
+
+var = 0-9999, true if variable 1 is greater than variable 2.
+
+randloc <planenr> <terr nbr>
+
++minterrains <nbr> <terr nbr> <planenr>
+
+Move target location to a random location. See the Plane
+
+True if there is at least this amount of this terrain on the
+
+Numbers table (page 26). The plane special values -1 (all
+
+indicated plane. (planenr -1 = all planes)
+
+planes) and -2 (Elysium-near planes) can also be used. Negative
+
++minunits <player> <nbr> <planenr> "monster name"
+
+terrain numbers can also be used for special group of terrains.
+
+True if player owns at least this amount of units. (player -1 = all
+
+Cannot be used on squareevents.
+
+players, planenr -1 = alle planes).
+
+scatterloc <radius>
+Makes target location deviate a bit, can result in the same
+
+Event Actions
+
+square. Cannot be used on squareevents.
+targetunitloc
+
+Basic actions
+
+Set target location to the place where the target unit is.
+
+addresources <player> <resource type> <amount>
+Adds an amount of resources to a player. See table Resource
+Types (page 29) for the different resource types.
+message <to player> "text"
+Sends a text message to a player.
+
+39
+
+Affect target unit
+
+Set variables
+
+comname "commander name"
+
+setvar <var> <value>
+
+Gives a new name to the target unit. Only works if the target is a
+
+var = 0-9999, sets a variable to a value
+
+commander.
+
+addvar <var> <value>
+
+newitem "item name"
+
+var = 0-9999, adds a value to a variable
+
+Gives a specific magic item to the target unit.
+
+copyvar <var1> <var2>
+
+randitem <rare chance>
+
+var = 0-9999, copies variable 1 to variable 2
+
+Gives a random magic item to the target unit. Rare chance is the
+
+All variables are set to zero when the game begins.
+
+chance of being eligible for a rare magic item. It will always be an
+item that the target unit has appropriate equipment slots for.
+
+Special Values
+
+randmisc <rare chance>
+Gives a random magic misc item to the target unit. Rare chance is
+
+Where a "player" number is required one of these numbers
+can be used.
+
+the chance of being eligible for a rare magic item.
+removeitem "item name"
+
+Player numbers
+
+Removes a specific magic item from the target unit.
+
+0-23 = player number
+
+killunit <dmg>
+Hits the target unit with this amount of damage. Use 9999+ for a
+
+24 = Independents
+
+purge that will disregard any special abilities the target might
+
+25 = Special monsters
+
+have (including immortality).
+
+26 = Horrors
+27 = Hades
+
+gainxp <xp>
+
+28 = Inferno
+
+Gives XP to the target unit. XP can be negative to remove XP.
+
+29 = Celestial
+
+promote <commanderize> "monster"
+commanderize 0 = do not alter commander status, 1 = turns a
+
+30 = Kingdom/Empire
+
+non commander into a commander
+
+-1 = everyone (only for messages and a few triggers)
+-2 = event player (current player)
+
+makestationary
+
+-3 = square owner
+
+Makes target unit stationary on world map.
+
+-4 = army owner
+
+makeblind
+Makes target unit blind.
+
+Updating a Mod
+
+makediseased
+Makes target unit diseased.
+
+Updating a mod might break old saved games using that mod
+unless you take some special care.
+
+makenhwound
+Gives target unit a never healing wound.
+cureoneaff
+
+Any new units have to added after all previous units and any
+new classes after all other classes and so on. If updates are
+done in this way, saves should remain compatible. Adding a
+new unit in the middle of a mod will shuffle around all the ones
+behind it and break any saved games.
+
+Cures one affliction.
+changeowner <player>
+changes ownership of unit to this player
+makeaff <aff>
+Gives an affliction to target unit. See table Special Afflictions
+(page 9).
+makeben <ben>
+Gives a special benefit to target unit. See table Special Benefits
+(page 9). Particularly useful values are 2^26 to get the
+twiceborn effect or 2^24 to get the Stygian Bath effect. Note
+that most ben effects are temporary any will disappear after
+battle or during the turn and will be useless for events.
+makeminoraff
+Gives a random minor affliction to target unit.
+
+40
+
+addstring 33
+
+ape 20
+
++
+
+addterr 32
+
+armor 10, 14
+
++aiplayer 38
+
+addunitrec 27
+
+armytrainer 22
+
++armyowner 38
+
+addvar 40
+
+arrow 5
+
++chance 38
+
+Affect Target Location 36
+
+assassinweapon 15
+
++class 38
+
+Affect target location 39
+
+atavirec 28
+
++hasaffunithere 39
+
+Affect Target Unit 36
+
+Attacks 14
+
++hascom 38
+
+Affect target unit 40
+
+autoastrology 23
+
++hascomhere 38
+
+affectanimal 5
+
+awakenfungus 23
+
++hasitem 39
+
+affecthuman 5
+
+awakentrees 23
+
++hasitemhere 39
+
+affectmale 6
+
+awe 21
+
++hasunit 38
+
+affectundead 5
+
+aztlanshape 18
+
++hasunithere 38
+
+affres 21
+
++humanplayer 38
+
+afftarg 36
+
+B
+
++minanimalcorpses 39
+
+afterprev 35
+
+badsight 19
+
++mincorpses 39
+
+agarthashape 18
+
+banishsurv 19
+
++minhumancorpses 39
+
+aggressive 17
+
+Banner.png 3
+
++minhumanoidcorpses 39
+
+AI hints 37
+
+barricade 30
+
++minterrains 39
+
+aialways 37
+
+Basic actions 39
+
++minturnnbr 38
+
+aiapprspam 37
+
+Basic Commands 4, 10, 14, 27, 29, 32
+
++minunits 39
+
+aiclass 28
+
+batmap 30
+
++ownsloc 38
+
+aigoldrally 23
+
+battlefast 15
+
++ownsloctarg 38
+
+aihold 22
+
+battleslow 16
+
++plane 39
+
+aimaxcast 37
+
+battleslow2 16
+
++player 38
+
+aimaxshop 23
+
+Behavior 16
+
++season 38
+
+ainofollower 23
+
+benrestrict 34
+
++seasondelay 38
+
+ainosimul 37
+
+bentarg 36
+
++squareactivated 39
+
+ainotclose1 37
+
+bentargall 36
+
++squarename “square name” 39
+
+ainotclose2 37
+
+bentargvar 36
+
++squareowner 38
+
+ainotclose3 37
+
+berserker 21
+
++terrain 38
+
+ainothere 37
+
+blue 4
+
++turnnbr 38
+
+ainotnearhome 37
+
+bluntres 21
+
++varequal 38
+
+aionlyplane 37
+
+bonusrelics 31
+
++vargreater 38
+
+aipowcom1 22
+
+bramblegate 30
+
++varlesser 38
+
+aipowcom2 22
+
+burnable 30
+
++varvarequal 39
+
+aipowcom3 22
+
+burnforest 21
+
++varvargreater 39
+
+airare 37
+
++varvarlesser 39
+
+airbreather 23
+
+C
+
+airestrig 37
+
+castcount 34
+
+A
+
+airshield 21
+
+castertarg 37
+
+absorbdead 22
+
+aitarg 37
+
+Casting Restrictions 34
+
+acidblood 22
+
+aiweakonly 37
+
+cave 30
+
+acidres 21
+
+aiwhere 37
+
+celestialshape 18
+
+acutesenses 19
+
+allitemslots 21
+
+celwander 17
+
+addallforests 32
+
+allrit 17
+
+celwander2 17
+
+addalljungles 32
+
+alone 21
+
+centercaster 37
+
+addallsettlements 32
+
+alterloc 36
+
+centerloc 36
+
+addcomrec 28
+
+alterterrain 39
+
+centspawn 18
+
+addeventvar 37
+
+an 5
+
+Chained Weapons 5
+
+addmercrec 27
+
+ancforest1 16
+
+Change where the target location is 39
+
+addresources 39
+
+anchored 31
+
+changeowner 40
+
+addstartcom 27
+
+animal 20
+
+changetemp 23
+
+addstartterr 27
+
+aoe 4
+
+charmres 21
+
+addstartunits 27
+
+apcost 29, 35
+
+choosefxtarg 35
+
+41
+
+chooseloc 35
+
+ctrlchance 17
+
+endevent 38
+
+chooseterrloc 35
+
+cureoneaff 36, 40
+
+ethereal 5, 20
+
+chopforest 23
+
+curseditem 10
+
+evasion 23
+
+citadel 30
+
+Event Actions 39
+
+cityname 31
+
+D
+
+Event interaction 37
+
+Class Modding 27
+
+darkbless 23
+
+Event Start & End 38
+
+Class Modding Numbers 28
+
+dead 29
+
+Event Triggers 38
+
+classabdescr 27
+
+deadforest1 16
+
+Events 38
+
+classcitterr 28
+
+deadforest2 16
+
+eventvarreq 35
+
+classcost 17
+
+deepsleeper 23
+
+expendable 20
+
+classdescr 27
+
+deepspawn 30
+
+extracost 10
+
+classforestcit 28
+
+defctrl 33
+
+extraeyes 22
+
+classminecit 28
+
+defiler 23
+
+classtune 28
+
+demonic 20
+
+F
+
+classwoodencit 28
+
+deployoutside 23
+
+failplayer 37
+
+Clear & Copy Commands 32
+
+descr 10, 14
+
+falselife 10
+
+Clear Commands 29
+
+description 3
+
+farsight 19, 30
+
+cleareventvar 37
+
+desert 15, 30
+
+farsightsea 19
+
+clearfort 29
+
+desert1 16
+
+farsummon 33
+
+clearmove 14
+
+desert2 16
+
+farvis 31
+
+clearrec 27
+
+desert3 16
+
+fast 15
+
+clearritspec 32
+
+desertok 31
+
+fastheal 19
+
+clearspec 14, 29
+
+desertstealth 19
+
+fear 22
+
+clearsquarespec 36
+
+desolator 23
+
+female 19
+
+clearstartterr 27
+
+desolcloud 23
+
+fewmonreq 34
+
+clearstartunits 27
+
+destroyterr 36
+
+Files 3
+
+clearweapons 14
+
+destroyto 31
+
+fillmirror 36
+
+clearwspec 5
+
+digest 22
+
+fireaura 22
+
+closewin 37
+
+diseasecloud 23
+
+fireexpl 22
+
+cloudgate 30
+
+diseaseres 21
+
+fireres 20
+
+clumsy 21
+
+diseaseshield 23
+
+firstshape 18
+
+coastal 16
+
+displaced 21
+
+float 16
+
+Coe5ws.txt 3
+
+dispossess 6
+
+flying 5, 15
+
+coldaura 22
+
+dmg 4
+
+flying2 6
+
+coldblood 20
+
+dmgonterr 22
+
+flylook 4
+
+coldheal 19
+
+dmgonterrbonus 22
+
+flymode 4
+
+coldres 20
+
+dmgtype 4
+
+flysound 4
+
+colonymsg 18
+
+dragon 20
+
+followstupid 16
+
+colonyterr 18
+
+drain 5
+
+fontfile 3
+
+Combat Spells 15
+
+drawsize 23
+
+Fonts & Translation 3
+
+combatspell 10
+
+drown 5
+
+forest 30
+
+combatsum 10
+
+forest1 16
+
+combustionaura 23
+
+E
+
+forest2 16
+
+comname 40
+
+earthbarricade 30
+
+forestcitadel 30
+
+confusionaura 23
+
+easymr 5
+
+forestheart 22
+
+Copy & Clear commands 11
+
+eatdead 22
+
+foreststealth 19
+
+Copy & Clear Commands 14
+
+eatdeadcap 22
+
+forgetcurrit 37
+
+copyritual 32
+
+eatvillage 19
+
+forgetrits 33
+
+copyspr 11, 14
+
+el 30
+
+fortreq 35
+
+copystats 11, 14
+
+elementalshape 18
+
+free 35
+
+copyvar 40
+
+elysiumshape 18
+
+frontpos 21
+
+cost 32
+
+enchantedgate 30
+
+fullsweep 5
+
+Cost Modifications and Effect Boosts 35
+
+enchherereq 34
+
+fungi 20
+
+createcit 27
+
+enchreqterr 37
+
+fungus 19, 29
+
+42
+
+fxreq 34
+
+hometerr 27
+
+levelreq 34
+
+horror 16
+
+levelup 33
+
+G
+
+hp 10, 14
+
+levelupmon 33
+
+gainbless 37
+
+hpoverflow 22
+
+libbonusdescr 28
+
+gaindarkbless 37
+
+huge 5, 15
+
+libmastery 17
+
+gainrit 33
+
+human 19
+
+library1 31
+
+gainxp 40
+
+library2 31
+
+gates1 16
+
+I
+
+libraryrec 28
+
+gatheranygems 17
+
+iceprot 22
+
+lifeforce 20, 29
+
+gatherfungus 17
+
+icon 3
+
+likescoast 27
+
+gathergems 17, 35
+
+immobile 15
+
+likesnorth 27
+
+gatherhands 17
+
+immortal 19
+
+likessouth 27
+
+gatherherbs 17
+
+immortalap 19
+
+likesterr 17
+
+gatherlifeforce 17
+
+Immortality and Other Planes 19
+
+likestoburn 23
+
+gatherrelics 17
+
+inanimate 5, 19
+
+limitgold 20
+
+gathersacr 17
+
+Income Commands 20
+
+limitiron 20
+
+gatherweed 17
+
+Income Modifiers 28
+
+limittrade 20
+
+gems 29
+
+incorporate 22
+
+lob 5
+
+General Information 2
+
+indepitem 22
+
+localgoldbonus 20
+
+ghoulify 6
+
+indwander 17
+
+localironbonus 20
+
+goblin 20
+
+infernoshape 18
+
+localleadership 21
+
+gold 20, 29
+
+infwander 17
+
+loner 17
+
+goldbonus 20, 28
+
+infwander2 17
+
+look 4
+
+goldboost 30
+
+init 4
+
+lookslike 22
+
+goldcarrier 20
+
+insanity 36
+
+lovesterr 17
+
+growhp 18
+
+Introduction 2
+
+lucky 21
+
+growoffs 18
+
+invert 32
+
+growterr 18
+
+invisible 19, 30
+
+M
+
+growtime 18
+
+invseason 31
+
+madcultist 20
+
+invul 21
+
+Magic Item Modding 10
+
+H
+
+iron 20, 29
+
+Magic Item Modding Numbers 13
+
+hadesres 19
+
+ironbonus 20, 28
+
+magicboost 10
+
+hadesshape 18
+
+ironboost 30
+
+magicshield 21
+
+hadeswander 17
+
+ironcarrier 20
+
+magicwalls 30
+
+hadeswander2 17
+
+irongate 30
+
+makeaff 40
+
+hands 20, 29
+
+itemwep 10
+
+makeben 40
+
+hardfly 31
+
+makeblind 40
+
+hardmorale 5
+
+J
+
+makecolony 18
+
+hardmr 5
+
+jungle1 16
+
+makediseased 40
+
+harpyspawn 18
+
+jungle2 16
+
+makeminoraff 40
+
+harvest 30
+
+makenhwound 40
+
+hasportalreq 35
+
+K
+
+makeportal 36
+
+hatesterr 17
+
+killsquare 39
+
+makeruin 22
+
+Healing and Sanity 19
+
+killtarg 36
+
+makestationary 40
+
+healonterr 19
+
+killunit 40
+
+mapfile 3
+
+herbs 20, 29
+
+kobold 20
+
+Maps 3
+
+hideanimals 19
+
+maptele 17
+
+hoburg 31
+
+L
+
+mastery 17
+
+holdit 39
+
+lairgoldpen 20
+
+Mastery Commands 33
+
+holy 21
+
+landshape 18
+
+maxcast 34
+
+holykill 5
+
+large 5
+
+maxsinners 17
+
+homecitreq 35
+
+largeshield 21
+
+maxsum 23
+
+homeplane 19
+
+leadership 21
+
+meleeambush 22
+
+homereq 35
+
+level 32
+
+meleeweapon 14
+
+43
+
+meleeweapon50s 15
+
+mutate 5
+
+nonearby99req 34
+
+meleeweaponbonus 14
+
+nonmaginvul 21
+
+meleeweaponlong 14
+
+N
+
+nonruin1 16
+
+meleeweaponspec 14
+
+name 10, 14, 29
+
+noplanecamo 19
+
+melt 22
+
+namesquare “square name” 39
+
+noplanereq 35
+
+melts 30
+
+nametype 22
+
+noportalreq 34
+
+message 39
+
+nearby1req 34
+
+north1 16
+
+mind 5
+
+nearby3req 34
+
+nosight 30
+
+mindexpl 23
+
+nearby5req 34
+
+noslots 21
+
+mine 30
+
+nearby7req 34
+
+nosnowpen 31
+
+mines1 16
+
+nearby99req 34
+
+nostart 30, 35
+
+Minimal Mod for Steam Workshop 3
+
+nevercold 31
+
+nostdrec 30
+
+minmonreq 34
+
+neverturn 23
+
+nostdtroops 28
+
+minorstartaff 19
+
+newclass 27
+
+nostr 5
+
+minospawn 18
+
+newitem 10, 40
+
+notforpoor 35
+
+mirror 20
+
+newlocplanes 35
+
+noundead 35
+
+Mirror Commands 20
+
+newmonster 13
+
+nozoc 21
+
+mirrorammo 20
+
+newrit 33
+
+mirrorimages 21
+
+newritpow 32
+
+O
+
+mirrortarg 35
+
+newritual 32
+
+oneshot 5
+
+Misc Modding 38
+
+newspell1 33
+
+onlyenemy 6
+
+miscslots 21
+
+newspell2 33
+
+onlyfriend 6
+
+mistrare 31
+
+newspell3 33
+
+Optional Commands 3
+
+misty 31
+
+newunits 39
+
+Orcbanner.tga 3
+
+Mod Info 3
+
+newweapon 4
+
+Orcking.c5m 3
+
+Mod Mechanics 2
+
+next 5
+
+ornext 37
+
+Mod Syntax 2
+
+nextalways 5
+
+ornext2 37
+
+Modding Manual CoE 5 1
+
+nextalwayswep 5
+
+ornext3 37
+
+modprio 3
+
+nextdmg 5
+
+ornext4 37
+
+money1 16
+
+nexttoo 35
+
+ornext5 37
+
+money2 16
+
+nextwep 5
+
+otherplanar 28
+
+monplayerreq 34
+
+nobootslots 21
+
+ownable 30
+
+Monster Commands for Magic Items 11
+
+nocombat 21
+
+Monster Modding 13
+
+nodemon 35
+
+P
+
+Monster Modding Numbers 24
+
+nodrop 10
+
+passwall 16
+
+Monster Spawning 18
+
+nodrown 31
+
+pathboost 10
+
+Monster Types 19
+
+noeventvarreq 35
+
+petriaura 23
+
+montag 18
+
+noeyes 22
+
+phantasm 20
+
+montarg 35
+
+nofemale 35
+
+pickupanimals 17
+
+monworldreq 34
+
+nofortreq 35
+
+pierceres 21
+
+mor 14
+
+nofxherereq 35
+
+planeloc 35
+
+morale 5, 10
+
+noheal 19
+
+planereq 34
+
+more1spells 15
+
+noland 16
+
+planeshift 19
+
+more2spells 15
+
+noleader 21
+
+planeswap 36
+
+more3spells 15
+
+nomonelysiumreq 34
+
+playercolor 38
+
+motherspawn 18
+
+nomonhomereq 34
+
+playerevent 38
+
+mountain 15, 30
+
+nomonmasteryreq 34
+
+poison 6
+
+mountain1 16
+
+nomonplayerreq 34
+
+poisonaura 22
+
+mountain2 16
+
+nomonreq 34
+
+poisoncloud 22
+
+movehome 36
+
+nomonworldreq 34
+
+poisonexpl 22
+
+Movement 15
+
+nonearby1req 34
+
+poisonres 21
+
+mr 5, 10, 14
+
+nonearby3req 34
+
+poisonspikes 22
+
+multiplane 36
+
+nonearby5req 34
+
+pop 29
+
+mundane 5
+
+nonearby7req 34
+
+port 31
+
+44
+
+portalroom 36
+
+Recruitment List 27
+
+scry 22
+
+power 17
+
+recterr 28
+
+scrycost 22
+
+prebatweapon 15
+
+recwizchance 28
+
+scryloc 36
+
+primable 19
+
+recxcost 28
+
+seasonreq 35
+
+primal 19
+
+reducetown 36
+
+secondshape 18
+
+primalcult 20
+
+reform 18
+
+seduceaura 22
+
+primalshape 18
+
+reformdestroy 19
+
+seegems 17
+
+primifier 19
+
+reformloc 19
+
+seepast 31
+
+promote 40
+
+regeneration 19
+
+selectclass 27
+
+promoteunits 39
+
+releasephant 20
+
+selectfx 36
+
+promotion 33
+
+releaserate 20
+
+selectitem 10
+
+promplayer 33
+
+releasespell 20
+
+selectmonster 13
+
+protection 10
+
+relics 20
+
+selectritual 32
+
+purple 4
+
+reload1 5
+
+selectterr 29
+
+putcorpses 36
+
+reload2 5
+
+selectterrgroup 32
+
+putridexpl 23
+
+reload3 5
+
+selectweapon 4
+
+reloadsnd 4
+
+semistupid 16
+
+R
+
+removeanimalcorpses 39
+
+sensedead 22
+
+raiseanimals 33
+
+removecorpses 39
+
+Set variables 40
+
+raisedead 33
+
+removehumanoidcorpses 39
+
+setclassname 27
+
+randitem 40
+
+removeitem 40
+
+setcreator 20
+
+randloc 39
+
+remterr 32
+
+seteventvar 37
+
+randmisc 40
+
+replicate 5
+
+setfx 36
+
+randnewloc 35
+
+reqterr 28
+
+setloc 39
+
+randomitem 21
+
+Required Commands 3
+
+setmaincom 27
+
+randomloc 35
+
+Resistances and other Damage Mitigations
+
+setname 32
+
+randommisc 22
+
+20
+
+setplane 35
+
+randomrare 22
+
+resreq 34
+
+setplayer 33
+
+randomweapon 22
+
+resrestrict 34
+
+settlement 31
+
+randterrloc 35
+
+reveal 39
+
+setvar 36, 40
+
+range 4
+
+revertmirror 20
+
+Shapechanging 18
+
+rangedweapon 15
+
+revertowner 19
+
+shardexpl 22
+
+rangedweapon25 15
+
+ritequipall 36
+
+shield 21
+
+rangedweapon50 15
+
+ritmaxrange 36
+
+shieldneg 5
+
+rangedweapon50s 15
+
+ritpow 32
+
+ship 20
+
+rangedweapon50x 15
+
+ritrebate 31
+
+shipmove 16
+
+rangedweaponbonus 15
+
+Ritual Learning Difficulty 35
+
+shockaura 22
+
+rangepen 6
+
+Ritual Modding 32
+
+shockres 21
+
+rank 10, 14
+
+Ritual Power 17
+
+shrinkhp 18
+
+rare 30
+
+riverdmg 22
+
+siegetunnel 23
+
+rarestart 35
+
+siegeweapon 15
+
+rarity 10
+
+S
+
+simulacrum 37
+
+realport 31
+
+sacr 29
+
+sitepopboost 23
+
+reanimate 5, 21
+
+sacrscale 35
+
+size1x1 21
+
+rearpos 21
+
+sample 38
+
+size2x2 21
+
+rebate 17
+
+sampleisloopmusic 38
+
+skyshape 18
+
+rebatefx25 35
+
+sampleismusic 38
+
+slashres 21
+
+rebatefx50 35
+
+saner 19
+
+slavehunt 22
+
+rebatelvl 33
+
+satyrspawn 18
+
+sleeper 23
+
+rebateterr20 35
+
+savanna2 16
+
+sleepres 21
+
+rebateterr50 35
+
+scatter 6
+
+slimeshield 23
+
+recasschance 28
+
+scatterloc 39
+
+slow 15
+
+recherochance 28
+
+scatterscry 36
+
+smoke 30
+
+reclimiter 28
+
+scourgedefiler 23
+
+sndvol 4
+
+45
+
+snow 16
+
+stupid 16
+
+transport 23
+
+snowok 31
+
+subeventvar 37
+
+tree 6
+
+snowsleeper 23
+
+sum0chance 33
+
+treelook 23
+
+snowstealth 19
+
+sum0snow 33
+
+trgrank 4
+
+soft 6
+
+sum1chance 33
+
+troll 20
+
+sound 4
+
+sum2chance 33
+
+trollifyloc 36
+
+Sound & Visuals 4
+
+sum3chance 33
+
+tunnel 16
+
+Sound Sample Modding 38
+
+sum4chance 33
+
+tunnelmove 23
+
+soundfx 37
+
+summoning 33
+
+turncastcount 34
+
+south1 16
+
+Summoning Commands 33
+
+twistfate 21
+
+south2 16
+
+swallowres 21
+
+type 10
+
+spawn1d6mon 18
+
+swamp 15, 30
+
+spawn2d6mon 18
+
+swamp1 16
+
+U
+
+spawnmon 18
+
+swamp2 16
+
+ug 31
+
+spawnmonaway 18
+
+sweep 5
+
+unaging 21
+
+spawnoffs 18
+
+undead 5, 19
+
+Special Attributes 5, 21, 28, 30
+
+T
+
+undkill 5
+
+Special Commands 10, 37
+
+tangleres 21
+
+unfollowtarg 37
+
+Special Start Location 27
+
+Targeting Commands 35
+
+unimportant 21
+
+Special Values 40
+
+targetunitloc 39
+
+unique 21, 30
+
+specpow 33
+
+targterr 6
+
+updatehome 36
+
+spellrange 15
+
+teleport 16
+
+Updating a Mod 40
+
+spellweapon 15
+
+teleportloc 36
+
+updhomeifterr 36
+
+spellweapon50 15
+
+tempimmune 31
+
+useable 30
+
+spellweapon50s 15
+
+temple 30
+
+spellweaponbonus 15
+
+temple1 16
+
+V
+
+spellweaponsingle 15
+
+temple2 16
+
+varcost 33
+
+spiritsight 19
+
+templebonusdescr 28
+
+varregen 19
+
+split 18
+
+templerec 28
+
+vassal 23
+
+spr 10, 29
+
+terr 32
+
+visible 30
+
+spr1 14
+
+terraformch 18
+
+void 31
+
+spr2 14
+
+terraformfrom 18
+
+void2 16
+
+spread 22
+
+terraformto 18
+
+voidret 31
+
+spreadcold 31
+
+Terrain Altering 18
+
+voidsanity 19
+
+squareench 36
+
+Terrain Group Modding 32
+
+voidshape 18
+
+squareevent 38
+
+Terrain Modding 29
+
+voidship 23
+
+squarespec 36
+
+Terrain Modding Numbers 31
+
+start 35
+
+terrboost 35
+
+W
+
+Start Commands 4, 10, 13, 27, 29, 32
+
+terrscale50 35
+
+wall 16
+
+Starting Units 27
+
+terrstealth 19
+
+wallkill 6
+
+startinsanity 19
+
+terrstealthinv 19
+
+walls 30
+
+startitem 21
+
+thrallhunt 23
+
+wander 17
+
+startplane 27
+
+tiny 21
+
+wander2 17
+
+stationary 15
+
+town1 31
+
+wanderattack 17
+
+statue 20
+
+town2 31
+
+wandermaxdist 17
+
+stdtroops 28
+
+townbonusdescr 28
+
+wanderrest 17
+
+stealth 19
+
+trade 20, 29
+
+water 15, 30
+
+Stealth and Scouting 19
+
+tradebonus 20, 28
+
+wateronly 16
+
+stone 6
+
+tradeboost 30
+
+watershape 18
+
+stonebeing 20
+
+trample 23
+
+Weapon Modding 4
+
+stonekill 6
+
+tramplexsize 23
+
+Weapon Modding Numbers 6
+
+str 10, 14
+
+Transformation Commands 33
+
+weaponslots 21
+
+stray 16
+
+transformtarg 33, 37
+
+weed 20, 29
+
+strresist 5
+
+translation 3
+
+winteridle 17
+
+46
+
+woodencitadel 30
+woodengate 30
+Y
+yellow 4
+
+47
+
+
