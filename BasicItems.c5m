@@ -1,5 +1,5 @@
 icon "banner.png"
-description "Adds new weapons and magic rings to the game. Includes Frost Bite, Blazing Blade, Steel Dagger, Recurve Bow, Staff of Restoration, Staff of the Lich King, Demonslayer, Robe of the Arch Magi, and various magic rings that boost different magic paths."
+description "Adds new weapons and magic rings to the game. Includes Frost Bite, Blazing Blade, Steel Dagger, Recurve Bow, Staff of Restoration, Staff of the Lich King, Demonslayer, Robe of the Archmage, and various magic rings that boost different magic paths."
 
 # ----------------------------------------------------------------------
 # MAGIC WEAPONS
@@ -10,7 +10,7 @@ trgrank              1
 range                1
 init                 3
 dmgtype              3
-dmg                  1
+dmg                  5
 aoe                  0
 mundane
 sound                1
@@ -63,14 +63,14 @@ sound                8
 newitem    "Demonslayer"
 spr         "icons/sword_fire.tga"
 descr "A holy blade that deals double damage against undead and demons."
-rarity                                       1
+rarity                                       0
 type                                         1
 itemwep                            "Demonslayer"
 
 newitem    "Frost Bite"
 spr         "icons/sword_frost.tga"
 descr "A freezing blade that deals additional cold damage and slows enemies."
-rarity                                       1
+rarity                                       0
 type                                         1
 itemwep                          "Frost Bite"
 coldres                                    50
@@ -78,7 +78,7 @@ coldres                                    50
 newitem    "Blazing Blade"
 spr         "icons/sword_fire.tga"
 descr "A burning blade that deals fire damage and grants fire resistance."
-rarity                                       1
+rarity                                       0
 type                                         1
 itemwep                           "Blazing Blade"
 fireres                                    50
@@ -103,33 +103,35 @@ itemwep                            "Recurve Bow"
 # ----------------------------------------------------------------------
 
 newitem    "Dragon Scale Mail"
-spr         "icons/ring_earth.tga"
+spr         "icons/Dragon_Scale_Mail.tga"
 descr "Armor made from the scales of a dragon, providing exceptional protection."
-rarity                                       1
+rarity                                       0
 type                                         4
 armor                                        4
 hp                                          10
 fireres                                     50
 coldres                                      50
 
-newitem    "Robe of the Arch Magi"
-spr         "icons/ring_arcana.tga"
-descr "A powerful magical robe that provides air shield, magic boost, and fire resistance."
-rarity                                       2
+newitem    "Robe of the Archmage"
+spr         "icons/Robe_of_the_Archmage.tga"
+descr "A magnificent robe imbued with ancient arcane power, granting magical prowess and magic resistances."
+rarity                                       0
 type                                         4
-airshield                                   75
+armor                                        1
 magicboost                                   1
-protection                                   1
-fireres                                    100
+mr                                           1
+fireres                                    50
+coldres                                    50
+shockres                                    50
 
 # ----------------------------------------------------------------------
 # MAGIC BOOTS
 # ----------------------------------------------------------------------
 
 newitem    "Boots of the Wind"
-spr         "icons/ring_air.tga"
-descr "Magical boots that grant increased movement speed and dodge chance."
-rarity                                       1
+spr         "icons/Boots_of_the_Wind.tga"
+descr "Magical boots that grant increased movement speed."
+rarity                                       0
 type                                         6
 hp                                           5
 fast
@@ -139,9 +141,9 @@ fast
 # ----------------------------------------------------------------------
 
 newitem    "Dragon Scale Helm"
-spr         "icons/ring_earth.tga"
+spr         "icons/Dragon_Scale_helm.tga"
 descr "A helmet forged from dragon scales, providing exceptional protection and resistance to fire and cold."
-rarity                                       1
+rarity                                       0
 type                                         3
 armor                                        2
 hp                                           5
@@ -149,11 +151,12 @@ fireres                                     50
 coldres                                      50
 
 newitem    "Helm of Truth"
-spr         "icons/ring_spirit.tga"
+spr         "icons/Helm_of_Truth.tga"
 descr "A magical helmet that grants the wearer true sight and resistance to magic."
-rarity                                       1
+rarity                                       0
 type                                         3
 mr                                          2
+spiritsight
 
 # ----------------------------------------------------------------------
 # MAGIC MISCELLANEOUS ITEMS
@@ -162,7 +165,7 @@ mr                                          2
 newitem    "Staff of Restoration"
 spr         "icons/Staff_of_Restoration.tga"
 descr "A powerful magical staff that restores 5 HP per turn and increases spell range."
-rarity                                       1
+rarity                                       0
 type                                         1
 itemwep                            "Staff of Power"
 regeneration                                  5
@@ -171,10 +174,11 @@ spellrange                                   1
 newitem    "Staff of the Lich King"
 spr         "icons/Staff_of_the_Lich_King.tga"
 descr "A dark staff that drains life from enemies and restores 2 HP per turn."
-rarity                                       1
+rarity                                       0
 type                                         1
 itemwep                            "Staff"
 regeneration                                  2
+combatspell                     1 "Drain Life"
 
 newweapon     "Staff of Iron Will"
 trgrank              1
@@ -189,7 +193,7 @@ sound                1
 newitem    "Staff of Iron Will"
 spr         "icons/Staff_of_Iron_Will.tga"
 descr "A powerful staff that grants immunity to sleep and charm effects."
-rarity                                       1
+rarity                                       0
 type                                         1
 itemwep                            "Staff of Iron Will"
 sleepres
@@ -198,7 +202,7 @@ charmres
 newitem    "Heart of Iron"
 spr         "icons/Heart_of_Iron.tga"
 descr "A cursed iron heart that provides regeneration but inflicts a permanent chest wound."
-rarity                                       1
+rarity                                       0
 type                                         7
 mr                                          2
 regeneration
@@ -209,9 +213,9 @@ curseditem
 # ----------------------------------------------------------------------
 
 newitem    "Frost Gauntlets"
-spr         "icons/ring_ice.tga"
+spr         "icons/Frost_Gauntlets.tga"
 descr "Icy gauntlets that surround the wearer in a frost shield, dealing cold damage to attackers."
-rarity                                       1
+rarity                                       0
 type                                         5
 coldaura                                      3
 hp                                           5
@@ -224,217 +228,217 @@ coldres                                    100
 newitem    "Ring of Infernal Magic"
 spr         "icons/ring_fire.tga"
 descr "Grants +1 Path Boost in Infernal Magic."
-rarity                                       1
+rarity                                       0
 type                                         7
 pathboost                                       1
 
 newitem    "Ring of Pyromancy"
 spr         "icons/ring_pyromancy.tga"
 descr "Grants +1 Path Boost in Pyromancy."
-rarity                                       1
+rarity                                       0
 type                                         7
 pathboost                                       3
 
 newitem    "Ring of Hydromancy"
 spr         "icons/ring_water.tga"
 descr "Grants +1 Path Boost in Hydromancy."
-rarity                                       1
+rarity                                       0
 type                                         7
 pathboost                                       4
 
 newitem    "Ring of Storm Magic"
 spr         "icons/ring_air.tga"
 descr "Grants +1 Path Boost in Storm Magic."
-rarity                                       1
+rarity                                       0
 type                                         7
 pathboost                                       5
 
 newitem    "Ring of Geomancy"
 spr         "icons/ring_earth.tga"
 descr "Grants +1 Path Boost in Geomancy."
-rarity                                       1
+rarity                                       0
 type                                         7
 pathboost                                       6
 
 newitem    "Ring of Unlife"
 spr         "icons/ring_undead.tga"
 descr "Grants +1 Path Boost in Unlife."
-rarity                                       1
+rarity                                       0
 type                                         7
 pathboost                                       8
 
 newitem    "Ring of Dark Magic"
 spr         "icons/ring_dark.tga"
 descr "Grants +1 Path Boost in Dark Magic."
-rarity                                       1
+rarity                                       0
 type                                         7
 pathboost                                       9
 
 newitem    "Ring of Blood Magic"
 spr         "icons/ring_blood.tga"
 descr "Grants +1 Path Boost in Blood Magic."
-rarity                                       1
+rarity                                       0
 type                                         7
 pathboost                                      11
 
 newitem    "Ring of White Magic"
 spr         "icons/ring_white.tga"
 descr "Grants +1 Path Boost in White Magic."
-rarity                                       1
+rarity                                       0
 type                                         7
 pathboost                                      16
 
 newitem    "Ring of Spiritism"
 spr         "icons/ring_spirit.tga"
 descr "Grants +1 Path Boost in Spiritism."
-rarity                                       1
+rarity                                       0
 type                                         7
 pathboost                                      17
 
 newitem    "Ring of Solar Magic"
 spr         "icons/ring_sun.tga"
 descr "Grants +1 Path Boost in Solar Magic."
-rarity                                       1
+rarity                                       0
 type                                         7
 pathboost                                      19
 
 newitem    "Ring of Serpent Magic"
 spr         "icons/ring_nature.tga"
 descr "Grants +1 Path Boost in Serpent Magic."
-rarity                                       1
+rarity                                       0
 type                                         7
 pathboost                                      21
 
 newitem    "Ring of Dawn Magic"
 spr         "icons/ring_dawn.tga"
 descr "Grants +1 Path Boost in Dawn Magic."
-rarity                                       1
+rarity                                       0
 type                                         7
 pathboost                                      22
 
 newitem    "Ring of Iron Arcana"
 spr         "icons/ring_metal.tga"
 descr "Grants +1 Path Boost in Iron Arcana."
-rarity                                       1
+rarity                                       0
 type                                         7
 pathboost                                      23
 
 newitem    "Ring of Kuro Do"
 spr         "icons/ring_kuro.tga"
 descr "Grants +1 Path Boost in Kuro Do."
-rarity                                       1
+rarity                                       0
 type                                         7
 pathboost                                      24
 
 newitem    "Ring of Prayers"
 spr         "icons/ring_dark_prayers.tga"
 descr "Grants +1 Path Boost in Prayers."
-rarity                                       1
+rarity                                       0
 type                                         7
 pathboost                                      25
 
 newitem    "Ring of Frost Magic"
 spr         "icons/ring_ice.tga"
 descr "Grants +1 Path Boost in Frost Magic."
-rarity                                       1
+rarity                                       0
 type                                         7
 pathboost                                      27
 
 newitem    "Ring of Dark Prayers"
 spr         "icons/ring_dark_prayers.tga"
 descr "Grants +1 Path Boost in Dark Prayers."
-rarity                                       1
+rarity                                       0
 type                                         7
 pathboost                                      28
 
 newitem    "Ring of Wizardry"
 spr         "icons/ring_magic.tga"
 descr "Grants +1 Path Boost in Wizardry."
-rarity                                       1
+rarity                                       0
 type                                         7
 pathboost                                      29
 
 newitem    "Ring of Night"
 spr         "icons/ring_shadow.tga"
 descr "Grants +1 Path Boost in Night."
-rarity                                       1
+rarity                                       0
 type                                         7
 pathboost                                      32
 
 newitem    "Ring of Necromancy"
 spr         "icons/ring_necromancy.tga"
 descr "Grants +1 Path Boost in Necromancy."
-rarity                                       1
+rarity                                       0
 type                                         7
 pathboost                                      38
 
 newitem    "Ring of Witchery"
 spr         "icons/ring_witchery.tga"
 descr "Grants +1 Path Boost in Witchery."
-rarity                                       1
+rarity                                       0
 type                                         7
 pathboost                                      40
 
 newitem    "Ring of Troll Magic"
 spr         "icons/ring_troll.tga"
 descr "Grants +1 Path Boost in Troll Magic."
-rarity                                       1
+rarity                                       0
 type                                         7
 pathboost                                      41
 
 newitem    "Ring of Void Magic"
 spr         "icons/ring_void.tga"
 descr "Grants +1 Path Boost in Void Magic."
-rarity                                       1
+rarity                                       0
 type                                         7
 pathboost                                      42
 
 newitem    "Ring of Illusionism"
 spr         "icons/ring_illusionism.tga"
 descr "Grants +1 Path Boost in Illusionism."
-rarity                                       1
+rarity                                       0
 type                                         7
 pathboost                                      43
 
 newitem    "Ring of High Arcana"
 spr         "icons/ring_arcana.tga"
 descr "Grants +1 Path Boost in High Arcana."
-rarity                                       1
+rarity                                       0
 type                                         7
 pathboost                                      51
 
 newitem    "Ring of Moon Magic"
 spr         "icons/ring_moon.tga"
 descr "Grants +1 Path Boost in Moon Magic."
-rarity                                       1
+rarity                                       0
 type                                         7
 pathboost                                      52
 
 newitem    "Ring of Silver Arcana"
 spr         "icons/ring_silver.tga"
 descr "Grants +1 Path Boost in Silver Arcana."
-rarity                                       1
+rarity                                       0
 type                                         7
 pathboost                                      53
 
 newitem    "Ring of Alchemy"
 spr         "icons/ring_alchemy.tga"
 descr "Grants +1 Path Boost in Alchemy."
-rarity                                       1
+rarity                                       0
 type                                         7
 pathboost                                      55
 
 newitem    "Ring of Gold Arcana"
 spr         "icons/ring_metal.tga"
 descr "Grants +1 Path Boost in Gold Arcana."
-rarity                                       1
+rarity                                       0
 type                                         7
 pathboost                                      56
 
 newitem    "Ring of Astrology"
 spr         "icons/ring_stars.tga"
 descr "Grants +1 Path Boost in Astrology."
-rarity                                       1
+rarity                                       0
 type                                         7
 pathboost                                      61
 
