@@ -1,5 +1,5 @@
 icon "banner.png"
-description "Adds new weapons and magic rings to the game. Includes Frost Bite, Blazing Blade, Steel Dagger, Recurve Bow, Staff of Restoration, Staff of the Lich King, Demonslayer, and various magic rings that boost different magic paths."
+description "Adds new weapons and magic rings to the game. Includes Frost Bite, Blazing Blade, Steel Dagger, Recurve Bow, Staff of Restoration, Staff of the Lich King, Demonslayer, Robe of the Arch Magi, and various magic rings that boost different magic paths."
 
 # ----------------------------------------------------------------------
 # MAGIC WEAPONS
@@ -112,6 +112,16 @@ hp                                          10
 fireres                                     50
 coldres                                      50
 
+newitem    "Robe of the Arch Magi"
+spr         "icons/ring_arcana.tga"
+descr "A powerful magical robe that provides air shield, magic boost, and fire resistance."
+rarity                                       2
+type                                         4
+airshield                                   75
+magicboost                                   1
+protection                                   1
+fireres                                    100
+
 # ----------------------------------------------------------------------
 # MAGIC BOOTS
 # ----------------------------------------------------------------------
@@ -121,8 +131,8 @@ spr         "icons/ring_air.tga"
 descr "Magical boots that grant increased movement speed and dodge chance."
 rarity                                       1
 type                                         6
-init                                         2
 hp                                           5
+fast
 
 # ----------------------------------------------------------------------
 # MAGIC HELMETS
@@ -155,7 +165,7 @@ descr "A powerful magical staff that restores 5 HP per turn and increases spell 
 rarity                                       1
 type                                         1
 itemwep                            "Staff of Power"
-regen                                      5
+regeneration                                  5
 spellrange                                   1
 
 newitem    "Staff of the Lich King"
@@ -163,8 +173,8 @@ spr         "icons/Staff_of_the_Lich_King.tga"
 descr "A dark staff that drains life from enemies and restores 2 HP per turn."
 rarity                                       1
 type                                         1
-itemwep                            "Rod of Death"
-regen                                      2
+itemwep                            "Staff"
+regeneration                                  2
 
 newweapon     "Staff of Iron Will"
 trgrank              1
@@ -173,7 +183,7 @@ init                 2
 dmgtype              2
 dmg                  5
 aoe                  0
-magic
+mundane
 sound                1
 
 newitem    "Staff of Iron Will"
