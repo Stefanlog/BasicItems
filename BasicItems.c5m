@@ -205,6 +205,7 @@ descr "A cursed iron heart that provides regeneration but inflicts a permanent c
 rarity                                       0
 type                                         7
 mr                                          2
+# aff22
 regeneration
 curseditem
 
@@ -240,7 +241,7 @@ type                                         7
 pathboost                                       3
 
 newitem    "Ring of Hydromancy"
-spr         "icons/ring_water.tga"
+spr         "icons/ring_hydro.tga"
 descr "Grants +1 Path Boost in Hydromancy."
 rarity                                       0
 type                                         7
