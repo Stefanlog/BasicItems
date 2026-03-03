@@ -177,7 +177,7 @@ descr "A dark staff that drains life from enemies and restores 2 HP per turn."
 rarity                                       0
 type                                         1
 itemwep                            "Staff"
-regeneration                                  2
+regeneration                                  5
 combatspell                     1 "Drain Life"
 
 newweapon     "Staff of Iron Will"

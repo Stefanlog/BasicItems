@@ -141,7 +141,7 @@
     { "id": "ring_moon_magic", "name": "Ring of Moon Magic", "description": "Grants +1 Path Boost in Moon Magic.", "icon": "icons/ring_moon.png", "stackable": false, "weight": 0.1, "value": 130, "type": "misc", "game_type": 1, "rarity": "rare", "pathboost": 52 },
     { "id": "ring_silver_arcana", "name": "Ring of Silver Arcana", "description": "Grants +1 Path Boost in Silver Arcana.", "icon": "icons/ring_silver.png", "stackable": false, "weight": 0.1, "value": 140, "type": "misc", "game_type": 1, "rarity": "rare", "pathboost": 53 },
     { "id": "ring_alchemy", "name": "Ring of Alchemy", "description": "Grants +1 Path Boost in Alchemy.", "icon": "icons/ring_alchemy.png", "stackable": false, "weight": 0.1, "value": 130, "type": "misc", "game_type": 1, "rarity": "rare", "pathboost": 55 },
-    { "id": "ring_gold_arcana", "name": "Ring of Gold Arcana", "description": "Grants +1 Path Boost in Gold Arcana.", "icon": "icons/ring_gold.png", "stackable": false, "weight": 0.1, "value": 150, "type": "misc", "game_type": 1, "rarity": "rare", "pathboost": 56 },
+    { "id": "ring_gold_arcana", "name": "Ring of Gold Arcana", "description": "Grants +1 Path Boost in Gold Arcana.", "icon": "icons/ring_metal.png", "stackable": false, "weight": 0.1, "value": 150, "type": "misc", "game_type": 1, "rarity": "rare", "pathboost": 56 },
     { "id": "ring_astrology", "name": "Ring of Astrology", "description": "Grants +1 Path Boost in Astrology.", "icon": "icons/ring_stars.png", "stackable": false, "weight": 0.1, "value": 150, "type": "misc", "game_type": 1, "rarity": "rare", "pathboost": 61 }
   ]
 }
