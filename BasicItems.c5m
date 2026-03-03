@@ -381,14 +381,14 @@ type                                         7
 pathboost                                      40
 
 newitem    "Ring of Troll Magic"
-spr         "icons/ring_troll.png"
+spr         "icons/ring_troll.tga"
 descr "Grants +1 Path Boost in Troll Magic."
 rarity                                       0
 type                                         7
 pathboost                                      41
 
 newitem    "Ring of Void Magic"
-spr         "icons/ring_void.tga"
+spr         "icons/ring_void.png"
 descr "Grants +1 Path Boost in Void Magic."
 rarity                                       0
 type                                         7
@@ -430,7 +430,7 @@ type                                         7
 pathboost                                      55
 
 newitem    "Ring of Gold Arcana"
-spr         "icons/ring_metal.tga"
+spr         "icons/ring_metal.png"
 descr "Grants +1 Path Boost in Gold Arcana."
 rarity                                       0
 type                                         7
