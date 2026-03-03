@@ -47,6 +47,7 @@ init                 4
 dmgtype              5
 dmg                  6
 aoe                  0
+look                12
 mundane
 sound                8
 
