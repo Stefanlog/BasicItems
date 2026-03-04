@@ -107,6 +107,7 @@ newitem    "Dragon Scale Armor"
 spr         "icons/Dragon_Scale_Mail.tga"
 descr "Armor made from the scales of a dragon, providing exceptional protection."
 rarity                                       0
+extracost                                150
 type                                         4
 armor                                        4
 hp                                          10
@@ -145,6 +146,7 @@ newitem    "Dragon Scale Helm"
 spr         "icons/Dragon_Scale_helm.tga"
 descr "A helmet forged from dragon scales, providing exceptional protection and resistance to fire and cold."
 rarity                                       0
+extracost                                150
 type                                         3
 armor                                        2
 hp                                           5
@@ -152,7 +154,7 @@ fireres                                     50
 coldres                                      50
 
 newitem    "Helm of Truth"
-spr         "icons/Helm_of_Truth.tga"
+spr         "icons/Helm_of_Truth.png"
 descr "A magical helmet that grants the wearer true sight and resistance to magic."
 rarity                                       0
 type                                         3

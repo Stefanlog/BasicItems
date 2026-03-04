@@ -1,0 +1,392 @@
+[
+  {
+    "index": 21,
+    "item": "Ring of Unlife",
+    "spr": "icons/ring_undead.tga",
+    "size": [
+      64,
+      64
+    ],
+    "seed": 712651458,
+    "attempt": 1,
+    "prompt": "Pixel art fantasy item icon of Ring of Unlife, undead ring with bone details and sickly green glow, single object only, centered, full object visible, 15% transparent padding on all sides, transparent background, high contrast shading, crisp edges, no text, no watermark, no border. Canvas: 64 x 64.",
+    "negative_prompt": "stretched, squashed, cropped, cut off, blurry, low detail, anti-aliased smear, multiple objects, background scene, text, logo, watermark, frame, border",
+    "space": "Manjushri/SDXL-Turbo-CPU",
+    "generated_path": "/mnt/c/Users/Stefa/AppData/Local/Temp/gradio/aa8f6f1b5a639d4a1f4bb3d16a51930c29956d50a1a34a3ca044114a00754b74/image.webp"
+  },
+  {
+    "index": 22,
+    "item": "Ring of Dark Magic",
+    "spr": "icons/ring_dark.tga",
+    "size": [
+      64,
+      64
+    ],
+    "seed": 496832062,
+    "attempt": 1,
+    "prompt": "Pixel art fantasy item icon of Ring of Dark Magic, dark arcane ring with black gem and shadow aura, single object only, centered, full object visible, 15% transparent padding on all sides, transparent background, high contrast shading, crisp edges, no text, no watermark, no border. Canvas: 64 x 64.",
+    "negative_prompt": "stretched, squashed, cropped, cut off, blurry, low detail, anti-aliased smear, multiple objects, background scene, text, logo, watermark, frame, border",
+    "space": "Manjushri/SDXL-Turbo-CPU",
+    "generated_path": "/mnt/c/Users/Stefa/AppData/Local/Temp/gradio/46333ddb958bd739969ce8aad33a4320c0e5bb9cfbf3558ee51b66b335463d9d/image.webp"
+  },
+  {
+    "index": 23,
+    "item": "Ring of Blood Magic",
+    "spr": "icons/ring_blood.tga",
+    "size": [
+      64,
+      64
+    ],
+    "seed": 1955002957,
+    "attempt": 1,
+    "prompt": "Pixel art fantasy item icon of Ring of Blood Magic, blood magic ring with deep red gem and ritual markings, single object only, centered, full object visible, 15% transparent padding on all sides, transparent background, high contrast shading, crisp edges, no text, no watermark, no border. Canvas: 64 x 64.",
+    "negative_prompt": "stretched, squashed, cropped, cut off, blurry, low detail, anti-aliased smear, multiple objects, background scene, text, logo, watermark, frame, border",
+    "space": "Manjushri/SDXL-Turbo-CPU",
+    "generated_path": "/mnt/c/Users/Stefa/AppData/Local/Temp/gradio/8f3b231e82031b86f45c8a69f2774b0db8e8a5ce5c883bbbf7e2449e13f6d4f9/image.webp"
+  },
+  {
+    "index": 24,
+    "item": "Ring of White Magic",
+    "spr": "icons/ring_white.tga",
+    "size": [
+      32,
+      32
+    ],
+    "seed": 934167004,
+    "attempt": 1,
+    "prompt": "Pixel art fantasy item icon of Ring of White Magic, holy white ring with pearl gem and clean light aura, single object only, centered, full object visible, 15% transparent padding on all sides, transparent background, high contrast shading, crisp edges, no text, no watermark, no border. Canvas: 32 x 32.",
+    "negative_prompt": "stretched, squashed, cropped, cut off, blurry, low detail, anti-aliased smear, multiple objects, background scene, text, logo, watermark, frame, border",
+    "space": "Manjushri/SDXL-Turbo-CPU",
+    "generated_path": "/mnt/c/Users/Stefa/AppData/Local/Temp/gradio/47c7b8b48aa602bd8b56393d83a39f640ef805df64324465c4c6429d09ef6614/image.webp"
+  },
+  {
+    "index": 25,
+    "item": "Ring of Spiritism",
+    "spr": "icons/ring_spirit.tga",
+    "size": [
+      32,
+      32
+    ],
+    "seed": 925489018,
+    "attempt": 1,
+    "prompt": "Pixel art fantasy item icon of Ring of Spiritism, spirit ring with cyan gem and ghostly wisps, single object only, centered, full object visible, 15% transparent padding on all sides, transparent background, high contrast shading, crisp edges, no text, no watermark, no border. Canvas: 32 x 32.",
+    "negative_prompt": "stretched, squashed, cropped, cut off, blurry, low detail, anti-aliased smear, multiple objects, background scene, text, logo, watermark, frame, border",
+    "space": "Manjushri/SDXL-Turbo-CPU",
+    "generated_path": "/mnt/c/Users/Stefa/AppData/Local/Temp/gradio/364a262d2ec98bbbaeef816a34fa3365dcf24ad935977ef07caeae3d809c6816/image.webp"
+  },
+  {
+    "index": 26,
+    "item": "Ring of Solar Magic",
+    "spr": "icons/ring_sun.tga",
+    "size": [
+      64,
+      64
+    ],
+    "seed": 650240378,
+    "attempt": 1,
+    "prompt": "Pixel art fantasy item icon of Ring of Solar Magic, sun ring with golden gem and radiant rays motif, single object only, centered, full object visible, 15% transparent padding on all sides, transparent background, high contrast shading, crisp edges, no text, no watermark, no border. Canvas: 64 x 64.",
+    "negative_prompt": "stretched, squashed, cropped, cut off, blurry, low detail, anti-aliased smear, multiple objects, background scene, text, logo, watermark, frame, border",
+    "space": "Manjushri/SDXL-Turbo-CPU",
+    "generated_path": "/mnt/c/Users/Stefa/AppData/Local/Temp/gradio/2cf72e3273c618ed497410b18918457e31836920967af6ebc1d7e0bb32495e7e/image.webp"
+  },
+  {
+    "index": 27,
+    "item": "Ring of Serpent Magic",
+    "spr": "icons/ring_nature.tga",
+    "size": [
+      64,
+      64
+    ],
+    "seed": 746611528,
+    "attempt": 1,
+    "prompt": "Pixel art fantasy item icon of Ring of Serpent Magic, nature-serpent ring with emerald gem and vine engraving, single object only, centered, full object visible, 15% transparent padding on all sides, transparent background, high contrast shading, crisp edges, no text, no watermark, no border. Canvas: 64 x 64.",
+    "negative_prompt": "stretched, squashed, cropped, cut off, blurry, low detail, anti-aliased smear, multiple objects, background scene, text, logo, watermark, frame, border",
+    "space": "Manjushri/SDXL-Turbo-CPU",
+    "generated_path": "/mnt/c/Users/Stefa/AppData/Local/Temp/gradio/3bd28c7f3b8efdd18cc278ce72c84b2b152360a3ac5e55cf7875f0d4a2473248/image.webp"
+  },
+  {
+    "index": 28,
+    "item": "Ring of Dawn Magic",
+    "spr": "icons/ring_dawn.tga",
+    "size": [
+      64,
+      64
+    ],
+    "seed": 953089611,
+    "attempt": 1,
+    "prompt": "Pixel art fantasy item icon of Ring of Dawn Magic, dawn ring with warm amber gem and sunrise motif, single object only, centered, full object visible, 15% transparent padding on all sides, transparent background, high contrast shading, crisp edges, no text, no watermark, no border. Canvas: 64 x 64.",
+    "negative_prompt": "stretched, squashed, cropped, cut off, blurry, low detail, anti-aliased smear, multiple objects, background scene, text, logo, watermark, frame, border",
+    "space": "Manjushri/SDXL-Turbo-CPU",
+    "generated_path": "/mnt/c/Users/Stefa/AppData/Local/Temp/gradio/9cb7f9943b64f5b11cffe4a85489770cf14112dbaf2b484fcfc6c85045815584/image.webp"
+  },
+  {
+    "index": 29,
+    "item": "Ring of Iron Arcana",
+    "spr": "icons/ring_metal.tga",
+    "size": [
+      64,
+      64
+    ],
+    "seed": 976737799,
+    "attempt": 1,
+    "prompt": "Pixel art fantasy item icon of Ring of Iron Arcana, iron arcana ring with steel band and etched sigils, single object only, centered, full object visible, 15% transparent padding on all sides, transparent background, high contrast shading, crisp edges, no text, no watermark, no border. Canvas: 64 x 64.",
+    "negative_prompt": "stretched, squashed, cropped, cut off, blurry, low detail, anti-aliased smear, multiple objects, background scene, text, logo, watermark, frame, border",
+    "space": "Manjushri/SDXL-Turbo-CPU",
+    "generated_path": "/mnt/c/Users/Stefa/AppData/Local/Temp/gradio/80b41a6d5af6cf6ca2c0f9a97c0a98dfa87c0c6bbcf55a439994523d21a6eba6/image.webp"
+  },
+  {
+    "index": 30,
+    "item": "Ring of Kuro Do",
+    "spr": "icons/ring_kuro.tga",
+    "size": [
+      64,
+      64
+    ],
+    "seed": 1884893487,
+    "attempt": 1,
+    "prompt": "Pixel art fantasy item icon of Ring of Kuro Do, mystic kuro ring with dark blue gem and eastern glyphs, single object only, centered, full object visible, 15% transparent padding on all sides, transparent background, high contrast shading, crisp edges, no text, no watermark, no border. Canvas: 64 x 64.",
+    "negative_prompt": "stretched, squashed, cropped, cut off, blurry, low detail, anti-aliased smear, multiple objects, background scene, text, logo, watermark, frame, border",
+    "space": "Manjushri/SDXL-Turbo-CPU",
+    "generated_path": "/mnt/c/Users/Stefa/AppData/Local/Temp/gradio/0447aaf6e92342a5d762cfc8ab14837f44fda0c95503c1e72273ac43f41059fe/image.webp"
+  },
+  {
+    "index": 31,
+    "item": "Ring of Prayers",
+    "spr": "icons/ring_holy.tga",
+    "size": [
+      64,
+      64
+    ],
+    "seed": 1031795320,
+    "attempt": 1,
+    "prompt": "Pixel art fantasy item icon of Ring of Prayers, prayer ring with silver band and sacred rune marks, single object only, centered, full object visible, 15% transparent padding on all sides, transparent background, high contrast shading, crisp edges, no text, no watermark, no border. Canvas: 64 x 64.",
+    "negative_prompt": "stretched, squashed, cropped, cut off, blurry, low detail, anti-aliased smear, multiple objects, background scene, text, logo, watermark, frame, border",
+    "space": "Manjushri/SDXL-Turbo-CPU",
+    "generated_path": "/mnt/c/Users/Stefa/AppData/Local/Temp/gradio/91c7339b491f7c390e287d34aea162661905b0550f261b4a9d010298b2775240/image.webp"
+  },
+  {
+    "index": 32,
+    "item": "Ring of Frost Magic",
+    "spr": "icons/ring_ice.tga",
+    "size": [
+      32,
+      32
+    ],
+    "seed": 801855206,
+    "attempt": 1,
+    "prompt": "Pixel art fantasy item icon of Ring of Frost Magic, frost ring with icy gem and crystalline edges, single object only, centered, full object visible, 15% transparent padding on all sides, transparent background, high contrast shading, crisp edges, no text, no watermark, no border. Canvas: 32 x 32.",
+    "negative_prompt": "stretched, squashed, cropped, cut off, blurry, low detail, anti-aliased smear, multiple objects, background scene, text, logo, watermark, frame, border",
+    "space": "Manjushri/SDXL-Turbo-CPU",
+    "generated_path": "/mnt/c/Users/Stefa/AppData/Local/Temp/gradio/b10968580ee4cbaab209ec7e746127c5db124a4775173cb68c65813ca1d72922/image.webp"
+  },
+  {
+    "index": 33,
+    "item": "Ring of Dark Prayers",
+    "spr": "icons/ring_dark_prayers.tga",
+    "size": [
+      64,
+      64
+    ],
+    "seed": 1326046440,
+    "attempt": 1,
+    "prompt": "Pixel art fantasy item icon of Ring of Dark Prayers, forbidden prayer ring with black silver filigree and cursed glyphs, single object only, centered, full object visible, 15% transparent padding on all sides, transparent background, high contrast shading, crisp edges, no text, no watermark, no border. Canvas: 64 x 64.",
+    "negative_prompt": "stretched, squashed, cropped, cut off, blurry, low detail, anti-aliased smear, multiple objects, background scene, text, logo, watermark, frame, border",
+    "space": "Manjushri/SDXL-Turbo-CPU",
+    "generated_path": "/mnt/c/Users/Stefa/AppData/Local/Temp/gradio/bb81b1eea12d3580859c50680a66d299626058f95956689e2e3f1d75c14bdb63/image.webp"
+  },
+  {
+    "index": 34,
+    "item": "Ring of Wizardry",
+    "spr": "icons/ring_magic.tga",
+    "size": [
+      64,
+      64
+    ],
+    "seed": 705006056,
+    "attempt": 1,
+    "prompt": "Pixel art fantasy item icon of Ring of Wizardry, wizard ring with violet gem and arcane circles, single object only, centered, full object visible, 15% transparent padding on all sides, transparent background, high contrast shading, crisp edges, no text, no watermark, no border. Canvas: 64 x 64.",
+    "negative_prompt": "stretched, squashed, cropped, cut off, blurry, low detail, anti-aliased smear, multiple objects, background scene, text, logo, watermark, frame, border",
+    "space": "Manjushri/SDXL-Turbo-CPU",
+    "generated_path": "/mnt/c/Users/Stefa/AppData/Local/Temp/gradio/7440fcbf664b2024608b41297dc243205b599feab7ed59031335ba33ac1c3fe2/image.webp"
+  },
+  {
+    "index": 35,
+    "item": "Ring of Night",
+    "spr": "icons/ring_shadow.tga",
+    "size": [
+      64,
+      64
+    ],
+    "seed": 580560282,
+    "attempt": 1,
+    "prompt": "Pixel art fantasy item icon of Ring of Night, night ring with indigo gem and moonlit shadow aura, single object only, centered, full object visible, 15% transparent padding on all sides, transparent background, high contrast shading, crisp edges, no text, no watermark, no border. Canvas: 64 x 64.",
+    "negative_prompt": "stretched, squashed, cropped, cut off, blurry, low detail, anti-aliased smear, multiple objects, background scene, text, logo, watermark, frame, border",
+    "space": "Manjushri/SDXL-Turbo-CPU",
+    "generated_path": "/mnt/c/Users/Stefa/AppData/Local/Temp/gradio/242e21cbb91c39ec6378390813c9aedfb7e175852cd5e07f2c64d5c94e651c7d/image.webp"
+  },
+  {
+    "index": 36,
+    "item": "Ring of Necromancy",
+    "spr": "icons/ring_necromancy.tga",
+    "size": [
+      64,
+      64
+    ],
+    "seed": 1382732666,
+    "attempt": 1,
+    "prompt": "Pixel art fantasy item icon of Ring of Necromancy, necromancy ring with bone motifs and toxic green gem, single object only, centered, full object visible, 15% transparent padding on all sides, transparent background, high contrast shading, crisp edges, no text, no watermark, no border. Canvas: 64 x 64.",
+    "negative_prompt": "stretched, squashed, cropped, cut off, blurry, low detail, anti-aliased smear, multiple objects, background scene, text, logo, watermark, frame, border",
+    "space": "Manjushri/SDXL-Turbo-CPU",
+    "generated_path": "/mnt/c/Users/Stefa/AppData/Local/Temp/gradio/825a6da2b19e03efbc87a090e2d80aceffc30df771bf808742bade0270bd4d61/image.webp"
+  },
+  {
+    "index": 37,
+    "item": "Ring of Witchery",
+    "spr": "icons/ring_witchery.tga",
+    "size": [
+      64,
+      64
+    ],
+    "seed": 561235063,
+    "attempt": 1,
+    "prompt": "Pixel art fantasy item icon of Ring of Witchery, witchery ring with amethyst gem and occult carvings, single object only, centered, full object visible, 15% transparent padding on all sides, transparent background, high contrast shading, crisp edges, no text, no watermark, no border. Canvas: 64 x 64.",
+    "negative_prompt": "stretched, squashed, cropped, cut off, blurry, low detail, anti-aliased smear, multiple objects, background scene, text, logo, watermark, frame, border",
+    "space": "Manjushri/SDXL-Turbo-CPU",
+    "generated_path": "/mnt/c/Users/Stefa/AppData/Local/Temp/gradio/11034374f6414eea42eb408537c9604b5cc4b087f131368d02c592f609bca00e/image.webp"
+  },
+  {
+    "index": 38,
+    "item": "Ring of Troll Magic",
+    "spr": "icons/ring_troll.tga",
+    "size": [
+      32,
+      32
+    ],
+    "seed": 1676284476,
+    "attempt": 1,
+    "prompt": "Pixel art fantasy item icon of Ring of Troll Magic, troll magic ring, rugged band with mossy green gem, single object only, centered, full object visible, 15% transparent padding on all sides, transparent background, high contrast shading, crisp edges, no text, no watermark, no border. Canvas: 32 x 32.",
+    "negative_prompt": "stretched, squashed, cropped, cut off, blurry, low detail, anti-aliased smear, multiple objects, background scene, text, logo, watermark, frame, border",
+    "space": "Manjushri/SDXL-Turbo-CPU",
+    "generated_path": "/mnt/c/Users/Stefa/AppData/Local/Temp/gradio/00f78ff93cc5e67cf353841a1e6fc012720f0e0d2e081f9c46579eb1d3e464fa/image.webp"
+  },
+  {
+    "index": 39,
+    "item": "Ring of Void Magic",
+    "spr": "icons/ring_void.png",
+    "size": [
+      40,
+      40
+    ],
+    "seed": 145684933,
+    "attempt": 1,
+    "prompt": "Pixel art fantasy item icon of Ring of Void Magic, void ring with dark purple gem and cosmic cracks, single object only, centered, full object visible, 15% transparent padding on all sides, transparent background, high contrast shading, crisp edges, no text, no watermark, no border. Canvas: 40 x 40.",
+    "negative_prompt": "stretched, squashed, cropped, cut off, blurry, low detail, anti-aliased smear, multiple objects, background scene, text, logo, watermark, frame, border",
+    "space": "Manjushri/SDXL-Turbo-CPU",
+    "generated_path": "/mnt/c/Users/Stefa/AppData/Local/Temp/gradio/444c7a94f2b5e1171972e7b8ae1c39b31b1aab1f130169cfd91586fafbdfe884/image.webp"
+  },
+  {
+    "index": 40,
+    "item": "Ring of Illusionism",
+    "spr": "icons/ring_illusionism.tga",
+    "size": [
+      64,
+      64
+    ],
+    "seed": 855886856,
+    "attempt": 1,
+    "prompt": "Pixel art fantasy item icon of Ring of Illusionism, illusion ring with prismatic gem and mirage shimmer, single object only, centered, full object visible, 15% transparent padding on all sides, transparent background, high contrast shading, crisp edges, no text, no watermark, no border. Canvas: 64 x 64.",
+    "negative_prompt": "stretched, squashed, cropped, cut off, blurry, low detail, anti-aliased smear, multiple objects, background scene, text, logo, watermark, frame, border",
+    "space": "Manjushri/SDXL-Turbo-CPU",
+    "generated_path": "/mnt/c/Users/Stefa/AppData/Local/Temp/gradio/27f469eb78bf4c9fa748f8c11cd5a66808e522ccc6edd2b53cf895e9e01585cd/image.webp"
+  },
+  {
+    "index": 41,
+    "item": "Ring of High Arcana",
+    "spr": "icons/ring_arcana.tga",
+    "size": [
+      64,
+      64
+    ],
+    "seed": 1143929762,
+    "attempt": 1,
+    "prompt": "Pixel art fantasy item icon of Ring of High Arcana, high arcana ring with brilliant star gem and complex runes, single object only, centered, full object visible, 15% transparent padding on all sides, transparent background, high contrast shading, crisp edges, no text, no watermark, no border. Canvas: 64 x 64.",
+    "negative_prompt": "stretched, squashed, cropped, cut off, blurry, low detail, anti-aliased smear, multiple objects, background scene, text, logo, watermark, frame, border",
+    "space": "Manjushri/SDXL-Turbo-CPU",
+    "generated_path": "/mnt/c/Users/Stefa/AppData/Local/Temp/gradio/459ffb83ad2d76759944161ec6eb906aba246f4bba57da8d7491732d4dc327d6/image.webp"
+  },
+  {
+    "index": 42,
+    "item": "Ring of Moon Magic",
+    "spr": "icons/ring_moon.tga",
+    "size": [
+      64,
+      64
+    ],
+    "seed": 266613650,
+    "attempt": 1,
+    "prompt": "Pixel art fantasy item icon of Ring of Moon Magic, moon ring with silver-blue gem and crescent symbols, single object only, centered, full object visible, 15% transparent padding on all sides, transparent background, high contrast shading, crisp edges, no text, no watermark, no border. Canvas: 64 x 64.",
+    "negative_prompt": "stretched, squashed, cropped, cut off, blurry, low detail, anti-aliased smear, multiple objects, background scene, text, logo, watermark, frame, border",
+    "space": "Manjushri/SDXL-Turbo-CPU",
+    "generated_path": "/mnt/c/Users/Stefa/AppData/Local/Temp/gradio/c974871def9ca557f6e0b99d609b29e489947a9e145fa40e502e0f6d99f2e688/image.webp"
+  },
+  {
+    "index": 43,
+    "item": "Ring of Silver Arcana",
+    "spr": "icons/ring_silver.tga",
+    "size": [
+      64,
+      64
+    ],
+    "seed": 35813412,
+    "attempt": 1,
+    "prompt": "Pixel art fantasy item icon of Ring of Silver Arcana, silver arcana ring with bright silver band and clear runes, single object only, centered, full object visible, 15% transparent padding on all sides, transparent background, high contrast shading, crisp edges, no text, no watermark, no border. Canvas: 64 x 64.",
+    "negative_prompt": "stretched, squashed, cropped, cut off, blurry, low detail, anti-aliased smear, multiple objects, background scene, text, logo, watermark, frame, border",
+    "space": "Manjushri/SDXL-Turbo-CPU",
+    "generated_path": "/mnt/c/Users/Stefa/AppData/Local/Temp/gradio/695bee530be59423d4ea929553d61a44353d6e97a633a41ad970c7967642f173/image.webp"
+  },
+  {
+    "index": 44,
+    "item": "Ring of Alchemy",
+    "spr": "icons/ring_alchemy.tga",
+    "size": [
+      32,
+      32
+    ],
+    "seed": 1181448381,
+    "attempt": 1,
+    "prompt": "Pixel art fantasy item icon of Ring of Alchemy, alchemy ring with brass band and transmutation symbols, single object only, centered, full object visible, 15% transparent padding on all sides, transparent background, high contrast shading, crisp edges, no text, no watermark, no border. Canvas: 32 x 32.",
+    "negative_prompt": "stretched, squashed, cropped, cut off, blurry, low detail, anti-aliased smear, multiple objects, background scene, text, logo, watermark, frame, border",
+    "space": "Manjushri/SDXL-Turbo-CPU",
+    "generated_path": "/mnt/c/Users/Stefa/AppData/Local/Temp/gradio/c3db3bb959d5154651e5b7efcbec4114eef1718e15b2aff7da968facd6d21a20/image.webp"
+  },
+  {
+    "index": 45,
+    "item": "Ring of Gold Arcana",
+    "spr": "icons/ring_metal.png",
+    "size": [
+      64,
+      64
+    ],
+    "seed": 224566157,
+    "attempt": 1,
+    "prompt": "Pixel art fantasy item icon of Ring of Gold Arcana, gold arcana ring with polished gold band and glowing runes, single object only, centered, full object visible, 15% transparent padding on all sides, transparent background, high contrast shading, crisp edges, no text, no watermark, no border. Canvas: 64 x 64.",
+    "negative_prompt": "stretched, squashed, cropped, cut off, blurry, low detail, anti-aliased smear, multiple objects, background scene, text, logo, watermark, frame, border",
+    "space": "Manjushri/SDXL-Turbo-CPU",
+    "generated_path": "/mnt/c/Users/Stefa/AppData/Local/Temp/gradio/b2703dd9c738ec9dd19184bc8ef21536158bf7e4e49da32ebe0c405ef11f3453/image.webp"
+  },
+  {
+    "index": 46,
+    "item": "Ring of Astrology",
+    "spr": "icons/ring_stars.tga",
+    "size": [
+      64,
+      64
+    ],
+    "seed": 197317421,
+    "attempt": 1,
+    "prompt": "Pixel art fantasy item icon of Ring of Astrology, astrology ring with midnight gem and star chart engravings, single object only, centered, full object visible, 15% transparent padding on all sides, transparent background, high contrast shading, crisp edges, no text, no watermark, no border. Canvas: 64 x 64.",
+    "negative_prompt": "stretched, squashed, cropped, cut off, blurry, low detail, anti-aliased smear, multiple objects, background scene, text, logo, watermark, frame, border",
+    "space": "Manjushri/SDXL-Turbo-CPU",
+    "generated_path": "/mnt/c/Users/Stefa/AppData/Local/Temp/gradio/8ae9706e646a8047368be79ba158961732ce206d75377f9cd2927dc8a038ab07/image.webp"
+  }
+]
