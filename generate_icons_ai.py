@@ -27,6 +27,7 @@ from PIL import Image
 ROOT = Path(__file__).resolve().parent
 C5M_PATH = ROOT / "BasicItems.c5m"
 DEFAULT_SPACE_ID = "Nick088/Stable-Diffusion-3-Medium-SuperPrompt"
+CANONICAL_ICON_SIZE = (32, 32)
 
 NEGATIVE_PROMPT = (
     "stretched, squashed, cropped, cut off, blurry, low detail, "
@@ -159,7 +160,13 @@ def create_backup(item_sprites: list[ItemSprite]) -> Path:
 
 def load_target_size(sprite_path: Path) -> tuple[int, int]:
     with Image.open(sprite_path) as image:
-        return image.size
+        width, height = image.size
+
+    # CoE5 item icons are expected at 32x32; keeping generation fixed here
+    # avoids oversized canvases that render inconsistently in-game.
+    if (width, height) != CANONICAL_ICON_SIZE:
+        return CANONICAL_ICON_SIZE
+    return width, height
 
 
 def save_image(image_path: str, out_path: Path, size: tuple[int, int]) -> None:
